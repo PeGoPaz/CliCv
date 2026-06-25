@@ -1,83 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Link, Mail, MapPin, Terminal } from 'lucide-react'
-
-const HOME_DATA = {
-  location: 'Dublin, Ireland',
-  email: 'vl.rai@proton.me',
-  github: 'https://github.com/PeGoPaz',
-  linkedin: 'https://www.linkedin.com/in/pegopaz/',
-  summary:
-    "Hey! I'm Vladimir, a tech-obsessed software developer based in Dublin. I love breaking complex things down to see how they tick—whether it's building data-driven backends, optimizing database queries, or assembling hardware from scratch. My engineering journey sits at a unique intersection: I have professional experience working as a Banking Software Implementation Specialist, where I validated over 200+ regulatory reports for banking clients and modified 400+ complex database-driven reports. I’ve also spent years deep in hardware architecture, building custom high-performance PCs and configuring Linux-based environments. Right now, I'm diving heavy into distributed systems, writing bulletproof JUnit tests, designing automation via CI/CD pipelines, and deploying containerized applications with Docker onto AWS. Hit the links or commands below to explore.",
-}
-
-const SKILLS = [
-  {
-    title: 'Frameworks & Web Technologies',
-    items: [
-      'Spring Boot',
-      'JUnit',
-      'React',
-      'Next.js',
-      'Node.js',
-      'Express.js (MERN Stack)',
-      'REST APIs',
-      'HTML5',
-      'CSS3',
-    ],
-  },
-  {
-    title: 'Databases & Cloud',
-    items: ['SQL', 'PostgreSQL', 'MySQL', 'Amazon Web Services (AWS)'],
-  },
-  {
-    title: 'DevOps, Tools & Systems',
-    items: ['Docker', 'CI/CD Pipelines', 'Git Workflows', 'Linux Environments', 'CLI Tools', 'Automation'],
-  },
-  {
-    title: 'Hardware & Systems Automation',
-    items: [
-      'Computer Hardware Architecture & Optimization',
-      'Bash Scripting',
-      'OS/BIOS/UEFI Configuration',
-    ],
-  },
-  {
-    title: 'Programming Languages',
-    items: ['Java', 'Python', 'JavaScript', 'SQL', 'Bash'],
-  },
-]
-
-const NAV_ITEMS = [
-  { id: 'home', label: 'home' },
-  { id: 'skills', label: 'skills' },
-  { id: 'projects', label: 'projects' },
-]
-
-const CONTACT_ITEMS = [
-  {
-    label: 'Location',
-    value: HOME_DATA.location,
-    icon: MapPin,
-  },
-  {
-    label: 'Email',
-    value: HOME_DATA.email,
-    href: `mailto:${HOME_DATA.email}`,
-    icon: Mail,
-  },
-  {
-    label: 'GitHub',
-    value: 'github.com/PeGoPaz',
-    href: HOME_DATA.github,
-    icon: Link,
-  },
-  {
-    label: 'LinkedIn',
-    value: 'linkedin.com/in/pegopaz',
-    href: HOME_DATA.linkedin,
-    icon: Link,
-  },
-]
+import {
+  PROFILE,
+  HIGHLIGHTS,
+  TECH_STACK,
+  EXPERIENCE,
+  EDUCATION,
+  SKILLS,
+  NAV_ITEMS,
+} from './data/cv.js'
 
 function App() {
   const [activePage, setActivePage] = useState('home')
@@ -126,7 +57,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-neutral-950 text-emerald-100">
-      <div className="mx-auto flex min-h-screen max-w-6xl flex-col gap-6 px-4 py-6">
+      <div className="mx-auto flex min-h-screen max-w-5xl flex-col gap-4 px-4 py-5">
         <header className="flex flex-wrap items-center justify-between gap-3 border border-emerald-400/30 bg-neutral-950/70 px-4 py-3">
           <div className="flex items-center gap-2 text-sm text-emerald-300">
             <Terminal className="h-4 w-4" aria-hidden="true" />
@@ -166,69 +97,168 @@ function HomeView({ asciiName, asciiPortrait, asciiLoading, asciiError }) {
     : asciiError || asciiPortrait || 'Portrait art unavailable.'
 
   return (
-    <section className="space-y-6">
-      <div className="rounded border border-emerald-400/30 bg-black/70 p-4 text-emerald-200 shadow-[0_0_20px_rgba(16,185,129,0.1)]">
-        <pre className="whitespace-pre overflow-x-auto text-xs sm:text-sm md:text-base">
+    <section className="space-y-4">
+      {/* Name banner */}
+      <div className="border border-emerald-400/30 bg-black/70 p-4 text-emerald-200 shadow-[0_0_20px_rgba(16,185,129,0.1)]">
+        <div className="flex justify-center overflow-x-auto">
+          <pre className="inline-block whitespace-pre text-xs sm:text-sm md:text-base">
           {nameDisplay}
-        </pre>
+          </pre>
+        </div>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)]">
-        <div className="rounded border border-emerald-400/20 bg-black/60 p-4">
-          <pre className="whitespace-pre overflow-x-auto text-[10px] leading-4 text-emerald-200/90 sm:text-xs md:text-sm">
+      {/* Portrait + Title/Summary row */}
+      <div className="grid gap-4 md:grid-cols-[200px_1fr]">
+        <div className="border border-emerald-400/20 bg-black/60 p-3">
+          <pre className="whitespace-pre overflow-x-auto text-[8px] leading-[0.65rem] text-emerald-200/90 sm:text-[10px] sm:leading-[0.7rem] md:text-xs md:leading-[0.8rem]">
             {portraitDisplay}
           </pre>
         </div>
 
-        <div className="space-y-4">
-          <TerminalPanel title="Summary">
-            <p className="text-sm leading-relaxed text-emerald-100/90">{HOME_DATA.summary}</p>
-          </TerminalPanel>
-
-          <TerminalPanel title="Contact">
-            <ul className="space-y-2 text-sm">
-              {CONTACT_ITEMS.map(({ label, value, href, icon: Icon }) => (
-                <li key={label} className="flex items-center gap-3">
-                  <Icon className="h-4 w-4 text-cyan-300" aria-hidden="true" />
-                  <span className="min-w-[70px] text-emerald-400">{label}:</span>
-                  {href ? (
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-cyan-200 hover:text-cyan-100"
-                    >
-                      {value}
-                    </a>
-                  ) : (
-                    <span className="text-emerald-100/90">{value}</span>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </TerminalPanel>
-
-          <TerminalPanel title="Quick Commands">
-            <div className="flex flex-wrap gap-2 text-xs text-emerald-300/80">
-              {NAV_ITEMS.map((item) => (
-                <span
-                  key={item.id}
-                  className="rounded border border-emerald-500/20 bg-black/60 px-2 py-1"
-                >
-                  guest@portfolio:~$ {item.label}
-                </span>
-              ))}
+        <div className="space-y-3">
+          <TerminalPanel title="Profile">
+            <div className="space-y-2 text-sm leading-relaxed text-emerald-100/90">
+              <div className="flex items-center gap-2">
+                <span className="text-emerald-400">user:</span>
+                <span className="text-cyan-200">{PROFILE.name}</span>
+                <span className="text-emerald-500/50">·</span>
+                <span className="text-cyan-200">{PROFILE.title}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-emerald-400">loc:</span>
+                <span>{PROFILE.location}</span>
+              </div>
+              <p className="pt-1">{PROFILE.summary}</p>
             </div>
           </TerminalPanel>
         </div>
       </div>
+
+      {/* Tech stack */}
+      <TerminalPanel title="Tech Stack">
+        <div className="flex flex-wrap gap-2">
+          {TECH_STACK.map((tech) => (
+            <span
+              key={tech}
+              className="rounded border border-emerald-500/30 bg-black/60 px-3 py-1 text-xs text-emerald-200"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      </TerminalPanel>
+
+      {/* Highlights / key stats */}
+      <TerminalPanel title="Highlights">
+        <div className="grid gap-3 sm:grid-cols-3">
+          {HIGHLIGHTS.map(({ stat, label }) => (
+            <div
+              key={label}
+              className="border border-emerald-400/20 bg-black/60 p-3 text-center"
+            >
+              <div className="text-2xl font-bold text-cyan-300">{stat}</div>
+              <div className="mt-1 text-xs text-emerald-300/80">{label}</div>
+            </div>
+          ))}
+        </div>
+      </TerminalPanel>
+
+      {/* Experience */}
+      <TerminalPanel title="Experience">
+        <div className="space-y-4">
+          {EXPERIENCE.map((job, i) => (
+            <div key={i} className="border-l-2 border-emerald-400/30 pl-4">
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <span className="text-sm font-semibold text-cyan-200">
+                  {job.role}
+                </span>
+                <span className="text-xs text-emerald-400/70">{job.period}</span>
+              </div>
+              <div className="text-xs text-emerald-300/80">
+                {job.company} — {job.location}
+              </div>
+              <ul className="mt-2 space-y-1 text-sm text-emerald-100/90">
+                {job.bullets.map((b, j) => (
+                  <li key={j} className="flex items-start gap-2">
+                    <span className="text-cyan-300">▸</span>
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </TerminalPanel>
+
+      {/* Education */}
+      <TerminalPanel title="Education">
+        <div className="border-l-2 border-emerald-400/30 pl-4">
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <span className="text-sm font-semibold text-cyan-200">
+              {EDUCATION[0].degree}
+            </span>
+            <span className="text-xs text-emerald-400/70">
+              {EDUCATION[0].period}
+            </span>
+          </div>
+          <div className="text-xs text-emerald-300/80">
+            {EDUCATION[0].school} — {EDUCATION[0].location}
+          </div>
+        </div>
+      </TerminalPanel>
+
+      {/* Contact */}
+      <TerminalPanel title="Contact">
+        <ul className="space-y-2 text-sm">
+          <ContactItem icon={MapPin} label="Location" value={PROFILE.location} />
+          <ContactItem
+            icon={Mail}
+            label="Email"
+            value={PROFILE.email}
+            href={`mailto:${PROFILE.email}`}
+          />
+          <ContactItem
+            icon={Link}
+            label="GitHub"
+            value={PROFILE.githubLabel}
+            href={PROFILE.github}
+          />
+          <ContactItem
+            icon={Link}
+            label="LinkedIn"
+            value={PROFILE.linkedinLabel}
+            href={PROFILE.linkedin}
+          />
+        </ul>
+      </TerminalPanel>
     </section>
+  )
+}
+
+function ContactItem({ icon: Icon, label, value, href }) {
+  return (
+    <li className="flex items-center gap-3">
+      <Icon className="h-4 w-4 text-cyan-300" aria-hidden="true" />
+      <span className="min-w-[70px] text-emerald-400">{label}:</span>
+      {href ? (
+        <a
+          href={href}
+          target="_blank"
+          rel="noreferrer"
+          className="text-cyan-200 hover:text-cyan-100"
+        >
+          {value}
+        </a>
+      ) : (
+        <span className="text-emerald-100/90">{value}</span>
+      )}
+    </li>
   )
 }
 
 function SkillsView() {
   return (
-    <section className="space-y-6">
+    <section className="space-y-4">
       <TerminalPanel title="Technical Skills">
         <div className="grid gap-4 md:grid-cols-2">
           {SKILLS.map((group) => (
