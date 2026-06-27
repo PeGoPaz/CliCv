@@ -25,7 +25,7 @@ export class Terminal {
 
     this.handler = new CommandHandler(
       this.history,
-      (html) => this.writeOutput(html),
+      (html, cls) => this.writeOutput(html, cls || ""),
       (id) => this.applyTheme(id),
     );
 
@@ -92,8 +92,8 @@ export class Terminal {
     }
   }
 
-  public renderInitialContent(): void {
-    this.handler.renderAllSections();
+  public async renderInitialContent(): Promise<void> {
+    await this.handler.renderAllSections();
     this.scrollToBottom();
   }
 
@@ -128,12 +128,16 @@ export class Terminal {
     if (match) this.input.value = match;
   }
 
-  private writeOutput(html: string): void {
+  private writeOutput(html: string, extraClass: string = ""): void {
     const div = document.createElement("div");
-    div.className = "output-line";
+    div.className = `output-line ${extraClass}`.trim();
     div.innerHTML = html;
     this.body.appendChild(div);
     this.scrollToBottom();
+  }
+
+  public print(html: string, extraClass: string = ""): void {
+    this.writeOutput(html, extraClass);
   }
 
   private scrollToBottom(): void {

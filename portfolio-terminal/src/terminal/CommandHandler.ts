@@ -11,7 +11,7 @@ import { THEMES } from "../config/themes.js";
 import { CV_FILE_PATH, CV_DOWNLOAD_NAME } from "../config/cv.js";
 import { History } from "../utils/history.js";
 
-export type OutputRenderer = (html: string) => void;
+export type OutputRenderer = (html: string, extraClass?: string) => void;
 export type ThemeSetter = (themeId: string) => void;
 
 export class CommandHandler {
@@ -25,13 +25,26 @@ export class CommandHandler {
     this.setTheme = setTheme;
   }
 
-    public renderAllSections(): void {
+      public async renderAllSections(): Promise<void> {
+    // Temporarily override render to add the quick-fade animation class
+    const originalRender = this.render;
+    this.render = (html: string) => originalRender(html, "quick-fade");
+
+    const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
     this.showAbout();
+    await delay(100);
     this.showSkills();
+    await delay(100);
     this.showExperience();
+    await delay(100);
     this.showProjects();
+    await delay(100);
     this.showContacts();
+    await delay(100);
     this.showLinks();
+    await delay(100);
+    this.render = originalRender;
   }
 
   static readonly AVAILABLE_COMMANDS = [
