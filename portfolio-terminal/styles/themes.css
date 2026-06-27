@@ -1,0 +1,28 @@
+/* ============================================================
+   THEME CSS VARIABLES (defaults — overridden dynamically via JS)
+   ============================================================ */
+
+:root {
+  --c-bg: #0a0e14;
+  --c-fg: #cdd6f4;
+  --c-accent: #89dceb;
+  --c-muted: #6c7086;
+  --c-border: #1e2330;
+  --c-header: #1a1f2e;
+  --c-matrix: #89dceb;
+  --c-matrix-highlight: #ffffff;
+  --c-link: #89b4fa;
+  --c-success: #a6e3a1;
+  --c-prompt: #f38ba8;
+}
+
+/* Theme-specific overrides that don't fit in the generic JS-applied vars
+   can go here as data-attribute selectors if needed */
+:root[data-theme="matrix"] .ascii-banner {
+  text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41;
+}
+
+:root[data-theme="dracula"] .prompt-user,
+:root[data-theme="dracula"] .prompt-host {
+  color: #ff79c6;
+}

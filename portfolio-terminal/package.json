@@ -1,0 +1,15 @@
+{
+  "name": "portfolio-terminal",
+  "version": "1.0.0",
+  "description": "Interactive terminal-style developer portfolio",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "serve": "npx http-server . -p 3000 -c-1",
+    "dev": "npm run build && npm run serve"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}

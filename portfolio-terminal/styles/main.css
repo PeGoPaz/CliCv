@@ -1,0 +1,73 @@
+/* ============================================================
+   GLOBAL RESETS & BASE STYLES
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  background: var(--c-bg, #0a0e14);
+  color: var(--c-fg, #cdd6f4);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 400ms ease, color 400ms ease;
+}
+
+#matrix-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+a {
+  color: var(--c-link);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--c-link);
+  transition: color 150ms ease, border-color 150ms ease, opacity 150ms ease;
+}
+a:hover, a:focus {
+  color: var(--c-accent);
+  border-bottom-color: var(--c-accent);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+ul { list-style: none; }
+
+/* Utility color classes — driven by theme variables */
+.fg-accent  { color: var(--c-accent); }
+.fg-muted   { color: var(--c-muted); }
+.fg-success { color: var(--c-success); }
+.fg-error   { color: #f38ba8; }
+
+::selection {
+  background: var(--c-accent);
+  color: var(--c-bg);
+}
+
+/* Custom scrollbar */
+.terminal-body::-webkit-scrollbar { width: 8px; }
+.terminal-body::-webkit-scrollbar-track { background: transparent; }
+.terminal-body::-webkit-scrollbar-thumb {
+  background: var(--c-border);
+  border-radius: 4px;
+}
+.terminal-body::-webkit-scrollbar-thumb:hover {
+  background: var(--c-muted);
+}
