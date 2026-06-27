@@ -127,7 +127,7 @@ export class CommandHandler {
       ["about",      "Learn about me"],
       ["skills",     "Technical skills & stack"],
       ["experience", "Work history"],
-      ["projects",   "Selected projects"],
+      ["projects",   "Projects"],
       ["contacts",   "Contact information"],
       ["links",      "Social & professional links"],
       ["themes",     "List available themes"],
@@ -188,18 +188,23 @@ export class CommandHandler {
   }
 
   private showProjects(): void {
-    let html = `<div class="section-title">Selected Projects</div>`;
-    for (const p of PROJECTS) {
-      html += `<div class="project-block">`;
-      html += `<div class="project-header">`;
-      html += `<span class="project-name fg-accent">${this.escapeHtml(p.name)}</span>`;
-      html += `<span class="project-stack fg-muted">${p.stack.map(this.escapeHtml).join(" · ")}</span>`;
-      html += `</div>`;
-      html += `<div class="project-desc">${this.escapeHtml(p.description)}</div>`;
-      html += `<div class="project-links">`;
-      if (p.link) html += `<a href="${this.escapeAttr(p.link)}" target="_blank" rel="noopener" class="link">live</a>`;
-      if (p.repo) html += `<a href="${this.escapeAttr(p.repo)}" target="_blank" rel="noopener" class="link">repo</a>`;
-      html += `</div></div>`;
+    let html = `<div class="section-title">Projects</div>`;
+    const categories = Array.from(new Set(PROJECTS.map(p => p.category)));
+    for (const category of categories) {
+      html += `<div class="project-category fg-accent">${this.escapeHtml(category)}</div>`;
+      const categoryProjects = PROJECTS.filter(p => p.category === category);
+      for (const p of categoryProjects) {
+        html += `<div class="project-block">`;
+        html += `<div class="project-header">`;
+        html += `<span class="project-name fg-accent">${this.escapeHtml(p.name)}</span>`;
+        html += `<span class="project-stack fg-muted">${p.stack.map(this.escapeHtml).join(" · ")}</span>`;
+        html += `</div>`;
+        html += `<div class="project-desc">${this.escapeHtml(p.description)}</div>`;
+        html += `<div class="project-links">`;
+        if (p.link) html += `<a href="${this.escapeAttr(p.link)}" target="_blank" rel="noopener" class="link">live</a>`;
+        if (p.repo) html += `<a href="${this.escapeAttr(p.repo)}" target="_blank" rel="noopener" class="link">repo</a>`;
+        html += `</div></div>`;
+      }
     }
     this.render(html);
   }
@@ -207,7 +212,6 @@ export class CommandHandler {
   private showContacts(): void {
     let html = `<div class="section-title">Contact</div>`;
     html += `<div class="contact-row"><span class="fg-accent">Email</span><a href="mailto:${this.escapeAttr(CONTACTS.email)}" class="link">${this.escapeHtml(CONTACTS.email)}</a></div>`;
-    html += `<div class="contact-row"><span class="fg-accent">Phone</span><span>${this.escapeHtml(CONTACTS.phone)}</span></div>`;
     html += `<div class="contact-row"><span class="fg-accent">Status</span><span>${this.escapeHtml(CONTACTS.availability)}</span></div>`;
     html += `<div class="contact-row"><span class="fg-muted">Response</span><span class="fg-muted">${this.escapeHtml(CONTACTS.responseTime)}</span></div>`;
     this.render(html);

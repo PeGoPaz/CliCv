@@ -29,7 +29,7 @@ export class BootSequence {
 
     const infoLine = `<span class="fg-accent">${PROFILE.name}</span> · ${PROFILE.title} · ${PROFILE.location}`;
     this.appendLine(infoLine);
-    this.appendLine(`<span class="fg-muted">${PROFILE.website} · ${PROFILE.status === "available" ? "Available for work" : PROFILE.status}</span>`);
+    this.appendLine(`<span class="fg-muted">${PROFILE.status === "available" ? "Available for work" : PROFILE.status}</span>`);
     await this.delay(100);
 
     onComplete();

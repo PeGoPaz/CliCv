@@ -9,4 +9,4 @@
 export const CV_FILE_PATH = "./assets/cv.pdf";
 
 // Filename used when downloading
-export const CV_DOWNLOAD_NAME = "Jane_Doe_CV.pdf";
+export const CV_DOWNLOAD_NAME = "cv.pdf";
