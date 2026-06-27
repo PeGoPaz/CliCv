@@ -32,10 +32,6 @@ export class BootSequence {
     this.appendLine(`<span class="fg-muted">${PROFILE.website} · ${PROFILE.status === "available" ? "Available for work" : PROFILE.status}</span>`);
     await this.delay(100);
 
-    this.appendLine("");
-    this.appendLine(`<span class="fg-muted">Type <span class="fg-accent">help</span> to get started.</span>`);
-    this.appendLine("");
-
     onComplete();
   }
 

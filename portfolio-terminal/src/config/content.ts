@@ -31,7 +31,7 @@ export interface Project {
   name: string;
   description: string;
   stack: string[];
-  link: string;
+  link?: string;
   repo?: string;
 }
 
@@ -137,12 +137,6 @@ export const PROJECTS: Project[] = [
     description: "Real-time collaborative whiteboard built on CRDTs for conflict-free sync.",
     stack: ["Svelte", "Yjs", "WebRTC"],
     link: "https://signalize.app",
-  },
-  {
-    name: "dotfile-generator",
-    description: "Interactive CLI for scaffolding reproducible development environments.",
-    stack: ["Go", "Cobra", "Docker"],
-    repo: "https://github.com/janedoe/dotfile-generator",
   },
 ];
 

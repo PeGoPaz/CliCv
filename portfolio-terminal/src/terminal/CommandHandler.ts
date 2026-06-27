@@ -25,6 +25,15 @@ export class CommandHandler {
     this.setTheme = setTheme;
   }
 
+    public renderAllSections(): void {
+    this.showAbout();
+    this.showSkills();
+    this.showExperience();
+    this.showProjects();
+    this.showContacts();
+    this.showLinks();
+  }
+
   static readonly AVAILABLE_COMMANDS = [
     "about",
     "skills",

@@ -92,6 +92,15 @@ export class Terminal {
     }
   }
 
+  public renderInitialContent(): void {
+    this.handler.renderAllSections();
+    this.scrollToBottom();
+  }
+
+  public print(html: string): void {
+    this.writeOutput(html);
+  }
+
   private navigateHistory(direction: number): void {
     const entries = this.history.all();
     if (entries.length === 0) return;
