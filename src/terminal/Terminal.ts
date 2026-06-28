@@ -93,8 +93,11 @@ export class Terminal {
   }
 
   public async renderInitialContent(): Promise<void> {
-    await this.handler.renderAllSections();
-    this.scrollToBottom();
+    this.handler.showAbout();
+  }
+
+  public showHelp(): void {
+    this.handler.showHelp();
   }
 
   private navigateHistory(direction: number): void {
@@ -139,6 +142,12 @@ export class Terminal {
   private scrollToBottom(): void {
     requestAnimationFrame(() => {
       this.body.scrollTop = this.body.scrollHeight;
+    });
+  }
+
+  public scrollToTop(): void {
+    requestAnimationFrame(() => {
+      this.body.scrollTop = 0;
     });
   }
 
