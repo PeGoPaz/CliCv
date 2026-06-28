@@ -128,7 +128,7 @@ export const PROJECTS: Project[] = [
 
 export const CONTACTS = {
   email: "vl.rai@proton.me",
-  availability: "Open to full-time roles, consulting, and select open-source collaborations.",
+  availability: "Open to full-time roles, and open-source collaborations.",
   responseTime: "Typically responds within 24 hours.",
 };
 

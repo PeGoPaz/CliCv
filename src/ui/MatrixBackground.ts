@@ -9,7 +9,7 @@ export class MatrixBackground {
   private columns: number = 0;
   private drops: number[] = [];
   private fontSize: number = 14;
-  private glyphs: string = "01アカサタナハマヤラワイキシチニヒミリウクスツヌフムユルエケセテネヘメレオコソトノホモヨロヲン";
+  private glyphs: string = "光ЯЮЭ平ЬЫШ星Ч日ХБ月УТС地ДР天НМК世ЛЗ火ОЖЕ界В水П龍Ф";
   private animationId: number | null = null;
 
   constructor(canvasId: string) {
