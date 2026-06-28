@@ -16,7 +16,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     terminal.print("");
     terminal.print(`<span class="fg-muted">Type <span class="fg-accent">help</span> to see available commands.</span>`);
     terminal.print("");
+    terminal.showHelp();
     const input = document.getElementById("commandInput") as HTMLInputElement;
     if (input) input.focus();
+    // Scroll to top after boot completes
+    terminal.scrollToTop();
   });
 });

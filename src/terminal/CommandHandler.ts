@@ -48,6 +48,7 @@ export class CommandHandler {
   }
 
   static readonly AVAILABLE_COMMANDS = [
+    "whoami",
     "about",
     "skills",
     "experience",
@@ -106,6 +107,7 @@ export class CommandHandler {
       case "clear":
       case "cls":
         this.clear();
+        this.showHelp();
         break;
       case "history":
         this.showHistory();
@@ -113,6 +115,15 @@ export class CommandHandler {
       case "cv":
       case "resume":
         this.downloadCV();
+        break;
+      case "whoami":
+        this.clear();
+        this.showAbout();
+        this.showSkills();
+        this.showExperience();
+        this.showProjects();
+        this.showContacts();
+        this.showLinks();
         break;
       default:
         this.render(`<span class="fg-error">command not found: ${this.escapeHtml(command)}</span>`);
@@ -122,8 +133,9 @@ export class CommandHandler {
 
   // ------- Command implementations -------
 
-  private showHelp(): void {
+  public showHelp(): void {
     const cmds: Array<[string, string]> = [
+      ["whoami",     "Display all information about me"],
       ["about",      "Learn about me"],
       ["skills",     "Technical skills & stack"],
       ["experience", "Work history"],
@@ -133,18 +145,30 @@ export class CommandHandler {
       ["themes",     "List available themes"],
       ["theme &lt;name&gt;", "Switch theme"],
       ["history",    "Show command history"],
-      ["cv",         "Download my CV / resume"],
+      ["cv",         "Download my CV"],
       ["clear",      "Clear terminal output"],
     ];
     let html = `<div class="section-title">Available Commands</div><div class="help-grid">`;
     for (const [cmd, desc] of cmds) {
-      html += `<div class="help-row"><span class="fg-accent">${cmd}</span><span class="fg-muted">${desc}</span></div>`;
+      html += `<div class="help-row"><span class="fg-accent help-cmd" data-cmd="${cmd}">${cmd}</span><span class="fg-muted">${desc}</span></div>`;
     }
     html += `</div>`;
     this.render(html);
+
+    // Bind click handlers on command names
+    setTimeout(() => {
+      const cmdElements = document.querySelectorAll<HTMLSpanElement>(".help-cmd[data-cmd]");
+      cmdElements.forEach((el) => {
+        el.style.cursor = "pointer";
+        el.addEventListener("click", () => {
+          const cmd = el.dataset.cmd!;
+          this.execute(cmd);
+        });
+      });
+    }, 0);
   }
 
-  private showAbout(): void {
+  public showAbout(): void {
     let html = `<div class="section-title">${this.escapeHtml(PROFILE.name)} — ${this.escapeHtml(PROFILE.title)}</div>`;
     html += `<div class="section-subtitle">${this.escapeHtml(PROFILE.tagline)}</div>`;
     html += `<pre class="section-body">${this.escapeHtml(ABOUT)}</pre>`;
