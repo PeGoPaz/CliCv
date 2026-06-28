@@ -78,15 +78,3 @@ All content is centralized in `src/config/`:
 | `src/config/themes.ts` | Color theme definitions |
 | `src/config/ascii.ts` | ASCII art banner |
 | `src/config/cv.ts` | CV file path and download name |
-
-## Deployment
-
-The site is static after building. Deploy the entire directory to any static hosting service:
-- Vercel
-- Netlify
-- GitHub Pages
-- Cloudflare Pages
-
-## License
-
-MIT
