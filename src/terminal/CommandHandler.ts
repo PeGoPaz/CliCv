@@ -225,8 +225,8 @@ export class CommandHandler {
         html += `</div>`;
         html += `<div class="project-desc">${this.escapeHtml(p.description)}</div>`;
         html += `<div class="project-links">`;
-        if (p.link) html += `<a href="${this.escapeAttr(p.link)}" target="_blank" rel="noopener" class="link">live</a>`;
-        if (p.repo) html += `<a href="${this.escapeAttr(p.repo)}" target="_blank" rel="noopener" class="link">repo</a>`;
+        if (p.link) html += `<a href="${this.escapeAttr(p.link)}" target="_blank" rel="noopener noreferrer" class="link">live</a>`;
+        if (p.repo) html += `<a href="${this.escapeAttr(p.repo)}" target="_blank" rel="noopener noreferrer" class="link">repo</a>`;
         html += `</div></div>`;
       }
     }
@@ -245,7 +245,7 @@ export class CommandHandler {
     let html = `<div class="section-title">Links</div>`;
     for (const link of LINKS) {
       html += `<div class="link-row"><span class="fg-accent link-platform">${this.escapeHtml(link.platform)}</span>`;
-      html += `<a href="${this.escapeAttr(link.url)}" target="_blank" rel="noopener" class="link">${this.escapeHtml(link.display)}</a></div>`;
+      html += `<a href="${this.escapeAttr(link.url)}" target="_blank" rel="noopener noreferrer" class="link">${this.escapeHtml(link.display)}</a></div>`;
     }
     this.render(html);
   }
