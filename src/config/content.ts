@@ -105,6 +105,14 @@ export const EXPERIENCE: ExperienceItem[] = [
 
 export const PROJECTS: Project[] = [
   {
+    name: "Villa Caterina",
+    category: "Web Development",
+    description: "Designed and built a zero-dependency static website for a luxury vacation rental on Lake Como, Italy. The site features multi-language support (English, Italian, French, German), real-time availability synchronization from Booking.com via GitHub Actions, and a contact form powered by Formspree. Deployed on GitHub Pages with a custom domain and strict Content Security Policy.",
+    stack: ["HTML", "CSS", "JavaScript", "GitHub Pages", "Formspree", "GitHub Actions", "Python"],
+    link: "https://villacaterina.casa/",
+    repo: "https://github.com/villacaterina/VillaCaterina-web",
+  },
+  {
     name: "BePro",
     category: "Web Development",
     description: "BePro is a full-stack web application that connects customers with local service professionals for seamless appointment scheduling, reviews, and dashboard management. The platform features role-specific interfaces with interactive activity heatmaps, glassmorphic navigation, and a responsive, card-based design system built from scratch.",
