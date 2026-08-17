@@ -9,6 +9,64 @@
   <meta name="keywords" content="software engineer, developer, portfolio, Dublin, Griffith College, cloud, DevOps, Linux" />
   <title>Vladimir Rainov — Software Engineer Portfolio</title>
 
+  <!-- Open Graph / social previews (ATS bots, LinkedIn, Slack link previews) -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:site_name" content="Vladimir Rainov — Portfolio" />
+  <meta property="og:title" content="Vladimir Rainov — Software Engineer Portfolio" />
+  <meta property="og:description" content="Computing Science student at Griffith College Dublin. Experience in SQL/core banking systems, hardware integration, Linux, Docker, Kubernetes, AWS." />
+  <meta property="og:url" content="https://vladr.tech/" />
+  <meta property="og:locale" content="en_IE" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Vladimir Rainov — Software Engineer Portfolio" />
+  <meta name="twitter:description" content="Computing Science student at Griffith College Dublin. Experience in SQL/core banking systems, hardware integration, Linux, Docker, Kubernetes, AWS." />
+
+  <!-- Structured data for crawlers / ATS systems.
+       JSON-LD is data, never executed, so it is CSP-safe (script-src 'self'). -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfilePage",
+        "url": "https://vladr.tech/",
+        "name": "Vladimir Rainov — Software Engineer Portfolio",
+        "description": "Interactive terminal-style portfolio of Vladimir Rainov, Computing Science student at Griffith College Dublin.",
+        "inLanguage": "en",
+        "mainEntity": { "@id": "https://vladr.tech/#person" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://vladr.tech/#person",
+        "name": "Vladimir Rainov",
+        "jobTitle": "Software Engineer",
+        "email": "mailto:vl.rai@proton.me",
+        "url": "https://vladr.tech/",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Dublin",
+          "addressCountry": "IE"
+        },
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "Griffith College Dublin"
+        },
+        "sameAs": [
+          "https://github.com/PeGoPaz",
+          "https://www.linkedin.com/in/pegopaz/",
+          "https://x.com/Vi_Raim"
+        ],
+        "knowsAbout": [
+          "Java", "JavaScript", "Python", "SQL", "HTML", "CSS",
+          "Node.js", "React", "Next.js", "REST APIs",
+          "MySQL", "PostgreSQL",
+          "Docker", "Kubernetes", "AWS", "CI/CD Pipelines", "Git",
+          "Linux", "Bash", "Proxmox VE", "TCP/IP", "DNS", "DHCP", "VLANs"
+        ]
+      }
+    ]
+  }
+  </script>
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +77,7 @@
   <link rel="stylesheet" href="styles/themes.css" />
   <link rel="stylesheet" href="styles/animations.css" />
   <link rel="stylesheet" href="styles/terminal.css" />
+  <link rel="stylesheet" href="styles/crawler.css" />
 </head>
 <body>
   <canvas id="matrix-bg"></canvas>
@@ -64,6 +123,104 @@
       </div>
     </div>
   </main>
+
+  <!-- Notice for humans with JavaScript disabled -->
+  <noscript>
+    <div class="noscript-notice">
+      <p>This portfolio is an interactive terminal and requires JavaScript.</p>
+      <p>You can still <a href="assets/cv.pdf" download>download my CV (PDF)</a>
+      or email me at <a href="mailto:vl.rai@proton.me">vl.rai@proton.me</a>.</p>
+    </div>
+  </noscript>
+
+  <!-- ============================================================
+       STATIC CV COPY — machine-readable fallback for crawlers, ATS
+       systems, and screen readers. The interactive terminal renders
+       the same content via JS, which many bots cannot execute.
+       ⚠️ KEEP IN SYNC with src/config/content.ts
+       Hidden with the .sr-only (clip) pattern — NOT display:none —
+       so crawlers don't flag it as hidden content.
+       ============================================================ -->
+  <section class="sr-only" id="static-cv" aria-label="Curriculum vitae, plain text version">
+    <h1>Vladimir Rainov — Software Engineer</h1>
+    <p>Dublin, Ireland · Studying Computer Science @ Griffith College Dublin · Available for work</p>
+
+    <h2>About</h2>
+    <p>I am a Computing Science student at Griffith College Dublin with a proven foundation in optimizing complex data systems and automating IT infrastructure. My professional experience spans from engineering custom high-performance hardware integrations to validating regulatory SQL reports within core banking platforms, allowing me to seamlessly bridge the gap between physical workstations and software deployment. Currently working towards an AWS Solutions Architect certification, I am highly passionate about utilizing tools like Linux, Docker, and Kubernetes to design and maintain resilient cloud environments.</p>
+
+    <h2>Skills</h2>
+    <ul>
+      <li><strong>Programming Languages:</strong> Java, JavaScript, Python, SQL, HTML, CSS</li>
+      <li><strong>Backend &amp; Web:</strong> Node.js, React, Next.js, REST APIs</li>
+      <li><strong>Databases:</strong> MySQL, PostgreSQL</li>
+      <li><strong>DevOps &amp; Cloud:</strong> Docker, Kubernetes (K3s), AWS, CI/CD Pipelines, Git</li>
+      <li><strong>Systems &amp; Networking:</strong> Linux (Ubuntu, Debian, Arch), Bash, Proxmox VE, TCP/IP, DNS, DHCP, VLANs, LAN</li>
+    </ul>
+
+    <h2>Experience</h2>
+    <article>
+      <h3>Banking Software Implementation Specialist Intern — Y-Solutions</h3>
+      <p>Nov 2019 — Oct 2021 · Moscow, Russia · Part-time</p>
+      <ul>
+        <li>Validated and debugged 200+ SQL-based regulatory reports within a core banking system, ensuring data accuracy and compliance with financial regulations</li>
+        <li>Engineered and optimized 400+ complex SQL queries, improving system throughput and ensuring 100% compliance with changing regulatory standards</li>
+        <li>Supported implementation of the Diasoft core banking platform for 2 banks, assisting in system configuration, testing, and production deployment</li>
+      </ul>
+    </article>
+    <article>
+      <h3>Systems Integration Technician — PRO-Computer</h3>
+      <p>Sep 2020 — May 2022 · Moscow, Russia · Part-time</p>
+      <ul>
+        <li>Assembled and optimized 20+ custom high-performance systems, managing component compatibility, thermal dynamics, and hardware configuration</li>
+        <li>Provisioned and hardened Windows OS environments, implementing security baselines, user access controls, and system updates</li>
+        <li>Conducted rigorous hardware diagnostics and stress-testing to troubleshoot component conflicts, isolate faults, and guarantee 100% system stability before client delivery</li>
+      </ul>
+    </article>
+
+    <h2>Projects</h2>
+    <article>
+      <h3>Villa Caterina (Web Development)</h3>
+      <p>Designed and built a zero-dependency static website for a luxury vacation rental on Lake Como, Italy. The site features multi-language support (English, Italian, French, German), real-time availability synchronization from Booking.com via GitHub Actions, and a contact form powered by Formspree. Deployed on GitHub Pages with a custom domain and strict Content Security Policy.</p>
+      <p>Stack: HTML, CSS, JavaScript, GitHub Pages, Formspree, GitHub Actions, Python ·
+        <a href="https://villacaterina.casa/">Live site</a> ·
+        <a href="https://github.com/villacaterina/VillaCaterina-web">Repository</a></p>
+    </article>
+    <article>
+      <h3>BePro (Web Development)</h3>
+      <p>BePro is a full-stack web application that connects customers with local service professionals for seamless appointment scheduling, reviews, and dashboard management. The platform features role-specific interfaces with interactive activity heatmaps, glassmorphic navigation, and a responsive, card-based design system built from scratch.</p>
+      <p>Stack: React 19, React Router v7, Axios, Vite, Custom CSS, Node.js, Express, MongoDB, Mongoose, express-session, bcrypt ·
+        <a href="https://github.com/PeGoPaz/BePro">Repository</a></p>
+    </article>
+    <article>
+      <h3>Sorted.ie (Web Development)</h3>
+      <p>This price aggregation platform helps shoppers find the best smartphone deals by comparing specifications and tracking prices across more than 50 global retailers. It provides a comprehensive database of over 3,800 devices equipped with smart search functionality and instant alerts for price drops and new releases.</p>
+      <p>Stack: React/Next.js, Vercel, Node.js, NeonDB ·
+        <a href="https://ie-catalog-frontend-jymn.vercel.app/">Live site</a></p>
+    </article>
+    <article>
+      <h3>Zero-Trust Proxmox Cluster (Technical Builds)</h3>
+      <p>Engineered a Zero-Trust micro-datacenter on repurposed hardware using Proxmox VE to orchestrate secure, self-hosted microservices and media servers. The infrastructure features enterprise-grade networking with WireGuard mesh overlays to deliver low-latency edge computing and automated system monitoring.</p>
+      <p>Stack: Proxmox VE, Docker, WireGuard, Tailscale, Pi-hole, Nginx Proxy Manager, ZFS, Grafana, Uptime Kuma</p>
+    </article>
+    <article>
+      <h3>AI-GPU-Benchmark (AI / Machine Learning)</h3>
+      <p>A GPU benchmarking desktop application that measures AI training throughput via LoRA fine-tuning of TinyLlama-1.1B while monitoring real-time GPU telemetry (temperature, power, VRAM, clock speed) through NVML. Features a PyQt6 GUI with live telemetry dashboard, training progress tracking, and inline thermal &amp; power curve plotting on completion.</p>
+      <p>Stack: PyQt6, PyTorch, Transformers, PEFT, TRL, nvidia-ml-py, pandas, matplotlib ·
+        <a href="https://github.com/PeGoPaz/AI-GPU-Benchmark">Repository</a></p>
+    </article>
+
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:vl.rai@proton.me">vl.rai@proton.me</a></p>
+    <p>Open to full-time roles, and open-source collaborations. Typically responds within 24 hours.</p>
+    <ul>
+      <li><a href="https://github.com/PeGoPaz">GitHub — github.com/PeGoPaz</a></li>
+      <li><a href="https://www.linkedin.com/in/pegopaz/">LinkedIn — linkedin.com/in/pegopaz</a></li>
+      <li><a href="https://x.com/Vi_Raim">X — x.com/Vi_Raim</a></li>
+    </ul>
+
+    <h2>CV / Résumé</h2>
+    <p><a href="assets/cv.pdf" download>Download CV (PDF)</a></p>
+  </section>
 
   <!-- Compiled JS -->
   <script type="module" src="dist/main.js"></script>
