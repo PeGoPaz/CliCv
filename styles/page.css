@@ -1,5 +1,16 @@
 /* Native scrollable page — same palette, same monospace, no command required. */
 
+/* Surfaces darken rather than tint.
+   A lightening wash costs contrast, and Solarized has almost none to spare:
+   its --c-fg and --c-accent sit at 4.7:1 on --c-bg. Darkening can only raise
+   the ratio, so every surface here inherits the theme's own base contrast.
+   Cards stay legible in Matrix (bg #000, where darkening is a no-op) because
+   each one carries a border. */
+:root {
+  --surface: color-mix(in srgb, #000 22%, transparent);
+  --surface-strong: color-mix(in srgb, #000 30%, transparent);
+}
+
 /* ---------- JS-only controls -------------------------------------------
    Hidden until main.ts sets data-js on <html>, so the page degrades to
    plain readable content with scripting off. --js-display lets each
@@ -17,10 +28,11 @@ html[data-js] .js-only { display: var(--js-display, block); }
   align-items: center;
   gap: 8px 16px;
   min-height: var(--topbar-h);
-  padding: 0 20px;
-  background: color-mix(in srgb, var(--c-header) 92%, transparent);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  /* Lines the bar's content up with the 1100px page column. */
+  padding-inline: max(20px, calc((100vw - 1100px) / 2 + 28px));
+  /* Opaque on purpose: the bar spans the matrix canvas, and a translucent
+     surface would make its contrast depend on whatever is falling behind it. */
+  background: var(--c-bg);
   border-bottom: 1px solid var(--c-border);
 }
 
@@ -77,14 +89,14 @@ html[data-js] .js-only { display: var(--js-display, block); }
   font-size: 11px;
   letter-spacing: 0.3px;
   color: var(--c-fg);
-  background: color-mix(in srgb, var(--c-bg) 55%, transparent);
+  background: var(--surface);
   border: 1px solid var(--c-border);
   border-radius: 6px;
   transition: border-color 150ms ease, color 150ms ease;
 }
 .topbar-btn:hover { border-color: var(--c-accent); color: var(--c-accent); }
 .topbar-btn-accent { color: var(--c-accent); border-color: color-mix(in srgb, var(--c-accent) 45%, transparent); }
-.topbar-btn-sign { color: var(--c-prompt); font-weight: 700; }
+.topbar-btn-sign { font-weight: 700; }
 
 /* Theme picker */
 .theme-picker { position: relative; }
@@ -98,12 +110,12 @@ html[data-js] .js-only { display: var(--js-display, block); }
   gap: 4px;
   padding: 8px;
   min-width: 160px;
-  background: var(--c-header);
+  background: var(--c-bg);
   border: 1px solid var(--c-border);
   border-radius: 8px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
-.theme-menu .theme-btn { width: 100%; justify-content: flex-start; }
+.theme-menu .theme-btn { width: 100%; justify-content: flex-start; background: var(--surface); }
 .theme-menu .theme-btn[aria-pressed="true"] { border-color: var(--c-accent); color: var(--c-accent); }
 #themeToggle .theme-swatch { width: 9px; height: 9px; }
 
@@ -114,7 +126,10 @@ html[data-js] .js-only { display: var(--js-display, block); }
   gap: 6px;
   padding: 3px 8px;
   font-size: 11px;
-  color: var(--c-muted);
+  /* On bare --c-header this lands at 4.44:1 in Ghost and 4.11:1 in Solarized —
+     the darkened surface gives it back the headroom. */
+  color: var(--c-fg);
+  background: var(--surface);
   border: 1px solid var(--c-border);
   border-radius: 4px;
   transition: border-color 150ms ease, color 150ms ease;
@@ -134,7 +149,7 @@ html[data-js] .js-only { display: var(--js-display, block); }
   top: 10px;
   padding: 8px 14px;
   color: var(--c-accent);
-  background: var(--c-header);
+  background: var(--c-bg);
   border: 1px solid var(--c-accent);
   border-radius: 6px;
 }
@@ -211,7 +226,7 @@ html[data-js] .js-only { display: var(--js-display, block); }
   padding: 9px 16px;
   font-size: 13px;
   color: var(--c-fg);
-  background: color-mix(in srgb, var(--c-header) 70%, transparent);
+  background: var(--surface);
   border: 1px solid var(--c-border);
   border-bottom: 1px solid var(--c-border);
   border-radius: 6px;
@@ -224,8 +239,7 @@ html[data-js] .js-only { display: var(--js-display, block); }
 }
 .btn-primary {
   color: var(--c-accent);
-  border-color: color-mix(in srgb, var(--c-accent) 50%, transparent);
-  background: color-mix(in srgb, var(--c-accent) 12%, transparent);
+  border-color: color-mix(in srgb, var(--c-accent) 55%, transparent);
 }
 
 /* Availability callout — mirrors .availability-row in the terminal */
@@ -236,7 +250,7 @@ html[data-js] .js-only { display: var(--js-display, block); }
   margin-top: 20px;
   padding: 10px 14px;
   border-left: 2px solid var(--c-success);
-  background: color-mix(in srgb, var(--c-success) 6%, transparent);
+  background: var(--surface);
   border-radius: 0 4px 4px 0;
 }
 .callout-label {
@@ -261,9 +275,10 @@ html[data-js] .js-only { display: var(--js-display, block); }
   letter-spacing: 0.5px;
   margin-bottom: 14px;
 }
+/* Accent, not --c-prompt: the prompt colour drops below 4.5:1 at this size
+   in Monokai and Solarized. */
 .section-h-sign {
   margin-right: 8px;
-  color: var(--c-prompt);
   font-weight: 700;
 }
 
@@ -294,8 +309,8 @@ html[data-js] .js-only { display: var(--js-display, block); }
   padding: 3px 9px;
   font-size: 12px;
   color: var(--c-fg);
-  background: color-mix(in srgb, var(--c-accent) 12%, transparent);
-  border: 1px solid color-mix(in srgb, var(--c-accent) 30%, transparent);
+  background: var(--surface);
+  border: 1px solid color-mix(in srgb, var(--c-accent) 38%, transparent);
   border-radius: 4px;
 }
 
@@ -304,7 +319,7 @@ html[data-js] .js-only { display: var(--js-display, block); }
   padding: 14px 16px;
   margin: 12px 0;
   border-left: 2px solid var(--c-accent);
-  background: color-mix(in srgb, var(--c-accent) 5%, transparent);
+  background: var(--surface);
   border-radius: 0 6px 6px 0;
 }
 .card:first-of-type { margin-top: 0; }
@@ -369,7 +384,7 @@ html[data-js] .js-only { display: var(--js-display, block); }
 .project-card {
   border: 1px solid var(--c-border);
   border-radius: 6px;
-  background: color-mix(in srgb, var(--c-header) 50%, transparent);
+  background: var(--surface-strong);
   transition: border-color 200ms ease;
 }
 .project-card:hover { border-color: var(--c-accent); }
