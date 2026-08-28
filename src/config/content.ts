@@ -129,6 +129,14 @@ export const EXPERIENCE: ExperienceItem[] = [
 
 export const PROJECTS: Project[] = [
   {
+    name: "Sorted.ie",
+    category: "Web Development",
+    period: "Aug 2026 — present",
+    description: "This price aggregation platform helps shoppers find the best smartphone deals by comparing specifications and tracking prices across more than 50 global retailers. It provides a comprehensive database of over 3,800 devices equipped with smart search functionality and instant alerts for price drops and new releases.",
+    stack: ["React/Next.js", "Vercel", "Node.js", "NeonDB"],
+    link: "https://ie-catalog-frontend-jymn.vercel.app/",
+  },
+  {
     name: "Villa Caterina",
     category: "Web Development",
     period: "Jun — Jul 2026",
@@ -140,32 +148,28 @@ export const PROJECTS: Project[] = [
   {
     name: "BePro",
     category: "Web Development",
+    period: "Jan — May 2026",
     description: "BePro is a full-stack web application that connects customers with local service professionals for seamless appointment scheduling, reviews, and dashboard management. The platform features role-specific interfaces with interactive activity heatmaps, glassmorphic navigation, and a responsive, card-based design system built from scratch.",
     stack: ["React 19", "React Router v7", "Axios", "Vite", "Custom CSS", "Node.js", "Express", "MongoDB", "Mongoose", "express-session", "bcrypt"],
     repo: "https://github.com/PeGoPaz/BePro",
   },
   {
-    name: "Sorted.ie",
-    category: "Web Development",
-    period: "2026 — present",
-    description: "This price aggregation platform helps shoppers find the best smartphone deals by comparing specifications and tracking prices across more than 50 global retailers. It provides a comprehensive database of over 3,800 devices equipped with smart search functionality and instant alerts for price drops and new releases.",
-    stack: ["React/Next.js", "Vercel", "Node.js", "NeonDB"],
-    link: "https://ie-catalog-frontend-jymn.vercel.app/",
-  },
-  {
-    name: "Zero-Trust Proxmox Cluster",
-    category: "Technical Builds",
-    description: "Engineered a Zero-Trust micro-datacenter on repurposed hardware using Proxmox VE to orchestrate secure, self-hosted microservices and media servers. The infrastructure features enterprise-grade networking with WireGuard mesh overlays to deliver low-latency edge computing and automated system monitoring.",
-    stack: ["Proxmox VE", "Docker", "WireGuard", "Tailscale", "Pi-hole", "Nginx Proxy Manager", "ZFS", "Grafana", "Uptime Kuma"],
-  },
-  {
     name: "AI-GPU-Benchmark",
     category: "AI / Machine Learning",
+    period: "Aug 2026",
     description: "A GPU benchmarking desktop application that measures AI training throughput via LoRA fine-tuning of TinyLlama-1.1B while monitoring real-time GPU telemetry (temperature, power, VRAM, clock speed) through NVML. Features a PyQt6 GUI with live telemetry dashboard, training progress tracking, and inline thermal & power curve plotting on completion.",
     stack: ["PyQt6", "PyTorch", "Transformers", "PEFT", "TRL", "nvidia-ml-py", "pandas", "matplotlib"],
     repo: "https://github.com/PeGoPaz/AI-GPU-Benchmark",
   },
+  {
+    name: "Zero-Trust Proxmox Cluster",
+    category: "Technical Builds",
+    period: "Winter 2025/26",
+    description: "Engineered a Zero-Trust micro-datacenter on repurposed hardware using Proxmox VE to orchestrate secure, self-hosted microservices and media servers. The infrastructure features enterprise-grade networking with WireGuard mesh overlays to deliver low-latency edge computing and automated system monitoring.",
+    stack: ["Proxmox VE", "Docker", "WireGuard", "Tailscale", "Pi-hole", "Nginx Proxy Manager", "ZFS", "Grafana", "Uptime Kuma"],
+  },
 ];
+
 
 export const CONTACTS = {
   email: "vl.rai@proton.me",
