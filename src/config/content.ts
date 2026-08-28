@@ -151,7 +151,7 @@ export const PROJECTS: Project[] = [
   {
     name: "AI-GPU-Benchmark",
     category: "AI / Machine Learning",
-    period: "Aug 2026",
+    period: "Aug — Sep 2026",
     description: "A GPU benchmarking desktop application that measures AI training throughput via LoRA fine-tuning of TinyLlama-1.1B while monitoring real-time GPU telemetry (temperature, power, VRAM, clock speed) through NVML. Features a PyQt6 GUI with live telemetry dashboard, training progress tracking, and inline thermal & power curve plotting on completion.",
     stack: ["PyQt6", "PyTorch", "Transformers", "PEFT", "TRL", "nvidia-ml-py", "pandas", "matplotlib"],
     repo: "https://github.com/PeGoPaz/AI-GPU-Benchmark",
@@ -159,7 +159,7 @@ export const PROJECTS: Project[] = [
   {
     name: "Zero-Trust Proxmox Cluster",
     category: "Technical Builds",
-    period: "Winter 2025/26",
+    period: "Dec 2025 — Jan 2026",
     description: "Engineered a Zero-Trust micro-datacenter on repurposed hardware using Proxmox VE to orchestrate secure, self-hosted microservices and media servers. The infrastructure features enterprise-grade networking with WireGuard mesh overlays to deliver low-latency edge computing and automated system monitoring.",
     stack: ["Proxmox VE", "Docker", "WireGuard", "Tailscale", "Pi-hole", "Nginx Proxy Manager", "ZFS", "Grafana", "Uptime Kuma"],
   },
