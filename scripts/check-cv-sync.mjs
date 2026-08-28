@@ -3,7 +3,7 @@
  * Fails if a string in content.ts is missing from #static-cv in index.html.
  * Run after npm run build — reads the compiled dist/config/content.js.
  */
-import { readFileSync } from "node:fs";
+import { readFileSync, statSync, existsSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 import { resolve } from "node:path";
 
@@ -100,3 +100,11 @@ if (missing.length) {
 }
 
 console.log(`✓ #static-cv is in sync with content.ts (${required.length} strings checked).`);
+
+if (existsSync("assets/cv.pdf") && existsSync("src/config/content.ts")) {
+  const pdf = statSync("assets/cv.pdf").mtimeMs;
+  const src = statSync("src/config/content.ts").mtimeMs;
+  if (src > pdf) {
+    console.warn("! assets/cv.pdf is older than content.ts — run: npm run cv");
+  }
+}
