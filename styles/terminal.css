@@ -135,6 +135,18 @@
   margin: 6px 0 10px;
 }
 
+.availability-row {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  margin: 2px 0 10px;
+  padding: 8px 12px;
+  border-left: 2px solid var(--c-success);
+  background: color-mix(in srgb, var(--c-success) 6%, transparent);
+  border-radius: 0 4px 4px 0;
+}
+.availability-row > :first-child { min-width: 80px; font-weight: 500; }
+
 /* Skills */
 .skill-group { margin: 8px 0; }
 .skill-category {
@@ -197,6 +209,7 @@
 }
 .project-header { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; }
 .project-name { font-weight: 700; font-size: 14px; }
+.project-period { font-size: 11px; }
 .project-stack { font-size: 11px; margin-left: auto; }
 .project-desc { margin: 4px 0 6px; }
 .project-links { display: flex; gap: 12px; }
@@ -354,6 +367,7 @@
   .help-row > :first-child { color: var(--c-accent); }
   .exp-period { margin-left: 0; width: 100%; }
   .project-stack { margin-left: 0; width: 100%; }
+  .availability-row { flex-direction: column; gap: 2px; }
 }
 
 @media (max-width: 420px) {
