@@ -40,7 +40,7 @@ jobs:
         run: |
           mkdir -p _site
           cp -r index.html favicon.svg robots.txt sitemap.xml CNAME styles assets dist _site/
-          rm -f _site/assets/og.html
+          rm -f _site/assets/og.html _site/assets/cv.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
