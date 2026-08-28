@@ -418,6 +418,9 @@ html[data-js] .js-only { display: var(--js-display, block); }
     overflow-x: auto;
     padding-bottom: 6px;
     scrollbar-width: none;
+    /* Fades the right edge so it reads as scrollable rather than cut off. */
+    mask-image: linear-gradient(to right, #000 88%, transparent);
+    -webkit-mask-image: linear-gradient(to right, #000 88%, transparent);
   }
   .topbar-nav::-webkit-scrollbar { display: none; }
   .topbar-name h1 { font-size: 12px; }
@@ -444,3 +447,7 @@ html[data-js] .js-only { display: var(--js-display, block); }
   .contact-list li { flex-direction: column; gap: 2px; padding: 7px 0; }
   .contact-key { min-width: 0; }
 }
+
+/* ---------- Terminal view ----------------------------------------------- */
+html[data-view="terminal"] .topbar-nav,
+html[data-view="terminal"] .skip-link { display: none; }
