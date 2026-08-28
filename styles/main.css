@@ -1,7 +1,7 @@
 /* Resets and base styles */
 
 :root {
-  /* Height of the sticky top bar — the terminal view and scroll anchors both read it. */
+  /* Height of the sticky top bar - the terminal view and scroll anchors both read it. */
   --topbar-h: 48px;
 }
 
@@ -64,7 +64,7 @@ button {
 
 ul { list-style: none; }
 
-/* Utility color classes — driven by theme variables */
+/* Utility color classes - driven by theme variables */
 .fg-accent  { color: var(--c-accent); }
 .fg-muted   { color: var(--c-muted); }
 .fg-success { color: var(--c-success); }

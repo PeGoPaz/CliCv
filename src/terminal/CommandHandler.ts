@@ -159,7 +159,7 @@ export class CommandHandler {
   }
 
   public showAbout(): void {
-    let html = `<div class="section-title">${escapeHtml(PROFILE.name)} — ${escapeHtml(PROFILE.title)}</div>`;
+    let html = `<div class="section-title">${escapeHtml(PROFILE.name)} - ${escapeHtml(PROFILE.title)}</div>`;
     html += `<div class="section-subtitle">${escapeHtml(PROFILE.tagline)}</div>`;
     html += `<pre class="section-body">${escapeHtml(ABOUT)}</pre>`;
     html += `<div class="availability-row">`;
@@ -279,7 +279,7 @@ export class CommandHandler {
     html += `<div class="fg-muted themes-usage">Usage: <span class="fg-accent">theme &lt;name&gt;</span></div>`;
     this.render(html);
 
-    // swatch colour via CSSOM — CSP blocks inline style attributes
+    // swatch colour via CSSOM - CSP blocks inline style attributes
     setTimeout(() => {
       const buttons = document.querySelectorAll<HTMLButtonElement>(".theme-btn[data-theme-id]");
       buttons.forEach((btn) => {

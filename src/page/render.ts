@@ -2,7 +2,7 @@
 //
 // Rendered at build time by scripts/build-page.mjs and spliced into index.html
 // between the generated:start / generated:end markers. Never edit that region
-// by hand — edit src/config/content.ts and run `npm run page`.
+// by hand - edit src/config/content.ts and run `npm run page`.
 
 import {
   PROFILE,
@@ -24,7 +24,7 @@ export interface Section {
   label: string;
 }
 
-/** Drives both the nav in the top bar and the section headings — they cannot drift. */
+/** Drives both the nav in the top bar and the section headings - they cannot drift. */
 export const SECTIONS: Section[] = [
   { id: "about", label: "about" },
   { id: "skills", label: "skills" },
@@ -36,7 +36,7 @@ export const SECTIONS: Section[] = [
 
 const INDENT = "  ";
 
-// The ASCII banner must survive indent() byte for byte — any added leading
+// The ASCII banner must survive indent() byte for byte - any added leading
 // whitespace inside <pre> shifts the art. It is spliced back in at the end.
 const BANNER_SLOT = "\u0000BANNER\u0000";
 
@@ -280,8 +280,8 @@ export function renderHead(): string {
     {
       "@type": "ProfilePage",
       url: SITE.url,
-      name: `${PROFILE.name} — ${PROFILE.title} Portfolio`,
-      description: `${PROFILE.name} — ${PROFILE.title} in ${PROFILE.location}. ${PROFILE.tagline}.`,
+      name: `${PROFILE.name} - ${PROFILE.title} Portfolio`,
+      description: `${PROFILE.name} - ${PROFILE.title} in ${PROFILE.location}. ${PROFILE.tagline}.`,
       inLanguage: SITE.language,
       mainEntity: { "@id": `${SITE.url}#person` },
     },

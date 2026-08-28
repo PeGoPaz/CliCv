@@ -7,7 +7,7 @@ type ThemeListener = (theme: Theme) => void;
 
 const listeners: ThemeListener[] = [];
 
-/** Notified whenever the theme changes — used by the status bar and the page control. */
+/** Notified whenever the theme changes - used by the status bar and the page control. */
 export function onThemeChange(listener: ThemeListener): void {
   listeners.push(listener);
 }

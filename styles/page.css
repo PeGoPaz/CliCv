@@ -1,4 +1,4 @@
-/* Native scrollable page — same palette, same monospace, no command required. */
+/* Native scrollable page - same palette, same monospace, no command required. */
 
 /* Surfaces darken rather than tint.
    A lightening wash costs contrast, and Solarized has almost none to spare:
@@ -126,7 +126,7 @@ html[data-js] .js-only { display: var(--js-display, block); }
   gap: 6px;
   padding: 3px 8px;
   font-size: 11px;
-  /* On bare --c-header this lands at 4.44:1 in Ghost and 4.11:1 in Solarized —
+  /* On bare --c-header this lands at 4.44:1 in Ghost and 4.11:1 in Solarized -
      the darkened surface gives it back the headroom. */
   color: var(--c-fg);
   background: var(--surface);
@@ -242,7 +242,7 @@ html[data-js] .js-only { display: var(--js-display, block); }
   border-color: color-mix(in srgb, var(--c-accent) 55%, transparent);
 }
 
-/* Availability callout — mirrors .availability-row in the terminal */
+/* Availability callout - mirrors .availability-row in the terminal */
 .callout {
   display: flex;
   gap: 14px;

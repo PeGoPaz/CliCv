@@ -92,7 +92,7 @@
   animation: glow-pulse 3s ease-in-out infinite alternate;
 }
 
-/* Plain-text banner — swapped in for the ASCII art below 720px */
+/* Plain-text banner - swapped in for the ASCII art below 720px */
 .banner-text {
   display: none;
   margin: 12px 0 4px;

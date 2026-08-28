@@ -11,12 +11,12 @@ export const INDEX = resolve("index.html");
 /** Each region is delimited by a comment pair and filled by one renderer export. */
 const REGIONS = [
   {
-    start: "<!-- generated:head-start — npm run page -->",
+    start: "<!-- generated:head-start - npm run page -->",
     end: "<!-- generated:head-end -->",
     render: "renderHead",
   },
   {
-    start: "<!-- generated:start — npm run page. Source of truth: src/config/content.ts -->",
+    start: "<!-- generated:start - npm run page. Source of truth: src/config/content.ts -->",
     end: "<!-- generated:end -->",
     render: "renderShell",
   },
@@ -31,7 +31,7 @@ async function loadRenderer() {
   try {
     return await import(pathToFileURL(path).href);
   } catch (err) {
-    console.error(`✗ could not load ${path} — run "npm run build" first.`);
+    console.error(`✗ could not load ${path} - run "npm run build" first.`);
     console.error(`  ${err.message}`);
     process.exit(1);
   }

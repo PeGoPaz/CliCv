@@ -18,7 +18,7 @@ const CHROME = [
 ].find(existsSync);
 
 if (!CHROME) {
-  console.error("No Chrome/Chromium found — cannot render the PDF.");
+  console.error("No Chrome/Chromium found - cannot render the PDF.");
   process.exit(1);
 }
 
@@ -28,7 +28,7 @@ const extra = JSON.parse(readFileSync("scripts/cv-data.json", "utf8"));
 const esc = (s) =>
   String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-// Projects get their opening sentence only — the CV has to stay on one page.
+// Projects get their opening sentence only - the CV has to stay on one page.
 const brief = (text) => {
   const first = text.split(/\.\s+(?=[A-Z])/)[0].trim();
   return first.endsWith(".") ? first : first + ".";
@@ -68,7 +68,7 @@ const certificates = extra.certificates
   .join("");
 
 const html = `<!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><title>Vladimir Rainov — CV</title>
+<html lang="en"><head><meta charset="utf-8"><title>Vladimir Rainov - CV</title>
 <style>
   @page { size: A4; margin: 10mm 12mm; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -135,4 +135,4 @@ execFileSync(CHROME, [
 ], { stdio: ["ignore", "ignore", "pipe"] });
 
 const pages = readFileSync("assets/cv.pdf").toString("latin1").match(/\/Type\s*\/Page[^s]/g);
-console.log(`assets/cv.pdf written — ${pages ? pages.length : "?"} page(s)`);
+console.log(`assets/cv.pdf written - ${pages ? pages.length : "?"} page(s)`);
