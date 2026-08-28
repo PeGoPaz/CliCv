@@ -145,7 +145,7 @@
   background: color-mix(in srgb, var(--c-success) 6%, transparent);
   border-radius: 0 4px 4px 0;
 }
-.availability-row > :first-child { min-width: 80px; font-weight: 500; }
+.availability-row > :first-child { min-width: 104px; font-weight: 500; white-space: nowrap; }
 
 /* Skills */
 .skill-group { margin: 8px 0; }
