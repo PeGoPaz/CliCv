@@ -4,8 +4,6 @@ import { MatrixBackground } from "./ui/MatrixBackground.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-  // The matrix rain is decoration and sits almost entirely behind the opaque
-  // terminal window, so skip it outright for reduced-motion visitors.
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!reduceMotion) {
     const matrix = new MatrixBackground("matrix-bg");

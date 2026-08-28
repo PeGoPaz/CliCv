@@ -12,8 +12,6 @@ export class MatrixBackground {
   private glyphs: string = "光ЯЮЭ平ЬЫШ星Ч日ХБ月УТС地ДР天НМК世ЛЗ火ОЖЕ界В水П龍Ф";
   private animationId: number | null = null;
   private lastFrame: number = 0;
-  // Background decoration, ~95% hidden behind the terminal window:
-  // no reason to redraw it at the display refresh rate.
   private readonly frameInterval: number = 50; // ~20 fps
 
   constructor(canvasId: string) {

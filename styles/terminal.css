@@ -93,8 +93,7 @@
   animation: glow-pulse 3s ease-in-out infinite alternate;
 }
 
-/* Plain-text banner — replaces the ASCII art below 720px, where the art is
-   too wide and truncates the name. */
+/* Plain-text banner — swapped in for the ASCII art below 720px */
 .banner-text {
   display: none;
   margin: 12px 0 4px;
@@ -361,7 +360,6 @@
   .ascii-banner { display: none; }
   .banner-text { display: block; font-size: 22px; }
   .status-bar { flex-direction: column; gap: 4px; padding: 6px 10px; }
-  /* "↑↓ history" and "tab complete" are meaningless on a touch keyboard */
   .status-center { display: none; }
   .help-grid { grid-template-columns: 1fr; gap: 4px; }
   .help-row > :first-child { color: var(--c-accent); }

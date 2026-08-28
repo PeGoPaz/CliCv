@@ -46,13 +46,10 @@ export class BootSequence {
     const pre = document.createElement("pre");
     pre.className = "ascii-banner";
     pre.textContent = ASCII_BANNER;
-    // Block-character art is noise to a screen reader; the name is announced
-    // from the sr-only <h1> instead.
     pre.setAttribute("aria-hidden", "true");
     this.body.appendChild(pre);
 
-    // The ASCII art is ~90 characters wide and truncates the name on a phone,
-    // so narrow screens get plain large text instead. CSS picks one or the other.
+    // plain name for narrow screens — CSS shows one or the other
     const plain = document.createElement("div");
     plain.className = "banner-text";
     plain.textContent = PROFILE.name;

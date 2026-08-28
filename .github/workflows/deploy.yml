@@ -36,8 +36,6 @@ jobs:
       - name: Check the static CV fallback is in sync with content.ts
         run: npm run check:cv-sync
 
-      # Publish only what the site needs. Uploading '.' also served src/*.ts,
-      # tsconfig.json, package.json and README.md from the live domain.
       - name: Assemble site
         run: |
           mkdir -p _site

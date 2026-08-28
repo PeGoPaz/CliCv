@@ -48,8 +48,7 @@ export class Terminal {
       this.handler.clear();
       return;
     }
-    // Ctrl+C → clear input, but only when nothing is selected: otherwise the
-    // visitor is trying to copy (e.g. the email address) and must win.
+    // Ctrl+C → clear input, unless text is selected (let the copy through)
     if (e.ctrlKey && e.key.toLowerCase() === "c") {
       const selection = window.getSelection()?.toString() ?? "";
       if (selection.trim()) return;
@@ -177,7 +176,6 @@ export class Terminal {
     try { localStorage.setItem("portfolio-theme", theme.id); } catch {}
   }
 
-  /** Applies the saved theme, or the default. Call once, on startup. */
   initTheme(): void {
     let saved: string | null = null;
     try { saved = localStorage.getItem("portfolio-theme"); } catch {}

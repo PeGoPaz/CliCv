@@ -119,7 +119,7 @@ export class CommandHandler {
   // ------- Command implementations -------
 
   public showHelp(): void {
-    // [command, description, runnable] — rows that need an argument aren't clickable.
+    // [command, description, clickable]
     const cmds: Array<[string, string, boolean]> = [
       ["whoami",       "Display all information about me", true],
       ["about",        "Learn about me", true],
@@ -146,8 +146,7 @@ export class CommandHandler {
     html += `</div>`;
     this.render(html);
 
-    // Bind click handlers on the command buttons. Guard with data-bound so a
-    // second `help` doesn't attach a duplicate listener to earlier buttons.
+    // data-bound stops a second `help` re-binding the earlier buttons
     setTimeout(() => {
       const buttons = document.querySelectorAll<HTMLButtonElement>(".help-cmd[data-cmd]");
       buttons.forEach((el) => {
@@ -179,7 +178,7 @@ export class CommandHandler {
       html += `<span class="exp-period fg-muted">${this.escapeHtml(item.period)}</span>`;
       html += `</div>`;
       html += `<div class="exp-desc">${this.escapeHtml(item.description)}</div>`;
-      if (item.highlights.length) {
+      if (item.highlights?.length) {
         html += `<ul class="exp-highlights">`;
         for (const h of item.highlights) {
           html += `<li>${this.escapeHtml(h)}</li>`;
@@ -278,9 +277,7 @@ export class CommandHandler {
     html += `<div class="fg-muted themes-usage">Usage: <span class="fg-accent">theme &lt;name&gt;</span></div>`;
     this.render(html);
 
-    // Bind handlers and paint the swatches. The colour must go through the
-    // CSSOM: this page's CSP has no 'unsafe-inline' in style-src, so an inline
-    // style="--swatch: ..." attribute is dropped and the swatches render blank.
+    // swatch colour via CSSOM — CSP blocks inline style attributes
     setTimeout(() => {
       const buttons = document.querySelectorAll<HTMLButtonElement>(".theme-btn[data-theme-id]");
       buttons.forEach((btn) => {
