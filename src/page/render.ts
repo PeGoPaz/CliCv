@@ -16,6 +16,7 @@ import {
 } from "../config/content.js";
 import { ASCII_BANNER } from "../config/ascii.js";
 import { CV_FILE_PATH, CV_DOWNLOAD_NAME } from "../config/cv.js";
+import { SITE } from "../config/site.js";
 import { escapeHtml, escapeAttr } from "../utils/html.js";
 
 export interface Section {
@@ -265,4 +266,64 @@ export function renderShell(): string {
   const banner = `<pre class="hero-banner" aria-hidden="true">${escapeHtml(ASCII_BANNER)}</pre>`;
   // Drop the indentation indent() put in front of the slot along with the slot itself.
   return shell.replace(new RegExp(`[ \\t]*${BANNER_SLOT}`), banner);
+}
+
+// ------- Structured data -------
+
+/**
+ * The JSON-LD block in <head>. Generated so knowsAbout and sameAs cannot drift
+ * from SKILLS and LINKS the way the hand-written version did.
+ */
+export function renderHead(): string {
+  const degree = EDUCATION[0];
+  const graph: unknown[] = [
+    {
+      "@type": "ProfilePage",
+      url: SITE.url,
+      name: `${PROFILE.name} — ${PROFILE.title} Portfolio`,
+      description: `${PROFILE.name} — ${PROFILE.title} in ${PROFILE.location}. ${PROFILE.tagline}.`,
+      inLanguage: SITE.language,
+      mainEntity: { "@id": `${SITE.url}#person` },
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE.url}#person`,
+      name: PROFILE.name,
+      jobTitle: PROFILE.title,
+      email: `mailto:${CONTACTS.email}`,
+      url: SITE.url,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: PROFILE.location.split(",")[0].trim(),
+        addressCountry: SITE.countryCode,
+      },
+      description: `${PROFILE.tagline}. ${CONTACTS.availability}`,
+      ...(degree
+        ? {
+            affiliation: {
+              "@type": "CollegeOrUniversity",
+              name: degree.institution,
+              url: SITE.institutionUrl,
+            },
+            hasCredential: {
+              "@type": "EducationalOccupationalCredential",
+              name: degree.qualification,
+              credentialCategory: SITE.credentialCategory,
+              educationalLevel: SITE.credentialLevel,
+              recognizedBy: { "@type": "CollegeOrUniversity", name: degree.institution },
+            },
+          }
+        : {}),
+      sameAs: LINKS.map((l) => l.url),
+      // Parenthetical detail ("Kubernetes (K3s)") reads as a distinct entity to a
+      // search engine, so the structured-data list uses the bare term.
+      knowsAbout: [...new Set(SKILLS.flatMap((g) => g.items).map((s) => s.replace(/\s*\([^)]*\)/g, "").trim()))],
+    },
+  ];
+
+  const json = JSON.stringify({ "@context": "https://schema.org", "@graph": graph }, null, 2)
+    // Keeps a stray "</script>" inside the data from closing the tag early.
+    .replace(/<\//g, "<\\/");
+
+  return indent([`<script type="application/ld+json">`, json, `</script>`].join("\n"), 1);
 }
