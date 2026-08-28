@@ -13,8 +13,4 @@ export class History {
   all(): string[] {
     return [...this.entries];
   }
-
-  count(): number {
-    return this.entries.length;
-  }
 }

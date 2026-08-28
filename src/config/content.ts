@@ -1,7 +1,9 @@
 /**
  * ============================================================
- *  PORTFOLIO CONTENT CONFIGURATION
- *  ✏️  EDIT THIS FILE TO REPLACE ALL PLACEHOLDER CONTENT
+ *  PORTFOLIO CONTENT
+ *  Single source of truth for every string rendered by the terminal.
+ *  ⚠️  Mirrored by the #static-cv fallback in index.html — keep both in
+ *      sync; scripts/check-cv-sync.mjs enforces it at build time.
  * ============================================================
  */
 
@@ -40,10 +42,6 @@ export interface SocialLink {
   url: string;
   display: string;
 }
-
-// ============================================================
-// 👇 REPLACE THE DATA BELOW WITH YOUR REAL INFORMATION 👇
-// ============================================================
 
 export const PROFILE: Profile = {
   name: "Vladimir Rainov",
@@ -129,7 +127,7 @@ export const PROJECTS: Project[] = [
   {
     name: "Zero-Trust Proxmox Cluster",
     category: "Technical Builds",
-    description: "Engineered a Zero-Trust micro-datacenter on repurposed hardware using Proxmox VE and to orchestrate secure, self-hosted microservices and media servers. The infrastructure features enterprise-grade networking with WireGuard mesh overlays to deliver low-latency edge computing and automated system monitoring.",
+    description: "Engineered a Zero-Trust micro-datacenter on repurposed hardware using Proxmox VE to orchestrate secure, self-hosted microservices and media servers. The infrastructure features enterprise-grade networking with WireGuard mesh overlays to deliver low-latency edge computing and automated system monitoring.",
     stack: ["Proxmox VE", "Docker", "WireGuard", "Tailscale", "Pi-hole", "Nginx Proxy Manager", "ZFS", "Grafana", "Uptime Kuma"],
   },
   {
@@ -143,7 +141,7 @@ export const PROJECTS: Project[] = [
 
 export const CONTACTS = {
   email: "vl.rai@proton.me",
-  availability: "Open to full-time roles, and open-source collaborations.",
+  availability: "Open to full-time roles and open-source collaborations.",
   responseTime: "Typically responds within 24 hours.",
 };
 

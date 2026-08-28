@@ -9,6 +9,10 @@ lerna-debug.log*
 
 node_modules
 dist
+
+# Compiled output never belongs next to the TypeScript sources: every import
+# in src/ is written as "./Foo.js", so a stray empty .js here shadows a module.
+src/**/*.js
 dist-ssr
 *.local
 

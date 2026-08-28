@@ -1,11 +1,9 @@
 /**
  * ============================================================
  *  ASCII ART BANNER
- *  🖼️  REPLACE THIS WITH YOUR OWN ASCII ART
  * ============================================================
  */
 
-// Default banner — replace with your name or custom art
 export const ASCII_BANNER = `
     ███     ███   ███                 ███  ███                   ███               ███████████              ███                                 
 ▒▒███   ▒▒███ ▒▒███               ▒▒███  ▒▒▒                   ▒▒▒               ▒▒███▒▒▒▒▒███            ▒▒▒                                  

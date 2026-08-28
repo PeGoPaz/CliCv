@@ -2,7 +2,6 @@ import { CommandHandler } from "./CommandHandler.js";
 import { History } from "../utils/history.js";
 import { StatusBar } from "../ui/StatusBar.js";
 import { THEMES, getTheme } from "../config/themes.js";
-import { PROFILE } from "../config/content.js";
 
 export class Terminal {
   private body: HTMLElement;
@@ -30,7 +29,6 @@ export class Terminal {
     );
 
     this.bindEvents();
-    this.applyTheme("ghost");
   }
 
   private bindEvents(): void {
@@ -50,8 +48,11 @@ export class Terminal {
       this.handler.clear();
       return;
     }
-    // Ctrl+C → clear input
+    // Ctrl+C → clear input, but only when nothing is selected: otherwise the
+    // visitor is trying to copy (e.g. the email address) and must win.
     if (e.ctrlKey && e.key.toLowerCase() === "c") {
+      const selection = window.getSelection()?.toString() ?? "";
+      if (selection.trim()) return;
       e.preventDefault();
       this.input.value = "";
       this.writeOutput(`<span class="fg-muted">^C</span>`);
@@ -176,13 +177,12 @@ export class Terminal {
     try { localStorage.setItem("portfolio-theme", theme.id); } catch {}
   }
 
-  loadSavedTheme(): void {
-    try {
-      const saved = localStorage.getItem("portfolio-theme");
-      if (saved && THEMES.some((t) => t.id === saved)) {
-        this.applyTheme(saved);
-      }
-    } catch {}
+  /** Applies the saved theme, or the default. Call once, on startup. */
+  initTheme(): void {
+    let saved: string | null = null;
+    try { saved = localStorage.getItem("portfolio-theme"); } catch {}
+    const valid = saved && THEMES.some((t) => t.id === saved);
+    this.applyTheme(valid ? saved! : "ghost");
   }
 
   getBootBody(): HTMLElement {

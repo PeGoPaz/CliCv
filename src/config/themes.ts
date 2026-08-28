@@ -1,7 +1,6 @@
 /**
  * ============================================================
  *  THEME DEFINITIONS
- *  🎨  ADD OR MODIFY THEMES HERE
  * ============================================================
  */
 
@@ -31,7 +30,7 @@ export const THEMES: Theme[] = [
       bg: "#0a0e14",
       fg: "#cdd6f4",
       accent: "#89dceb",
-      muted: "#6c7086",
+      muted: "#7f849c",
       border: "#1e2330",
       header: "#1a1f2e",
       matrix: "#89dceb",
@@ -48,7 +47,7 @@ export const THEMES: Theme[] = [
       bg: "#282a36",
       fg: "#f8f8f2",
       accent: "#bd93f9",
-      muted: "#6272a4",
+      muted: "#939ec2",
       border: "#44475a",
       header: "#21222c",
       matrix: "#bd93f9",
@@ -65,7 +64,7 @@ export const THEMES: Theme[] = [
       bg: "#272822",
       fg: "#f8f8f2",
       accent: "#a6e22e",
-      muted: "#75715e",
+      muted: "#9d9982",
       border: "#3e3d32",
       header: "#1e1f1c",
       matrix: "#a6e22e",
@@ -99,12 +98,12 @@ export const THEMES: Theme[] = [
       bg: "#002b36",
       fg: "#839496",
       accent: "#b58900",
-      muted: "#586e75",
+      muted: "#93a1a1",
       border: "#073642",
       header: "#073642",
       matrix: "#b58900",
       matrixHighlight: "#cb4b16",
-      link: "#268bd2",
+      link: "#4ba3e3",
       success: "#859900",
       prompt: "#cb4b16",
     },

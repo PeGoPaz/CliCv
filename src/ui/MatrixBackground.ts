@@ -11,6 +11,10 @@ export class MatrixBackground {
   private fontSize: number = 14;
   private glyphs: string = "光ЯЮЭ平ЬЫШ星Ч日ХБ月УТС地ДР天НМК世ЛЗ火ОЖЕ界В水П龍Ф";
   private animationId: number | null = null;
+  private lastFrame: number = 0;
+  // Background decoration, ~95% hidden behind the terminal window:
+  // no reason to redraw it at the display refresh rate.
+  private readonly frameInterval: number = 50; // ~20 fps
 
   constructor(canvasId: string) {
     const canvas = document.getElementById(canvasId) as HTMLCanvasElement;
@@ -31,7 +35,11 @@ export class MatrixBackground {
   }
 
   start(): void {
-    const render = () => {
+    const render = (now: number = 0) => {
+      this.animationId = requestAnimationFrame(render);
+      if (now - this.lastFrame < this.frameInterval) return;
+      this.lastFrame = now;
+
       const theme = getTheme(document.documentElement.dataset.theme || "ghost");
 
       // Trail effect — semi-transparent black over previous frame
@@ -62,10 +70,8 @@ export class MatrixBackground {
         }
         this.drops[i] += 1;
       }
-
-      this.animationId = requestAnimationFrame(render);
     };
-    render();
+    this.animationId = requestAnimationFrame(render);
   }
 
   stop(): void {
