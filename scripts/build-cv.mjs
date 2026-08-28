@@ -76,6 +76,7 @@ const html = `<!DOCTYPE html>
   a { color: #1155cc; }
   header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12mm; }
   h1 { font-size: 21pt; line-height: 1.05; letter-spacing: -0.4pt; }
+  .role { font-size: 12pt; margin-top: 0.4mm; }
   .site { font-size: 10pt; }
   .contact { text-align: right; font-size: 9pt; }
   h2 { font-size: 10.5pt; text-align: center; letter-spacing: 0.6pt;
@@ -93,15 +94,14 @@ const html = `<!DOCTYPE html>
   <header>
     <div>
       <h1>${esc(c.PROFILE.name)}</h1>
+      <p class="role">${esc(c.PROFILE.title)}</p>
       <p class="site"><a href="https://vladr.tech/">vladr.tech</a></p>
     </div>
     <div class="contact">
       ${esc(c.PROFILE.location)}<br>
       ${esc(extra.phone)}<br>
       <a href="mailto:${esc(c.CONTACTS.email)}">${esc(c.CONTACTS.email)}</a><br>
-      ${c.LINKS.filter((l) => l.platform !== "X")
-        .map((l) => `<a href="${esc(l.url)}">${esc(l.display)}</a>`)
-        .join("<br>")}
+      ${c.LINKS.map((l) => `<a href="${esc(l.url)}">${esc(l.display)}</a>`).join("<br>")}
     </div>
   </header>
 

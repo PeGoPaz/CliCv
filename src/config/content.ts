@@ -61,7 +61,7 @@ export const PROFILE: Profile = {
   status: "available",
 };
 
-export const ABOUT = `Final-year BSc (Hons) Computing Science student at Griffith College Dublin, graduating June 2027. I work mainly in Java, Python and SQL, and I have built software outside coursework: two years part-time on a core banking platform, where I debugged over 200 SQL-based regulatory reports and reworked around 400 queries against changing compliance rules, and projects I design, build and deploy end to end — from a multi-language site running in production to a self-hosted Proxmox cluster running my own services. I am working towards an AWS Solutions Architect certification, and I am looking for a graduate software engineering role where I can work across the stack and learn from experienced engineers.`
+export const ABOUT = `Final-year BSc (Hons) Computing Science student at Griffith College Dublin, graduating June 2027. I work mainly in Java, Python and SQL, and I have built software outside coursework: two years part-time on a core banking platform, where I debugged over 200 SQL-based regulatory reports and reworked around 400 queries against changing compliance rules, and projects I design, build and deploy end to end — from a multi-language site running in production to a self-hosted Proxmox cluster running my own services. I am looking for a graduate software engineering role where I can work across the stack and learn from experienced engineers.`
 
 export const SKILLS: SkillCategory[] = [
   {
