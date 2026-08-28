@@ -12,11 +12,6 @@
   to   { text-shadow: 0 0 14px color-mix(in srgb, var(--c-accent) 85%, transparent); }
 }
 
-@keyframes blink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
-}
-
 .terminal-body .boot { animation: fade-in 180ms ease-out; }
 
 /* Subtle scanline overlay for extra terminal feel */
@@ -48,4 +43,20 @@
     opacity: 1; 
     transform: translateY(0); 
   }
+}
+
+/* ============================================================
+   Reduced motion: strip the decorative animation. The matrix canvas
+   is skipped entirely in main.ts.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .ascii-banner { animation: none; }
+  .output-line,
+  .output-line.quick-fade,
+  .terminal-body .boot { animation: none; }
+  .terminal-body { scroll-behavior: auto; }
+  .skill-tag:hover,
+  .project-block:hover,
+  .theme-btn:hover { transform: none; }
+  html, body { transition: none; }
 }

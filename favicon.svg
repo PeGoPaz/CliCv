@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Terminal prompt">
+  <rect width="64" height="64" rx="12" fill="#0a0e14"/>
+  <path d="M19 19 L33 32 L19 45" fill="none" stroke="#89dceb" stroke-width="6.5"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="37" y="39.5" width="15" height="6" rx="3" fill="#89dceb"/>
+</svg>

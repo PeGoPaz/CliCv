@@ -25,28 +25,6 @@ export class CommandHandler {
     this.setTheme = setTheme;
   }
 
-      public async renderAllSections(): Promise<void> {
-    // Temporarily override render to add the quick-fade animation class
-    const originalRender = this.render;
-    this.render = (html: string) => originalRender(html, "quick-fade");
-
-    const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
-
-    this.showAbout();
-    await delay(100);
-    this.showSkills();
-    await delay(100);
-    this.showExperience();
-    await delay(100);
-    this.showProjects();
-    await delay(100);
-    this.showContacts();
-    await delay(100);
-    this.showLinks();
-    await delay(100);
-    this.render = originalRender;
-  }
-
   static readonly AVAILABLE_COMMANDS = [
     "whoami",
     "about",
@@ -134,36 +112,40 @@ export class CommandHandler {
   // ------- Command implementations -------
 
   public showHelp(): void {
-    const cmds: Array<[string, string]> = [
-      ["whoami",     "Display all information about me"],
-      ["about",      "Learn about me"],
-      ["skills",     "Technical skills & stack"],
-      ["experience", "Work history"],
-      ["projects",   "Projects"],
-      ["contacts",   "Contact information"],
-      ["links",      "Social & professional links"],
-      ["themes",     "List available themes"],
-      ["theme &lt;name&gt;", "Switch theme"],
-      ["history",    "Show command history"],
-      ["cv",         "Download my CV"],
-      ["clear",      "Clear terminal output"],
+    // [command, description, runnable] — rows that need an argument aren't clickable.
+    const cmds: Array<[string, string, boolean]> = [
+      ["whoami",       "Display all information about me", true],
+      ["about",        "Learn about me", true],
+      ["skills",       "Technical skills & stack", true],
+      ["experience",   "Work history", true],
+      ["projects",     "Projects", true],
+      ["contacts",     "Contact information", true],
+      ["links",        "Social & professional links", true],
+      ["themes",       "List available themes", true],
+      ["theme <name>", "Switch theme", false],
+      ["history",      "Show command history", true],
+      ["cv",           "Download my CV", true],
+      ["clear",        "Clear terminal output", true],
     ];
     let html = `<div class="section-title">Available Commands</div><div class="help-grid">`;
-    for (const [cmd, desc] of cmds) {
-      html += `<div class="help-row"><span class="fg-accent help-cmd" data-cmd="${cmd}">${cmd}</span><span class="fg-muted">${desc}</span></div>`;
+    for (const [cmd, desc, runnable] of cmds) {
+      const label = this.escapeHtml(cmd);
+      const name = runnable
+        ? `<button type="button" class="fg-accent help-cmd" data-cmd="${this.escapeAttr(cmd)}">${label}</button>`
+        : `<span class="fg-accent help-cmd-static">${label}</span>`;
+      html += `<div class="help-row">${name}<span class="fg-muted">${this.escapeHtml(desc)}</span></div>`;
     }
     html += `</div>`;
     this.render(html);
 
-    // Bind click handlers on command names
+    // Bind click handlers on the command buttons. Guard with data-bound so a
+    // second `help` doesn't attach a duplicate listener to earlier buttons.
     setTimeout(() => {
-      const cmdElements = document.querySelectorAll<HTMLSpanElement>(".help-cmd[data-cmd]");
-      cmdElements.forEach((el) => {
-        el.style.cursor = "pointer";
-        el.addEventListener("click", () => {
-          const cmd = el.dataset.cmd!;
-          this.execute(cmd);
-        });
+      const buttons = document.querySelectorAll<HTMLButtonElement>(".help-cmd[data-cmd]");
+      buttons.forEach((el) => {
+        if (el.dataset.bound) return;
+        el.dataset.bound = "1";
+        el.addEventListener("click", () => this.execute(el.dataset.cmd!));
       });
     }, 0);
   }
@@ -254,21 +236,25 @@ export class CommandHandler {
     let html = `<div class="section-title">Available Themes</div>`;
     html += `<div class="themes-list">`;
     for (const theme of THEMES) {
-      html += `<button class="theme-btn" data-theme-id="${theme.id}" style="--swatch: ${theme.colors.accent};">`;
+      html += `<button type="button" class="theme-btn" data-theme-id="${this.escapeAttr(theme.id)}">`;
       html += `<span class="theme-swatch"></span>${this.escapeHtml(theme.name)}</button>`;
     }
     html += `</div>`;
-    html += `<div class="fg-muted" style="margin-top:8px;">Usage: <span class="fg-accent">theme &lt;name&gt;</span></div>`;
+    html += `<div class="fg-muted themes-usage">Usage: <span class="fg-accent">theme &lt;name&gt;</span></div>`;
     this.render(html);
 
-    // Bind click handlers on theme buttons
+    // Bind handlers and paint the swatches. The colour must go through the
+    // CSSOM: this page's CSP has no 'unsafe-inline' in style-src, so an inline
+    // style="--swatch: ..." attribute is dropped and the swatches render blank.
     setTimeout(() => {
       const buttons = document.querySelectorAll<HTMLButtonElement>(".theme-btn[data-theme-id]");
       buttons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const id = btn.dataset.themeId!;
-          this.switchTheme(id);
-        });
+        const id = btn.dataset.themeId!;
+        const theme = THEMES.find((t) => t.id === id);
+        if (theme) btn.style.setProperty("--swatch", theme.colors.accent);
+        if (btn.dataset.bound) return;
+        btn.dataset.bound = "1";
+        btn.addEventListener("click", () => this.switchTheme(id));
       });
     }, 0);
   }
