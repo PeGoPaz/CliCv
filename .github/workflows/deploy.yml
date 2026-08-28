@@ -33,7 +33,7 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Check the static CV fallback is in sync with content.ts
+      - name: Check index.html is in sync with content.ts
         run: npm run check:cv-sync
 
       - name: Assemble site
