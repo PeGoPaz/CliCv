@@ -33,4 +33,5 @@ dist-ssr
 *.tsbuildinfo
 Thumbs.db
 roadmap.md
+next-session-prompt.md
 assets/cv.html
