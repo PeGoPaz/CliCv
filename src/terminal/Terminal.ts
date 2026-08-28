@@ -1,7 +1,7 @@
 import { CommandHandler } from "./CommandHandler.js";
 import { History } from "../utils/history.js";
 import { StatusBar } from "../ui/StatusBar.js";
-import { THEMES, getTheme } from "../config/themes.js";
+import { applyTheme, initTheme, onThemeChange, currentTheme } from "../ui/ThemeManager.js";
 
 export class Terminal {
   private body: HTMLElement;
@@ -21,6 +21,8 @@ export class Terminal {
     this.input = input;
     this.history = new History();
     this.statusBar = new StatusBar();
+    this.statusBar.updateTheme(currentTheme().name);
+    onThemeChange((theme) => this.statusBar.updateTheme(theme.name));
 
     this.handler = new CommandHandler(
       this.history,
@@ -37,8 +39,10 @@ export class Terminal {
 
     this.input.addEventListener("keydown", (e) => this.handleKeyDown(e));
 
-    // Keep input focused when window regains focus
-    window.addEventListener("focus", () => this.input.focus());
+    // Keep input focused when window regains focus — but only while the terminal is on screen
+    window.addEventListener("focus", () => {
+      if (document.documentElement.dataset.view === "terminal") this.input.focus();
+    });
   }
 
   private handleKeyDown(e: KeyboardEvent): void {
@@ -152,35 +156,11 @@ export class Terminal {
   }
 
   applyTheme(id: string): void {
-    const theme = getTheme(id);
-    document.documentElement.dataset.theme = theme.id;
-
-    // Apply CSS variables
-    const root = document.documentElement;
-    const c = theme.colors;
-    root.style.setProperty("--c-bg", c.bg);
-    root.style.setProperty("--c-fg", c.fg);
-    root.style.setProperty("--c-accent", c.accent);
-    root.style.setProperty("--c-muted", c.muted);
-    root.style.setProperty("--c-border", c.border);
-    root.style.setProperty("--c-header", c.header);
-    root.style.setProperty("--c-matrix", c.matrix);
-    root.style.setProperty("--c-matrix-highlight", c.matrixHighlight);
-    root.style.setProperty("--c-link", c.link);
-    root.style.setProperty("--c-success", c.success);
-    root.style.setProperty("--c-prompt", c.prompt);
-
-    this.statusBar.updateTheme(theme.name);
-
-    // Persist
-    try { localStorage.setItem("portfolio-theme", theme.id); } catch {}
+    applyTheme(id);
   }
 
   initTheme(): void {
-    let saved: string | null = null;
-    try { saved = localStorage.getItem("portfolio-theme"); } catch {}
-    const valid = saved && THEMES.some((t) => t.id === saved);
-    this.applyTheme(valid ? saved! : "ghost");
+    initTheme();
   }
 
   getBootBody(): HTMLElement {
