@@ -12,7 +12,7 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <meta name="theme-color" content="#0a0e14" />
 
-  <!-- Open Graph / social previews (ATS bots, LinkedIn, Slack link previews) -->
+  <!-- Open Graph -->
   <meta property="og:type" content="profile" />
   <meta property="og:site_name" content="Vladimir Rainov — Portfolio" />
   <meta property="og:title" content="Vladimir Rainov — Software Engineer Portfolio" />
@@ -28,8 +28,6 @@
   <meta name="twitter:title" content="Vladimir Rainov — Software Engineer Portfolio" />
   <meta name="twitter:description" content="Final-year BSc (Hons) Computing Science student at Griffith College Dublin, graduating June 2027. Java, Python, SQL, Docker, Kubernetes, AWS. Seeking a graduate software engineering role in Dublin, Ireland." />
 
-  <!-- Structured data for crawlers / ATS systems.
-       JSON-LD is data, never executed, so it is CSP-safe (script-src 'self'). -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -146,7 +144,6 @@
     </div>
   </main>
 
-  <!-- Notice for humans with JavaScript disabled -->
   <noscript>
     <div class="noscript-notice">
       <p>This portfolio is an interactive terminal and requires JavaScript.</p>
@@ -157,14 +154,7 @@
     </div>
   </noscript>
 
-  <!-- ============================================================
-       STATIC CV COPY — machine-readable fallback for crawlers, ATS
-       systems, and screen readers. The interactive terminal renders
-       the same content via JS, which many bots cannot execute.
-       KEEP IN SYNC with src/config/content.ts — npm run check:cv-sync
-       Hidden with the .sr-only (clip) pattern — NOT display:none —
-       so crawlers don't flag it as hidden content.
-       ============================================================ -->
+  <!-- static CV for bots that can't run JS — npm run check:cv-sync -->
   <section class="sr-only" id="static-cv" aria-hidden="true"
            aria-label="Curriculum vitae, plain text version">
     <p>Vladimir Rainov — Software Engineer</p>
@@ -261,7 +251,6 @@
     <p><a href="assets/cv.pdf" download>Download CV (PDF)</a></p>
   </section>
 
-  <!-- Compiled JS -->
   <script type="module" src="dist/main.js"></script>
 </body>
 </html>

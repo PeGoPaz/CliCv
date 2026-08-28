@@ -1,6 +1,4 @@
-/* ============================================================
-   GLOBAL RESETS & BASE STYLES
-   ============================================================ */
+/* Resets and base styles */
 
 *, *::before, *::after {
   box-sizing: border-box;

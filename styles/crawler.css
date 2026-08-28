@@ -1,9 +1,4 @@
-/* ============================================================
-   Crawler / ATS / screen-reader visibility helpers.
-   Used by the static CV fallback in index.html (#static-cv) and
-   the noscript notice. Clip pattern instead of display:none so
-   crawlers don't treat it as hidden/cloaked content.
-   ============================================================ */
+/* Clip pattern — display:none would hide this from bots too */
 
 .sr-only {
   position: absolute;

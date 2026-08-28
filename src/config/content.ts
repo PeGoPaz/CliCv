@@ -1,9 +1,4 @@
-/**
- * ============================================================
- *  PORTFOLIO CONTENT
- *  Mirrored by #static-cv in index.html — npm run check:cv-sync
- * ============================================================
- */
+// Mirrored by #static-cv in index.html — npm run check:cv-sync
 
 export interface Profile {
   name: string;

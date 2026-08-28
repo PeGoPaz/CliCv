@@ -1,6 +1,4 @@
-/* ============================================================
-   ANIMATIONS & KEYFRAMES
-   ============================================================ */
+/* Keyframes */
 
 @keyframes fade-in {
   from { opacity: 0; transform: translateY(2px); }
@@ -45,9 +43,7 @@
   }
 }
 
-/* ============================================================
-   REDUCED MOTION
-   ============================================================ */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .ascii-banner { animation: none; }
   .output-line,
