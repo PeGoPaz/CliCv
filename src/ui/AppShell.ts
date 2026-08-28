@@ -141,7 +141,7 @@ export class AppShell {
       const swatch = document.createElement("span");
       swatch.className = "theme-swatch";
       swatch.setAttribute("aria-hidden", "true");
-      // CSSOM, not an inline style attribute — the CSP has no 'unsafe-inline'.
+      // CSSOM, not an inline style attribute - the CSP has no 'unsafe-inline'.
       swatch.style.setProperty("--swatch", theme.colors.accent);
 
       btn.append(swatch, document.createTextNode(theme.name));

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Fails if the generated regions of index.html no longer match src/config/content.ts.
- * Run after npm run build — reads the compiled dist/page/render.js.
+ * Run after npm run build - reads the compiled dist/page/render.js.
  *
  * Exact, not substring-based: this catches stale and orphaned text as well as missing text.
  */
@@ -31,6 +31,6 @@ if (existsSync("assets/cv.pdf") && existsSync("src/config/content.ts")) {
   const pdf = statSync("assets/cv.pdf").mtimeMs;
   const src = statSync("src/config/content.ts").mtimeMs;
   if (src > pdf) {
-    console.warn("! assets/cv.pdf is older than content.ts — run: npm run cv");
+    console.warn("! assets/cv.pdf is older than content.ts - run: npm run cv");
   }
 }

@@ -40,7 +40,7 @@ export class MatrixBackground {
 
       const theme = getTheme(document.documentElement.dataset.theme || "ghost");
 
-      // Trail effect — semi-transparent black over previous frame
+      // Trail effect - semi-transparent black over previous frame
       this.ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
       this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 

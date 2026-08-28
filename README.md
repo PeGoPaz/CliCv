@@ -1,4 +1,4 @@
-# Vladimir Rainov — Portfolio
+# Vladimir Rainov - Portfolio
 
 Developer portfolio at [vladr.tech](https://vladr.tech). Two views, one source of content:
 a static, scrollable page by default, and the interactive terminal behind a button.
@@ -14,11 +14,11 @@ Everything the site says lives in `src/config/content.ts`. Three surfaces are ge
 | Surface | How | Command |
 |---|---|---|
 | The static page in `index.html` | `src/page/render.ts` → `scripts/build-page.mjs` | `npm run page` |
-| The terminal | `src/terminal/CommandHandler.ts`, at runtime | — |
+| The terminal | `src/terminal/CommandHandler.ts`, at runtime | - |
 | `assets/cv.pdf` | `scripts/build-cv.mjs` (needs a local Chrome) | `npm run cv` |
 
 The generated regions of `index.html` sit between `generated:start` / `generated:end` markers
-(and `generated:head-start` / `generated:head-end` for the JSON-LD). Do not edit them by hand —
+(and `generated:head-start` / `generated:head-end` for the JSON-LD). Do not edit them by hand -
 edit `content.ts` and re-run `npm run page`.
 
 `npm run check:cv-sync` regenerates those regions in memory and fails if the committed
@@ -53,7 +53,7 @@ npm run build && npm run page && npm run check:cv-sync
 
 ## The two views
 
-The page is plain static HTML, present on first paint and readable with scripting off —
+The page is plain static HTML, present on first paint and readable with scripting off -
 which is also what crawlers and ATS parsers see. The terminal lives at `#terminal` on the
 same URL; it is built and booted the first time it is opened, so nothing about it costs
 anything on the default view.
@@ -68,7 +68,7 @@ Terminal commands: `about`, `education`, `skills`, `experience`, `projects`, `co
 ## Constraints worth knowing
 
 - **Strict CSP** in a `<meta>` tag, with no `'unsafe-inline'` in `style-src`. Inline `style`
-  attributes are dropped silently — set styles through CSS classes or `el.style.setProperty`.
+  attributes are dropped silently - set styles through CSS classes or `el.style.setProperty`.
 - **Contrast** stays at or above 4.5:1 for every text colour in all five themes. Page surfaces
   therefore darken (`--surface`) rather than tint: a lightening wash costs contrast, and
   Solarized has almost none to spare.
@@ -94,7 +94,7 @@ Terminal commands: `about`, `education`, `skills`, `experience`, `projects`, `co
 │   └── cv-data.json     # CV-only extras (phone, certificates)
 ├── src/
 │   ├── config/          # content, themes, ascii, cv, site
-│   ├── page/            # render.ts — the static page and the JSON-LD
+│   ├── page/            # render.ts - the static page and the JSON-LD
 │   ├── terminal/        # terminal, command handler, boot sequence
 │   ├── ui/              # AppShell, ThemeManager, matrix background, status bar
 │   └── utils/           # html escaping, command history

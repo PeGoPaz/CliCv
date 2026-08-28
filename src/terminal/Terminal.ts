@@ -39,7 +39,7 @@ export class Terminal {
 
     this.input.addEventListener("keydown", (e) => this.handleKeyDown(e));
 
-    // Keep input focused when window regains focus — but only while the terminal is on screen
+    // Keep input focused when window regains focus - but only while the terminal is on screen
     window.addEventListener("focus", () => {
       if (document.documentElement.dataset.view === "terminal") this.input.focus();
     });

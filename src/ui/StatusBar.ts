@@ -1,5 +1,5 @@
 /**
- * Bottom status bar — updates history count, theme name, etc.
+ * Bottom status bar - updates history count, theme name, etc.
  */
 export class StatusBar {
   private historyEl: HTMLElement;

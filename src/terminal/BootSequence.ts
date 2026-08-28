@@ -49,7 +49,7 @@ export class BootSequence {
     pre.setAttribute("aria-hidden", "true");
     this.body.appendChild(pre);
 
-    // plain name for narrow screens — CSS shows one or the other
+    // plain name for narrow screens - CSS shows one or the other
     const plain = document.createElement("div");
     plain.className = "banner-text";
     plain.textContent = PROFILE.name;

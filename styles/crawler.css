@@ -1,4 +1,4 @@
-/* Visually hidden but reachable — used by the skip link and screen-reader labels. */
+/* Visually hidden but reachable - used by the skip link and screen-reader labels. */
 
 .sr-only {
   position: absolute;
