@@ -38,6 +38,7 @@ export interface Project {
   stack: string[];
   link?: string;
   repo?: string;
+  writeup?: string;
 }
 
 export interface SocialLink {
@@ -119,46 +120,40 @@ export const EXPERIENCE: ExperienceItem[] = [
 
 export const PROJECTS: Project[] = [
   {
-    name: "Sorted.ie",
-    category: "Web Development",
-    period: "Aug 2026 — present",
-    description: "This price aggregation platform helps shoppers find the best smartphone deals by comparing specifications and tracking prices across more than 50 global retailers. It provides a comprehensive database of over 3,800 devices equipped with smart search functionality and instant alerts for price drops and new releases.",
-    stack: ["React/Next.js", "Vercel", "Node.js", "NeonDB"],
-    link: "https://ie-catalog-frontend-jymn.vercel.app/",
-  },
-  {
     name: "Villa Caterina",
     category: "Web Development",
-    period: "Jun — Jul 2026",
-    description: "Designed and built a zero-dependency static website for a luxury vacation rental on Lake Como, Italy. The site features multi-language support (English, Italian, French, German), real-time availability synchronization from Booking.com via GitHub Actions, and a contact form powered by Formspree. Deployed on GitHub Pages with a custom domain and strict Content Security Policy.",
-    stack: ["HTML", "CSS", "JavaScript", "GitHub Pages", "Formspree", "GitHub Actions", "Python"],
+    period: "Jun 2026 — present",
+    description: "A holiday-rental site for a villa on Lake Como, built for a client who needed running costs as close to zero as possible. That ruled out a database, so availability is pulled from the property's Booking.com iCal feed by a GitHub Actions job every six hours and committed back to the repository as JSON, and the Italian, French and German pages are generated from the English ones by a Python script. It runs on GitHub Pages with a custom domain, a Formspree contact form and a strict Content Security Policy, and it is where I learned GitHub Actions properly.",
+    stack: ["HTML", "CSS", "JavaScript", "Python", "GitHub Actions", "GitHub Pages", "Formspree"],
     link: "https://villacaterina.casa/",
     repo: "https://github.com/villacaterina/VillaCaterina-web",
   },
   {
-    name: "BePro",
+    name: "Pro.me",
     category: "Web Development",
-    period: "Jan — May 2026",
-    description: "BePro is a full-stack web application that connects customers with local service professionals for seamless appointment scheduling, reviews, and dashboard management. The platform features role-specific interfaces with interactive activity heatmaps, glassmorphic navigation, and a responsive, card-based design system built from scratch.",
-    stack: ["React 19", "React Router v7", "Axios", "Vite", "Custom CSS", "Node.js", "Express", "MongoDB", "Mongoose", "express-session", "bcrypt"],
-    repo: "https://github.com/PeGoPaz/BePro",
+    period: "Aug 2026 — present",
+    description: "A service-booking platform I am building on my own: customers browse providers by category, book appointments and leave reviews, and each role gets its own dashboard. It is still at concept stage and currently generic — the plan is to narrow it to driving instructors. The Express backend uses session auth backed by MongoDB, with Helmet, rate limiting, input sanitisation and bcrypt password hashing.",
+    stack: ["React 19", "Vite", "Tailwind CSS", "React Router v7", "Node.js", "Express 5", "MongoDB", "Mongoose", "Helmet", "Cloudinary"],
+    repo: "https://github.com/PeGoPaz/Pro-me",
   },
   {
     name: "AI-GPU-Benchmark",
     category: "AI / Machine Learning",
-    period: "Aug — Sep 2026",
-    description: "A GPU benchmarking desktop application that measures AI training throughput via LoRA fine-tuning of TinyLlama-1.1B while monitoring real-time GPU telemetry (temperature, power, VRAM, clock speed) through NVML. Features a PyQt6 GUI with live telemetry dashboard, training progress tracking, and inline thermal & power curve plotting on completion.",
-    stack: ["PyQt6", "PyTorch", "Transformers", "PEFT", "TRL", "nvidia-ml-py", "pandas", "matplotlib"],
+    period: "Jul 2026 — present",
+    description: "I deshrouded my RTX 4070 Ti and fitted custom fans, then had no repeatable way to tell whether it actually ran cooler. This tool puts the card under a fixed AI workload — a 150-step LoRA fine-tune of TinyLlama-1.1B in bfloat16 — while a separate thread polls NVML every 250 ms for temperature, hotspot, VRAM, power draw and clock speed. The PyQt6 window shows live telemetry during the run and plots thermal and power curves when it finishes, so two cooling setups can be compared on identical work.",
+    stack: ["Python", "PyQt6", "PyTorch", "Transformers", "PEFT", "TRL", "nvidia-ml-py", "pandas", "matplotlib"],
     repo: "https://github.com/PeGoPaz/AI-GPU-Benchmark",
+    writeup: "https://www.linkedin.com/posts/pegopaz_i-recently-deshrouded-my-850-rtx-4070-ti-ugcPost-7486854438087827457-OA0A/",
   },
   {
-    name: "Zero-Trust Proxmox Cluster",
+    name: "Self-Hosted Proxmox Cluster",
     category: "Technical Builds",
     period: "Dec 2025 — Jan 2026",
-    description: "Engineered a Zero-Trust micro-datacenter on repurposed hardware using Proxmox VE to orchestrate secure, self-hosted microservices and media servers. The infrastructure features enterprise-grade networking with WireGuard mesh overlays to deliver low-latency edge computing and automated system monitoring.",
+    description: "Built to cut monthly subscription costs and keep my own data off corporate cloud services. Repurposed hardware runs Proxmox VE hosting containerised services, with a WireGuard mesh for remote access, Pi-hole for DNS filtering, ZFS for storage and Grafana with Uptime Kuma for monitoring. I built it between finishing the Networks and Data Communication module and starting Linux System Administration, and used it to put both subjects into practice.",
     stack: ["Proxmox VE", "Docker", "WireGuard", "Tailscale", "Pi-hole", "Nginx Proxy Manager", "ZFS", "Grafana", "Uptime Kuma"],
   },
 ];
+
 
 
 export const CONTACTS = {

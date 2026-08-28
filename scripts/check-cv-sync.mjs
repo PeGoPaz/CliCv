@@ -65,6 +65,7 @@ for (const project of content.PROJECTS) {
   if (project.period) required.push([`PROJECTS/${project.name}/period`, project.period]);
   if (project.link) required.push([`PROJECTS/${project.name}/link`, project.link]);
   if (project.repo) required.push([`PROJECTS/${project.name}/repo`, project.repo]);
+  if (project.writeup) required.push([`PROJECTS/${project.name}/writeup`, project.writeup]);
 }
 for (const link of content.LINKS) {
   required.push([`LINKS/${link.platform}`, link.url]);
