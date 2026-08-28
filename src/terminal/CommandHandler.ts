@@ -243,6 +243,7 @@ export class CommandHandler {
         html += `<div class="project-links">`;
         if (p.link) html += `<a href="${this.escapeAttr(p.link)}" target="_blank" rel="noopener noreferrer" class="link">live</a>`;
         if (p.repo) html += `<a href="${this.escapeAttr(p.repo)}" target="_blank" rel="noopener noreferrer" class="link">repo</a>`;
+        if (p.writeup) html += `<a href="${this.escapeAttr(p.writeup)}" target="_blank" rel="noopener noreferrer" class="link">write-up</a>`;
         html += `</div></div>`;
       }
     }
