@@ -1,4 +1,5 @@
-// Mirrored by #static-cv in index.html — npm run check:cv-sync
+// Single source of truth. index.html and assets/cv.pdf are generated from this.
+// npm run page  ·  npm run cv  ·  npm run check:cv-sync
 
 export interface Profile {
   name: string;
