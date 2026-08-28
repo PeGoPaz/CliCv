@@ -61,7 +61,7 @@ export const PROFILE: Profile = {
   status: "available",
 };
 
-export const ABOUT = `Final-year BSc (Hons) Computing Science student at Griffith College Dublin, graduating June 2027. I work mainly in Java, Python and SQL, and I have built software outside coursework: two years part-time on a core banking platform, where I debugged 200+ SQL-based regulatory reports and optimised 400+ queries against changing compliance rules, and projects I design, build and deploy end to end — from a multi-language site running in production to a self-hosted Proxmox cluster running my own services. I am working towards an AWS Solutions Architect certification, and I am looking for a graduate software engineering role where I can work across the stack and learn from experienced engineers.`
+export const ABOUT = `Final-year BSc (Hons) Computing Science student at Griffith College Dublin, graduating June 2027. I work mainly in Java, Python and SQL, and I have built software outside coursework: two years part-time on a core banking platform, where I debugged over 200 SQL-based regulatory reports and reworked around 400 queries against changing compliance rules, and projects I design, build and deploy end to end — from a multi-language site running in production to a self-hosted Proxmox cluster running my own services. I am working towards an AWS Solutions Architect certification, and I am looking for a graduate software engineering role where I can work across the stack and learn from experienced engineers.`
 
 export const SKILLS: SkillCategory[] = [
   {
@@ -102,9 +102,9 @@ export const EXPERIENCE: ExperienceItem[] = [
     period: "Nov 2019 — Oct 2021",
     description: "Moscow, Russia · Part-time",
     highlights: [
-      "Validated and debugged 200+ SQL-based regulatory reports within a core banking system, ensuring data accuracy and compliance with financial regulations",
-      "Engineered and optimized 400+ complex SQL queries, improving system throughput and ensuring 100% compliance with changing regulatory standards",
-      "Supported implementation of the Diasoft core banking platform for 2 banks, assisting in system configuration, testing, and production deployment",
+      "Validated and debugged over 200 SQL-based regulatory reports in a core banking system, checking output against source data and regulatory requirements",
+      "Wrote and optimised around 400 SQL queries behind those reports, reworking the slowest joins and aggregations as reporting requirements changed",
+      "Supported the rollout of the Diasoft core banking platform at two banks, helping with system configuration, testing and production deployment",
     ],
   },
   {
@@ -113,9 +113,9 @@ export const EXPERIENCE: ExperienceItem[] = [
     period: "Sep 2020 — May 2022",
     description: "Moscow, Russia · Part-time",
     highlights: [
-      "Assembled and optimized 20+ custom high-performance systems, managing component compatibility, thermal dynamics, and hardware configuration",
-      "Provisioned and hardened Windows OS environments, implementing security baselines, user access controls, and system updates",
-      "Conducted rigorous hardware diagnostics and stress-testing to troubleshoot component conflicts, isolate faults, and guarantee 100% system stability before client delivery",
+      "Built and configured over 20 custom workstations, selecting compatible components and managing thermals for each build",
+      "Set up and hardened the Windows installs that shipped with them, applying security baselines, user access controls and an update policy",
+      "Ran hardware diagnostics and stress tests on each machine before delivery to isolate component conflicts and faults",
     ],
   },
 ];
