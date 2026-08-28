@@ -45,7 +45,10 @@
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .ascii-banner { animation: none; }
+  html { scroll-behavior: auto; }
+  .ascii-banner, .hero-banner { animation: none; }
+  .btn:hover, .btn:focus,
+  .project-card:hover { transform: none; }
   .output-line,
   .output-line.quick-fade,
   .terminal-body .boot { animation: none; }
