@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 /**
- * Fails if the generated region of index.html no longer matches src/config/content.ts.
+ * Fails if the generated regions of index.html no longer match src/config/content.ts.
  * Run after npm run build — reads the compiled dist/page/render.js.
  *
  * Exact, not substring-based: this catches stale and orphaned text as well as missing text.
  */
 import { statSync, existsSync } from "node:fs";
-import { readIndex, buildRegion, spliceRegion } from "./page-region.mjs";
+import { readIndex, applyRegions } from "./page-region.mjs";
 
 const committed = readIndex();
-const expected = spliceRegion(committed, await buildRegion());
+const expected = await applyRegions(committed);
 
 if (committed !== expected) {
   const a = committed.split("\n");

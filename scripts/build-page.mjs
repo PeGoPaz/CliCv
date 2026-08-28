@@ -4,10 +4,10 @@
  * Run after npm run build — reads the compiled dist/page/render.js.
  */
 import { writeFileSync } from "node:fs";
-import { INDEX, readIndex, buildRegion, spliceRegion } from "./page-region.mjs";
+import { INDEX, readIndex, applyRegions } from "./page-region.mjs";
 
 const before = readIndex();
-const after = spliceRegion(before, await buildRegion());
+const after = await applyRegions(before);
 
 if (before === after) {
   console.log("✓ index.html already up to date.");
