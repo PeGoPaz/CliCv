@@ -1,15 +1,25 @@
 /* Resets and base styles */
 
+:root {
+  /* Height of the sticky top bar — the terminal view and scroll anchors both read it. */
+  --topbar-h: 48px;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html, body {
+html {
   height: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--topbar-h) + 12px);
+}
+
+body {
+  min-height: 100%;
   width: 100%;
-  overflow: hidden;
   font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 14px;
   line-height: 1.6;
@@ -19,6 +29,12 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 400ms ease, color 400ms ease;
 }
+
+/* Only the terminal view locks the document; the page scrolls normally. */
+html[data-view="terminal"],
+html[data-view="terminal"] body { overflow: hidden; }
+
+[hidden] { display: none !important; }
 
 #matrix-bg {
   position: fixed;
