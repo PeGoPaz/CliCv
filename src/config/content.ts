@@ -12,12 +12,22 @@ export interface Profile {
   title: string;
   location: string;
   tagline: string;
+  /** Work authorisation and start date — the first thing an Irish recruiter checks. */
+  availability: string;
   status: "available" | "busy" | "unavailable";
 }
 
 export interface SkillCategory {
   category: string;
   items: string[];
+}
+
+export interface EducationItem {
+  qualification: string;
+  institution: string;
+  period: string;
+  description: string;
+  highlights: string[];
 }
 
 export interface ExperienceItem {
@@ -31,6 +41,8 @@ export interface ExperienceItem {
 export interface Project {
   name: string;
   category: string;
+  /** Optional — shown next to the name so visitors can see what is recent. */
+  period?: string;
   description: string;
   stack: string[];
   link?: string;
@@ -47,11 +59,15 @@ export const PROFILE: Profile = {
   name: "Vladimir Rainov",
   title: "Software Engineer",
   location: "Dublin, Ireland",
-  tagline: "Studying Computer Science @ Griffith College Dublin",
+  tagline: "Final-year BSc (Hons) Computing Science @ Griffith College Dublin",
+  availability:
+    "Available part-time during term and full-time over the summer (Stamp 2). " +
+    "Graduating June 2027, then eligible for the Third Level Graduate Programme " +
+    "(Stamp 1G) — 12 months of full-time work with no employer permit required.",
   status: "available",
 };
 
-export const ABOUT = `I am a Computing Science student at Griffith College Dublin with a proven foundation in optimizing complex data systems and automating IT infrastructure. My professional experience spans from engineering custom high-performance hardware integrations to validating regulatory SQL reports within core banking platforms, allowing me to seamlessly bridge the gap between physical workstations and software deployment. Currently working towards an AWS Solutions Architect certification, I am highly passionate about utilizing tools like Linux, Docker, and Kubernetes to design and maintain resilient cloud environments.`;
+export const ABOUT = `Final-year BSc (Hons) Computing Science student at Griffith College Dublin, graduating June 2027. I work mainly in Java, Python and SQL, and I have built software outside coursework: two years part-time on a core banking platform, where I debugged 200+ SQL-based regulatory reports and optimised 400+ queries against changing compliance rules, and projects I design, build and deploy end to end — from a multi-language site running in production to a self-hosted Proxmox cluster running my own services. I am working towards an AWS Solutions Architect certification, and I am looking for a graduate software engineering role where I can work across the stack and learn from experienced engineers.`
 
 export const SKILLS: SkillCategory[] = [
   {
@@ -73,6 +89,16 @@ export const SKILLS: SkillCategory[] = [
   {
     category: "Systems & Networking",
     items: ["Linux (Ubuntu, Debian, Arch)", "Bash", "Proxmox VE", "TCP/IP", "DNS", "DHCP", "VLANs", "LAN"],
+  },
+];
+
+export const EDUCATION: EducationItem[] = [
+  {
+    qualification: "BSc (Hons) in Computing Science",
+    institution: "Griffith College Dublin",
+    period: "Sep 2023 — Jun 2027 (expected)",
+    description: "Dublin, Ireland · Full-time",
+    highlights: [],
   },
 ];
 
@@ -105,6 +131,7 @@ export const PROJECTS: Project[] = [
   {
     name: "Villa Caterina",
     category: "Web Development",
+    period: "Jun — Jul 2026",
     description: "Designed and built a zero-dependency static website for a luxury vacation rental on Lake Como, Italy. The site features multi-language support (English, Italian, French, German), real-time availability synchronization from Booking.com via GitHub Actions, and a contact form powered by Formspree. Deployed on GitHub Pages with a custom domain and strict Content Security Policy.",
     stack: ["HTML", "CSS", "JavaScript", "GitHub Pages", "Formspree", "GitHub Actions", "Python"],
     link: "https://villacaterina.casa/",
@@ -120,6 +147,7 @@ export const PROJECTS: Project[] = [
   {
     name: "Sorted.ie",
     category: "Web Development",
+    period: "2026 — present",
     description: "This price aggregation platform helps shoppers find the best smartphone deals by comparing specifications and tracking prices across more than 50 global retailers. It provides a comprehensive database of over 3,800 devices equipped with smart search functionality and instant alerts for price drops and new releases.",
     stack: ["React/Next.js", "Vercel", "Node.js", "NeonDB"],
     link: "https://ie-catalog-frontend-jymn.vercel.app/",
@@ -141,7 +169,7 @@ export const PROJECTS: Project[] = [
 
 export const CONTACTS = {
   email: "vl.rai@proton.me",
-  availability: "Open to full-time roles and open-source collaborations.",
+  availability: "Open to graduate software engineering roles and internships, and to open-source collaboration.",
   responseTime: "Typically responds within 24 hours.",
 };
 

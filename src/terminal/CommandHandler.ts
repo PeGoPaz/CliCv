@@ -1,6 +1,7 @@
 import {
   PROFILE,
   ABOUT,
+  EDUCATION,
   SKILLS,
   EXPERIENCE,
   PROJECTS,
@@ -28,6 +29,7 @@ export class CommandHandler {
   static readonly AVAILABLE_COMMANDS = [
     "whoami",
     "about",
+    "education",
     "skills",
     "experience",
     "projects",
@@ -58,6 +60,10 @@ export class CommandHandler {
         break;
       case "about":
         this.showAbout();
+        break;
+      case "education":
+      case "edu":
+        this.showEducation();
         break;
       case "skills":
         this.showSkills();
@@ -97,6 +103,7 @@ export class CommandHandler {
       case "whoami":
         this.clear();
         this.showAbout();
+        this.showEducation();
         this.showSkills();
         this.showExperience();
         this.showProjects();
@@ -116,6 +123,7 @@ export class CommandHandler {
     const cmds: Array<[string, string, boolean]> = [
       ["whoami",       "Display all information about me", true],
       ["about",        "Learn about me", true],
+      ["education",    "Degree and graduation date", true],
       ["skills",       "Technical skills & stack", true],
       ["experience",   "Work history", true],
       ["projects",     "Projects", true],
@@ -154,6 +162,32 @@ export class CommandHandler {
     let html = `<div class="section-title">${this.escapeHtml(PROFILE.name)} — ${this.escapeHtml(PROFILE.title)}</div>`;
     html += `<div class="section-subtitle">${this.escapeHtml(PROFILE.tagline)}</div>`;
     html += `<pre class="section-body">${this.escapeHtml(ABOUT)}</pre>`;
+    html += `<div class="availability-row">`;
+    html += `<span class="fg-accent">Availability</span>`;
+    html += `<span>${this.escapeHtml(PROFILE.availability)}</span>`;
+    html += `</div>`;
+    this.render(html);
+  }
+
+  private showEducation(): void {
+    let html = `<div class="section-title">Education</div>`;
+    for (const item of EDUCATION) {
+      html += `<div class="exp-block">`;
+      html += `<div class="exp-header">`;
+      html += `<span class="exp-role fg-accent">${this.escapeHtml(item.qualification)}</span>`;
+      html += `<span class="exp-at fg-muted">@ ${this.escapeHtml(item.institution)}</span>`;
+      html += `<span class="exp-period fg-muted">${this.escapeHtml(item.period)}</span>`;
+      html += `</div>`;
+      html += `<div class="exp-desc">${this.escapeHtml(item.description)}</div>`;
+      if (item.highlights.length) {
+        html += `<ul class="exp-highlights">`;
+        for (const h of item.highlights) {
+          html += `<li>${this.escapeHtml(h)}</li>`;
+        }
+        html += `</ul>`;
+      }
+      html += `</div>`;
+    }
     this.render(html);
   }
 
@@ -203,6 +237,7 @@ export class CommandHandler {
         html += `<div class="project-block">`;
         html += `<div class="project-header">`;
         html += `<span class="project-name fg-accent">${this.escapeHtml(p.name)}</span>`;
+        if (p.period) html += `<span class="project-period fg-muted">${this.escapeHtml(p.period)}</span>`;
         html += `<span class="project-stack fg-muted">${p.stack.map(this.escapeHtml).join(" · ")}</span>`;
         html += `</div>`;
         html += `<div class="project-desc">${this.escapeHtml(p.description)}</div>`;
