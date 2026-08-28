@@ -253,13 +253,13 @@ export function renderShell(): string {
     .join("\n\n");
 
   const shell = [
-    `<a class="skip-link" href="#about">Skip to content</a>`,
+    `<a class="skip-link" href="#page-view">Skip to content</a>`,
     ``,
     renderTopbar(),
     ``,
-    `<div id="page-view" class="page-view">`,
+    `<main id="page-view" class="page-view" tabindex="-1">`,
     page,
-    `</div>`,
+    `</main>`,
   ].join("\n");
 
   const banner = `<pre class="hero-banner" aria-hidden="true">${escapeHtml(ASCII_BANNER)}</pre>`;
