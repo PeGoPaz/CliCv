@@ -48,6 +48,7 @@ const required = [
   ["ABOUT", content.ABOUT],
   ["PROFILE.name", content.PROFILE.name],
   ["PROFILE.tagline", content.PROFILE.tagline],
+  ["PROFILE.availability", content.PROFILE.availability],
   ["CONTACTS.email", content.CONTACTS.email],
   ["CONTACTS.availability", content.CONTACTS.availability],
   ["CONTACTS.responseTime", content.CONTACTS.responseTime],
@@ -66,6 +67,7 @@ for (const exp of content.EXPERIENCE) {
 for (const project of content.PROJECTS) {
   required.push([`PROJECTS/${project.name}/name`, project.name]);
   required.push([`PROJECTS/${project.name}/description`, project.description]);
+  if (project.period) required.push([`PROJECTS/${project.name}/period`, project.period]);
   if (project.link) required.push([`PROJECTS/${project.name}/link`, project.link]);
   if (project.repo) required.push([`PROJECTS/${project.name}/repo`, project.repo]);
 }
@@ -75,7 +77,12 @@ for (const link of content.LINKS) {
 if (Array.isArray(content.EDUCATION)) {
   for (const item of content.EDUCATION) {
     required.push([`EDUCATION/${item.institution}/qualification`, item.qualification]);
+    required.push([`EDUCATION/${item.institution}/institution`, item.institution]);
     required.push([`EDUCATION/${item.institution}/period`, item.period]);
+    required.push([`EDUCATION/${item.institution}/description`, item.description]);
+    item.highlights.forEach((h, i) =>
+      required.push([`EDUCATION/${item.institution}/highlight[${i}]`, h]),
+    );
   }
 }
 
