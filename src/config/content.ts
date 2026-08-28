@@ -1,9 +1,7 @@
 /**
  * ============================================================
  *  PORTFOLIO CONTENT
- *  Single source of truth for every string rendered by the terminal.
- *  ⚠️  Mirrored by the #static-cv fallback in index.html — keep both in
- *      sync; scripts/check-cv-sync.mjs enforces it at build time.
+ *  Mirrored by #static-cv in index.html — npm run check:cv-sync
  * ============================================================
  */
 
@@ -12,7 +10,6 @@ export interface Profile {
   title: string;
   location: string;
   tagline: string;
-  /** Work authorisation and start date — the first thing an Irish recruiter checks. */
   availability: string;
   status: "available" | "busy" | "unavailable";
 }
@@ -27,7 +24,7 @@ export interface EducationItem {
   institution: string;
   period: string;
   description: string;
-  highlights: string[];
+  highlights?: string[];
 }
 
 export interface ExperienceItem {
@@ -41,7 +38,6 @@ export interface ExperienceItem {
 export interface Project {
   name: string;
   category: string;
-  /** Optional — shown next to the name so visitors can see what is recent. */
   period?: string;
   description: string;
   stack: string[];
@@ -98,7 +94,6 @@ export const EDUCATION: EducationItem[] = [
     institution: "Griffith College Dublin",
     period: "Sep 2023 — Jun 2027 (expected)",
     description: "Dublin, Ireland · Full-time",
-    highlights: [],
   },
 ];
 

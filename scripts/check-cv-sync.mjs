@@ -1,12 +1,7 @@
 #!/usr/bin/env node
 /**
- * The terminal renders its copy from src/config/content.ts; index.html carries a
- * duplicate of the same CV inside #static-cv for crawlers and ATS parsers that
- * cannot run JavaScript. Nothing kept the two in step, and they had already
- * drifted (a typo reached human visitors while bots got the clean text).
- *
- * This fails the build when a string in content.ts is missing from #static-cv.
- * Run after `npm run build` — it reads the compiled dist/config/content.js.
+ * Fails if a string in content.ts is missing from #static-cv in index.html.
+ * Run after npm run build — reads the compiled dist/config/content.js.
  */
 import { readFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
@@ -80,7 +75,7 @@ if (Array.isArray(content.EDUCATION)) {
     required.push([`EDUCATION/${item.institution}/institution`, item.institution]);
     required.push([`EDUCATION/${item.institution}/period`, item.period]);
     required.push([`EDUCATION/${item.institution}/description`, item.description]);
-    item.highlights.forEach((h, i) =>
+    (item.highlights ?? []).forEach((h, i) =>
       required.push([`EDUCATION/${item.institution}/highlight[${i}]`, h]),
     );
   }

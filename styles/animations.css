@@ -46,8 +46,7 @@
 }
 
 /* ============================================================
-   Reduced motion: strip the decorative animation. The matrix canvas
-   is skipped entirely in main.ts.
+   REDUCED MOTION
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   .ascii-banner { animation: none; }
