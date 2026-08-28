@@ -405,6 +405,7 @@ html[data-js] .js-only { display: var(--js-display, block); }
 }
 
 /* ---------- Focus ------------------------------------------------------- */
+.topbar-name:focus-visible,
 .nav-link:focus-visible,
 .topbar-btn:focus-visible,
 .btn:focus-visible,
