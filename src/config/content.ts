@@ -52,9 +52,9 @@ export interface SocialLink {
 
 export const PROFILE: Profile = {
   name: "Vladimir Rainov",
-  title: "Software Engineer",
+  title: "Computing Science Graduate 2027",
   location: "Dublin, Ireland",
-  tagline: "Final-year BSc (Hons) Computing Science @ Griffith College Dublin",
+  tagline: "Final-year BSc (Hons) at Griffith College Dublin - I build, deploy and run what I write",
   availability:
     "Available part-time during term and full-time over the summer (Stamp 2). " +
     "Graduating June 2027, then eligible for the Third Level Graduate Programme " +
@@ -62,12 +62,12 @@ export const PROFILE: Profile = {
   status: "available",
 };
 
-export const ABOUT = `Final-year BSc (Hons) Computing Science student at Griffith College Dublin, graduating June 2027. I work mainly in Java, Python and SQL, and I have built software outside coursework: part-time work on a core banking platform, where I debugged over 200 SQL-based regulatory reports and reworked around 400 queries against changing compliance rules, and projects I design, build and deploy end to end - from a multi-language site running in production to a self-hosted Proxmox cluster running my own services. I am looking for a graduate software engineering role where I can work across the stack and learn from experienced engineers.`
+export const ABOUT = `Final-year BSc (Hons) Computing Science student at Griffith College Dublin, graduating June 2027. Most of what I can do I learned by building and running things outside coursework: a self-hosted Proxmox cluster behind a WireGuard mesh, with Pi-hole, ZFS and Grafana monitoring; a client site in production that syncs its own availability through a GitHub Actions pipeline; a Rails API I audited and hardened after finding raw user input reaching SQL; and a GPU benchmark that holds a LoRA fine-tune constant while polling NVML for thermal telemetry. Earlier, part-time work in industry: building and hardening client workstations, then debugging over 200 SQL-based regulatory reports and reworking around 400 queries against changing compliance rules in a core banking system. I am looking for a graduate engineering role where I can work on real systems and learn from experienced engineers.`
 
 export const SKILLS: SkillCategory[] = [
   {
     category: "Programming Languages",
-    items: ["Java", "JavaScript", "Python", "SQL", "HTML", "CSS"],
+    items: ["Java", "JavaScript", "TypeScript", "Python", "SQL", "HTML", "CSS"],
   },
   {
     category: "Backend & Web",
@@ -76,20 +76,6 @@ export const SKILLS: SkillCategory[] = [
   {
     category: "Databases",
     items: ["MySQL", "PostgreSQL", "MongoDB"],
-  },
-  {
-    category: "DevOps & Cloud",
-    items: [
-      "Docker",
-      "Docker Compose",
-      "Kubernetes (K3s)",
-      "AWS",
-      "CI/CD Pipelines",
-      "GitHub Actions",
-      "Git",
-      "Grafana",
-      "Uptime Kuma",
-    ],
   },
   {
     category: "Systems & Networking",
@@ -108,6 +94,45 @@ export const SKILLS: SkillCategory[] = [
       "Tailscale",
       "Nginx Proxy Manager",
       "Pi-hole",
+    ],
+  },
+  {
+    category: "DevOps & Cloud",
+    items: [
+      "Docker",
+      "Docker Compose",
+      "Kubernetes (K3s)",
+      "AWS",
+      "CI/CD Pipelines",
+      "GitHub Actions",
+      "Git",
+      "Grafana",
+      "Uptime Kuma",
+    ],
+  },
+  {
+    category: "Security",
+    items: [
+      "Parameterised SQL and injection prevention",
+      "Rate limiting",
+      "Session and cookie hardening",
+      "bcrypt password hashing",
+      "Input sanitisation",
+      "Helmet security headers",
+      "Content Security Policy",
+      "Windows security baselines",
+    ],
+  },
+  {
+    category: "AI & Machine Learning",
+    items: [
+      "PyTorch",
+      "Transformers",
+      "PEFT (LoRA)",
+      "TRL",
+      "NVML telemetry",
+      "pandas",
+      "matplotlib",
     ],
   },
 ];
@@ -157,6 +182,14 @@ export const EXPERIENCE: ExperienceItem[] = [
 
 export const PROJECTS: Project[] = [
   {
+    name: "Self-Hosted Proxmox Cluster",
+    category: "Infrastructure & Self-Hosting",
+    period: "Dec 2025 - Jan 2026",
+    description: "Built to cut monthly subscription costs and keep my own data off corporate cloud services. Repurposed hardware runs Proxmox VE hosting containerised services, with a WireGuard mesh for remote access, Pi-hole for DNS filtering, ZFS for storage and Grafana with Uptime Kuma for monitoring. I built it between finishing the Networks and Data Communication module and starting Linux System Administration, and used it to put both subjects into practice.",
+    summary: "Proxmox VE host running containerised self-hosted services behind a WireGuard mesh, with Pi-hole, ZFS and Grafana monitoring.",
+    stack: ["Proxmox VE", "Docker", "WireGuard", "Tailscale", "Pi-hole", "Nginx Proxy Manager", "ZFS", "Grafana", "Uptime Kuma"],
+  },
+  {
     name: "Villa Caterina",
     category: "Web Development",
     period: "Jun 2026 - present",
@@ -194,21 +227,13 @@ export const PROJECTS: Project[] = [
     repo: "https://github.com/PeGoPaz/AI-GPU-Benchmark",
     writeup: "https://www.linkedin.com/posts/pegopaz_i-recently-deshrouded-my-850-rtx-4070-ti-ugcPost-7486854438087827457-OA0A/",
   },
-  {
-    name: "Self-Hosted Proxmox Cluster",
-    category: "Technical Builds",
-    period: "Dec 2025 - Jan 2026",
-    description: "Built to cut monthly subscription costs and keep my own data off corporate cloud services. Repurposed hardware runs Proxmox VE hosting containerised services, with a WireGuard mesh for remote access, Pi-hole for DNS filtering, ZFS for storage and Grafana with Uptime Kuma for monitoring. I built it between finishing the Networks and Data Communication module and starting Linux System Administration, and used it to put both subjects into practice.",
-    summary: "Proxmox VE host running containerised self-hosted services behind a WireGuard mesh, with Pi-hole, ZFS and Grafana monitoring.",
-    stack: ["Proxmox VE", "Docker", "WireGuard", "Tailscale", "Pi-hole", "Nginx Proxy Manager", "ZFS", "Grafana", "Uptime Kuma"],
-  },
 ];
 
 
 
 export const CONTACTS = {
   email: "vl.rai@proton.me",
-  availability: "Open to graduate software engineering roles and internships, and to open-source collaboration.",
+  availability: "Open to graduate engineering roles and internships, and to open-source collaboration.",
   responseTime: "Typically responds within 24 hours.",
 };
 
