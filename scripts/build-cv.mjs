@@ -2,7 +2,7 @@
 /**
  * Renders assets/cv.pdf from src/config/content.ts, so the CV can never drift
  * from the site. Run after npm run build. Anything the site does not carry
- * (phone number, certificates) lives in scripts/cv-data.json.
+ * (the phone number) lives in scripts/cv-data.json.
  */
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { execFileSync } from "node:child_process";
@@ -63,10 +63,6 @@ const projects = c.PROJECTS.map((p) => {
   </div>`;
 }).join("");
 
-const certificates = extra.certificates
-  .map((c2) => `<p class="row"><strong>${esc(c2.name)}</strong> | ${esc(c2.period)}</p>`)
-  .join("");
-
 const html = `<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><title>Vladimir Rainov - CV</title>
 <style>
@@ -121,8 +117,6 @@ const html = `<!DOCTYPE html>
   <h2>PROJECTS</h2>
   ${projects}
 
-  <h2>CERTIFICATES</h2>
-  ${certificates}
 </body></html>`;
 
 writeFileSync("assets/cv.html", html);

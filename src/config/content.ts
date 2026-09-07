@@ -62,7 +62,7 @@ export const PROFILE: Profile = {
   status: "available",
 };
 
-export const ABOUT = `Final-year BSc (Hons) Computing Science student at Griffith College Dublin, graduating June 2027. I work mainly in Java, Python and SQL, and I have built software outside coursework: two years part-time on a core banking platform, where I debugged over 200 SQL-based regulatory reports and reworked around 400 queries against changing compliance rules, and projects I design, build and deploy end to end - from a multi-language site running in production to a self-hosted Proxmox cluster running my own services. I am looking for a graduate software engineering role where I can work across the stack and learn from experienced engineers.`
+export const ABOUT = `Final-year BSc (Hons) Computing Science student at Griffith College Dublin, graduating June 2027. I work mainly in Java, Python and SQL, and I have built software outside coursework: part-time work on a core banking platform, where I debugged over 200 SQL-based regulatory reports and reworked around 400 queries against changing compliance rules, and projects I design, build and deploy end to end - from a multi-language site running in production to a self-hosted Proxmox cluster running my own services. I am looking for a graduate software engineering role where I can work across the stack and learn from experienced engineers.`
 
 export const SKILLS: SkillCategory[] = [
   {
@@ -71,19 +71,44 @@ export const SKILLS: SkillCategory[] = [
   },
   {
     category: "Backend & Web",
-    items: ["Node.js", "React", "Next.js", "REST APIs"],
+    items: ["Node.js", "Express", "Spring Boot", "React", "Next.js", "REST APIs"],
   },
   {
     category: "Databases",
-    items: ["MySQL", "PostgreSQL"],
+    items: ["MySQL", "PostgreSQL", "MongoDB"],
   },
   {
     category: "DevOps & Cloud",
-    items: ["Docker", "Kubernetes (K3s)", "AWS", "CI/CD Pipelines", "Git"],
+    items: [
+      "Docker",
+      "Docker Compose",
+      "Kubernetes (K3s)",
+      "AWS",
+      "CI/CD Pipelines",
+      "GitHub Actions",
+      "Git",
+      "Grafana",
+      "Uptime Kuma",
+    ],
   },
   {
     category: "Systems & Networking",
-    items: ["Linux (Ubuntu, Debian, Arch)", "Bash", "Proxmox VE", "TCP/IP", "DNS", "DHCP", "VLANs", "LAN"],
+    items: [
+      "Linux (Ubuntu, Debian, Arch)",
+      "Windows provisioning and hardening",
+      "Bash",
+      "Proxmox VE",
+      "ZFS",
+      "TCP/IP",
+      "DNS",
+      "DHCP",
+      "VLANs",
+      "LAN",
+      "WireGuard",
+      "Tailscale",
+      "Nginx Proxy Manager",
+      "Pi-hole",
+    ],
   },
 ];
 
@@ -93,30 +118,39 @@ export const EDUCATION: EducationItem[] = [
     institution: "Griffith College Dublin",
     period: "Sep 2023 - Jun 2027 (expected)",
     description: "Dublin, Ireland · Full-time",
+    highlights: [
+      "Relevant modules: Networks and Data Communication; Linux System Administration; Databases; Web Technologies",
+    ],
+  },
+  {
+    qualification: "Junior Java Developer (certificate)",
+    institution: "SkyPro",
+    period: "Mar 2022 - Feb 2023",
+    description: "Online · Part-time",
   },
 ];
 
 export const EXPERIENCE: ExperienceItem[] = [
   {
-    role: "Banking Software Implementation Specialist Intern",
-    company: "Y-Solutions",
-    period: "Nov 2019 - Oct 2021",
+    role: "PC Build & Systems Technician",
+    company: "PRO-Computer (Self-Employed)",
+    period: "2019 - 2022",
     description: "Moscow, Russia · Part-time",
     highlights: [
-      "Validated and debugged over 200 SQL-based regulatory reports in a core banking system, checking output against source data and regulatory requirements",
-      "Wrote and optimised around 400 SQL queries behind those reports, reworking the slowest joins and aggregations as reporting requirements changed",
-      "Supported the rollout of the Diasoft core banking platform at two banks, helping with system configuration, testing and production deployment",
+      "Built and configured 20+ custom workstations to client specification, selecting compatible components and managing thermal and power budgets per build",
+      "Provisioned and hardened the Windows environments shipped with them: security baselines, user access controls and update policy",
+      "Diagnosed component conflicts and hardware faults through structured stress-testing, resolving them before delivery rather than after",
     ],
   },
   {
-    role: "Systems Integration Technician",
-    company: "PRO-Computer",
-    period: "Sep 2020 - May 2022",
+    role: "Assistant Systems Analyst",
+    company: "Y-Solutions",
+    period: "2020 - 2021",
     description: "Moscow, Russia · Part-time",
     highlights: [
-      "Built and configured over 20 custom workstations, selecting compatible components and managing thermals for each build",
-      "Set up and hardened the Windows installs that shipped with them, applying security baselines, user access controls and an update policy",
-      "Ran hardware diagnostics and stress tests on each machine before delivery to isolate component conflicts and faults",
+      "Validated and debugged 200+ SQL-based regulatory reports in a core banking system, reconciling output against source data and the applicable reporting requirements",
+      "Wrote and optimised approximately 400 SQL queries behind those reports, reworking slow joins and aggregations as regulatory reporting rules changed",
+      "Supported the rollout of the Diasoft core banking platform at two banks: configuration, testing and production deployment",
     ],
   },
 ];
@@ -142,9 +176,18 @@ export const PROJECTS: Project[] = [
     repo: "https://github.com/PeGoPaz/Pro-me",
   },
   {
+    name: "Sorted",
+    category: "Web Development",
+    period: "Feb 2026 - Jul 2026",
+    description: "A smartphone catalogue for the Irish market, built with a coursemate: a React 19 and TypeScript front end over a Rails 8 JSON API on PostgreSQL. Filtering runs server-side across around twenty dimensions - brand, screen size, RAM, storage, cameras, refresh rate, release year, 5G, NFC, charging, SIM type and biometrics - and a second endpoint reports how many devices a pending filter set would leave and which brands are still selectable, so the counts update before anything is applied. Filter state is mirrored into the URL, results are paged in chunks of 50, and up to five phones can be put side by side. My work was on the backend: the storage and release-year filters interpolated user input straight into SQL, so I rewrote them onto bound parameters, then added per-endpoint rate limiting, a production-only secure flag on the session cookie, and JSON error handling so an unknown device id returns a 404 rather than a 500.",
+    summary: "Smartphone catalogue built with a coursemate on a Rails 8 API and a React 19 front end, with server-side filtering across around twenty spec dimensions. I worked on the backend and hardened it: parameterised the raw-SQL filters, added rate limiting, and fixed the session cookie and error handling.",
+    stack: ["React 19", "TypeScript", "TanStack Query", "Zustand", "Tailwind CSS", "Ruby on Rails 8", "PostgreSQL (Neon)", "Vercel", "Render"],
+    link: "https://ie-catalog-frontend-jymn.vercel.app/",
+  },
+  {
     name: "AI-GPU-Benchmark",
     category: "AI / Machine Learning",
-    period: "Jul 2026 - present",
+    period: "Jul 2026 - Sep 2026",
     description: "I deshrouded my RTX 4070 Ti and fitted custom fans, then had no repeatable way to tell whether it actually ran cooler. This tool puts the card under a fixed AI workload - a 150-step LoRA fine-tune of TinyLlama-1.1B in bfloat16 - while a separate thread polls NVML every 250 ms for temperature, hotspot, VRAM, power draw and clock speed. The PyQt6 window shows live telemetry during the run and plots thermal and power curves when it finishes, so two cooling setups can be compared on identical work.",
     summary: "Measures the effect of GPU cooling changes: runs a fixed LoRA fine-tune while polling NVML every 250 ms, then plots thermal and power curves.",
     stack: ["Python", "PyQt6", "PyTorch", "Transformers", "PEFT", "TRL", "nvidia-ml-py", "pandas", "matplotlib"],
