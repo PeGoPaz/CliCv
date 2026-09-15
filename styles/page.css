@@ -355,11 +355,25 @@ html[data-js] .js-only { display: var(--js-display, block); }
 }
 .card-period { margin-left: auto; }
 
+/* The project one-liner. Carries --c-fg while .card-desc below it stays the
+   same colour: the weight and size do the separating, so the pair cannot cost
+   contrast in Solarized, where --c-fg has the least headroom. */
+.card-lead {
+  margin-top: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--c-fg);
+  line-height: 1.6;
+}
+
 .card-desc {
   margin-top: 8px;
   color: var(--c-fg);
   line-height: 1.7;
 }
+/* Wider than the usual 8px so the summary reads as a lead and not as the first
+   paragraph of the description running on. */
+.card-lead + .card-desc { margin-top: 14px; }
 
 .card-highlights {
   margin: 10px 0 0 18px;

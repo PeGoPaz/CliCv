@@ -177,6 +177,11 @@ function renderProjectCard(p: (typeof PROJECTS)[number]): string {
   if (p.period) {
     lines.push(indent(`<p class="card-meta"><span class="card-period">${escapeHtml(p.period)}</span></p>`, 1));
   }
+  // The one-liner the CV already carries, so five dense cards can be skimmed
+  // before any of them is read in full.
+  if (p.summary) {
+    lines.push(indent(`<p class="card-lead">${escapeHtml(p.summary)}</p>`, 1));
+  }
   lines.push(indent(`<p class="card-desc">${escapeHtml(p.description)}</p>`, 1));
   lines.push(indent(chips(p.stack), 1));
   if (links.length) {

@@ -347,6 +347,7 @@
       <article class="card project-card">
         <h4 class="card-title">Self-Hosted Proxmox Cluster</h4>
         <p class="card-meta"><span class="card-period">Dec 2025 - Jan 2026</span></p>
+        <p class="card-lead">Proxmox VE host running containerised self-hosted services behind a WireGuard mesh, with Pi-hole, ZFS and Grafana monitoring.</p>
         <p class="card-desc">Built to cut monthly subscription costs and keep my own data off corporate cloud services. Repurposed hardware runs Proxmox VE hosting containerised services, with a WireGuard mesh for remote access, Pi-hole for DNS filtering, ZFS for storage and Grafana with Uptime Kuma for monitoring. I built it between finishing the Networks and Data Communication module and starting Linux System Administration, and used it to put both subjects into practice.</p>
         <ul class="chip-row">
           <li class="chip">Proxmox VE</li>
@@ -366,6 +367,7 @@
       <article class="card project-card">
         <h4 class="card-title">Villa Caterina</h4>
         <p class="card-meta"><span class="card-period">Jun 2026 - present</span></p>
+        <p class="card-lead">Client site for a Lake Como rental, built database-free to keep running costs near zero: availability syncs from Booking.com via GitHub Actions, and the IT/FR/DE pages are generated from the English source.</p>
         <p class="card-desc">A holiday-rental site for a villa on Lake Como, built for a client who needed running costs as close to zero as possible. That ruled out a database, so availability is pulled from the property's Booking.com iCal feed by a GitHub Actions job every six hours and committed back to the repository as JSON, and the Italian, French and German pages are generated from the English ones by a Python script. It runs on GitHub Pages with a custom domain, a Formspree contact form and a strict Content Security Policy, and it is where I learned GitHub Actions properly.</p>
         <ul class="chip-row">
           <li class="chip">HTML</li>
@@ -381,6 +383,7 @@
       <article class="card project-card">
         <h4 class="card-title">Pro.me</h4>
         <p class="card-meta"><span class="card-period">Aug 2026 - present</span></p>
+        <p class="card-lead">Service-booking platform built solo, at concept stage: role-based dashboards and session auth on an Express backend with Helmet, rate limiting and input sanitisation.</p>
         <p class="card-desc">A service-booking platform I am building on my own: customers browse providers by category, book appointments and leave reviews, and each role gets its own dashboard. It is still at concept stage and currently generic - the plan is to narrow it to driving instructors. The Express backend uses session auth backed by MongoDB, with Helmet, rate limiting, input sanitisation and bcrypt password hashing.</p>
         <ul class="chip-row">
           <li class="chip">React 19</li>
@@ -399,6 +402,7 @@
       <article class="card project-card">
         <h4 class="card-title">Sorted</h4>
         <p class="card-meta"><span class="card-period">Feb 2026 - Jul 2026</span></p>
+        <p class="card-lead">Smartphone catalogue built with a coursemate on a Rails 8 API and a React 19 front end, with server-side filtering across around twenty spec dimensions. I worked on the backend and hardened it: parameterised the raw-SQL filters, added rate limiting, and fixed the session cookie and error handling.</p>
         <p class="card-desc">A smartphone catalogue for the Irish market, built with a coursemate: a React 19 and TypeScript front end over a Rails 8 JSON API on PostgreSQL. Filtering runs server-side across around twenty dimensions - brand, screen size, RAM, storage, cameras, refresh rate, release year, 5G, NFC, charging, SIM type and biometrics - and a second endpoint reports how many devices a pending filter set would leave and which brands are still selectable, so the counts update before anything is applied. Filter state is mirrored into the URL, results are paged in chunks of 50, and up to five phones can be put side by side. My work was on the backend: the storage and release-year filters interpolated user input straight into SQL, so I rewrote them onto bound parameters, then added per-endpoint rate limiting, a production-only secure flag on the session cookie, and JSON error handling so an unknown device id returns a 404 rather than a 500.</p>
         <ul class="chip-row">
           <li class="chip">React 19</li>
@@ -419,6 +423,7 @@
       <article class="card project-card">
         <h4 class="card-title">AI-GPU-Benchmark</h4>
         <p class="card-meta"><span class="card-period">Jul 2026 - Sep 2026</span></p>
+        <p class="card-lead">Measures the effect of GPU cooling changes: runs a fixed LoRA fine-tune while polling NVML every 250 ms, then plots thermal and power curves.</p>
         <p class="card-desc">I deshrouded my RTX 4070 Ti and fitted custom fans, then had no repeatable way to tell whether it actually ran cooler. This tool puts the card under a fixed AI workload - a 150-step LoRA fine-tune of TinyLlama-1.1B in bfloat16 - while a separate thread polls NVML every 250 ms for temperature, hotspot, VRAM, power draw and clock speed. The PyQt6 window shows live telemetry during the run and plots thermal and power curves when it finishes, so two cooling setups can be compared on identical work.</p>
         <ul class="chip-row">
           <li class="chip">Python</li>
