@@ -159,7 +159,7 @@ export const EXPERIENCE: ExperienceItem[] = [
   {
     role: "PC Build & Systems Technician",
     company: "PRO-Computer (Self-Employed)",
-    period: "2019 - 2022",
+    period: "Dec 2019 - Jun 2022",
     description: "Moscow, Russia · Part-time",
     highlights: [
       "Built and configured 20+ custom workstations to client specification, selecting compatible components and managing thermal and power budgets per build",
@@ -170,7 +170,7 @@ export const EXPERIENCE: ExperienceItem[] = [
   {
     role: "Assistant Systems Analyst",
     company: "Y-Solutions",
-    period: "2020 - 2021",
+    period: "Sep 2020 - Dec 2021",
     description: "Moscow, Russia · Part-time",
     highlights: [
       "Validated and debugged 200+ SQL-based regulatory reports in a core banking system, reconciling output against source data and the applicable reporting requirements",
