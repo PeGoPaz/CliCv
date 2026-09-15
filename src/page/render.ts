@@ -90,6 +90,16 @@ function outLink(url: string, label: string): string {
 
 // ------- Sections -------
 
+/**
+ * The profile links, repeated in the hero because the contact section that also
+ * carries them sits at the very bottom of a long page - a reader who wants the
+ * code should not have to scroll the whole CV to find it.
+ */
+function renderHeroLinks(): string {
+  const sep = `<span class="hero-links-sep" aria-hidden="true">·</span>`;
+  return `<p class="hero-links">${LINKS.map((l) => outLink(l.url, l.display)).join(sep)}</p>`;
+}
+
 function renderHero(): string {
   const statusLabel = PROFILE.status === "available" ? "Available for work" : PROFILE.status;
   return [
@@ -99,14 +109,11 @@ function renderHero(): string {
     indent(`<p class="hero-role">${escapeHtml(PROFILE.title)} <span class="hero-sep" aria-hidden="true">·</span> <span class="hero-location">${escapeHtml(PROFILE.location)}</span></p>`, 1),
     indent(`<p class="hero-tagline">${escapeHtml(PROFILE.tagline)}</p>`, 1),
     indent(`<p class="hero-status"><span class="status-dot" aria-hidden="true">●</span>${escapeHtml(statusLabel)}</p>`, 1),
-    indent(`<div class="callout">`, 1),
-    indent(`<span class="callout-label">Availability</span>`, 2),
-    indent(`<span class="callout-body">${escapeHtml(PROFILE.availability)}</span>`, 2),
-    indent(`</div>`, 1),
     indent(`<div class="hero-actions">`, 1),
     indent(`<a class="btn btn-primary" href="${escapeAttr(CV_FILE_PATH)}" download="${escapeAttr(CV_DOWNLOAD_NAME)}">Download CV (PDF)</a>`, 2),
     indent(`<a class="btn" href="mailto:${escapeAttr(CONTACTS.email)}">Email me</a>`, 2),
     indent(`</div>`, 1),
+    indent(renderHeroLinks(), 1),
     `</section>`,
   ].join("\n");
 }
@@ -197,6 +204,10 @@ function renderProjects(): string {
 function renderContact(): string {
   const body = [
     `<p class="prose">${escapeHtml(CONTACTS.availability)} ${escapeHtml(CONTACTS.responseTime)}</p>`,
+    `<div class="callout">`,
+    indent(`<span class="callout-label">Availability</span>`, 1),
+    indent(`<span class="callout-body">${escapeHtml(PROFILE.availability)}</span>`, 1),
+    `</div>`,
     `<ul class="contact-list">`,
     indent(`<li><span class="contact-key">Email</span><a class="card-link" href="mailto:${escapeAttr(CONTACTS.email)}">${escapeHtml(CONTACTS.email)}</a></li>`, 1),
     ...LINKS.map((link) =>

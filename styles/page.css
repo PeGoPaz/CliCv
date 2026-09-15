@@ -242,7 +242,21 @@ html[data-js] .js-only { display: var(--js-display, block); }
   border-color: color-mix(in srgb, var(--c-accent) 55%, transparent);
 }
 
-/* Availability callout - mirrors .availability-row in the terminal */
+/* Profile links, directly under the two buttons. Deliberately lighter than
+   .btn: Download CV and Email me stay the primary actions, and these sit
+   beside them as a way through to the work rather than competing for the click. */
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  margin-top: 14px;
+  font-size: 12px;
+}
+.hero-links-sep { color: var(--c-muted); }
+
+/* Availability callout - in the contact section, and mirrors .availability-row
+   in the terminal */
 .callout {
   display: flex;
   gap: 14px;

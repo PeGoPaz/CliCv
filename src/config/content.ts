@@ -56,9 +56,8 @@ export const PROFILE: Profile = {
   location: "Dublin, Ireland",
   tagline: "Final-year BSc (Hons) at Griffith College Dublin - I build, deploy and run what I write",
   availability:
-    "Available part-time during term and full-time over the summer (Stamp 2). " +
-    "Graduating June 2027, then eligible for the Third Level Graduate Programme " +
-    "(Stamp 1G) - 12 months of full-time work with no employer permit required.",
+    "Graduating June 2027 and eligible for the Third Level Graduate Programme " +
+    "(Stamp 1G): 12 months of full-time work with no employer permit required.",
   status: "available",
 };
 
