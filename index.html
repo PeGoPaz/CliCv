@@ -203,7 +203,7 @@
 
   <section class="section" id="about" aria-labelledby="about-h">
     <h2 class="section-h" id="about-h"><span class="section-h-sign" aria-hidden="true">❯</span>about</h2>
-    <p class="prose">Final-year BSc (Hons) Computing Science student at Griffith College Dublin, graduating June 2027. Most of what I can do I learned by building and running things outside coursework: a self-hosted Proxmox cluster behind a WireGuard mesh, with Pi-hole, ZFS and Grafana monitoring; a client site in production that syncs its own availability through a GitHub Actions pipeline; a Rails API I audited and hardened after finding raw user input reaching SQL; and a GPU benchmark that holds a LoRA fine-tune constant while polling NVML for thermal telemetry. Earlier, part-time work in industry: building and hardening client workstations, then debugging over 200 SQL-based regulatory reports and reworking around 400 queries against changing compliance rules in a core banking system. I am looking for a graduate engineering role where I can work on real systems and learn from experienced engineers.</p>
+    <p class="prose">Final-year BSc (Hons) Computing Science student at Griffith College Dublin, graduating June 2027. Most of what I can do I learned by building and running things outside coursework: a self-hosted Proxmox cluster behind a WireGuard mesh, with Pi-hole, ZFS and Grafana monitoring; a client site in production that syncs its own availability through a GitHub Actions pipeline; a Rails API I audited and hardened after finding raw user input reaching SQL; and a GPU benchmark that measures training throughput, energy and thermals under a fixed LoRA fine-tune, with a C++ sampler reading board power at 500 Hz. Earlier, part-time work in industry: building and hardening client workstations, then debugging over 200 SQL-based regulatory reports and reworking around 400 queries against changing compliance rules in a core banking system. I am looking for a graduate engineering role where I can work on real systems and learn from experienced engineers.</p>
   </section>
 
   <section class="section" id="skills" aria-labelledby="skills-h">
@@ -422,19 +422,21 @@
       <h3 class="project-category">AI / Machine Learning</h3>
       <article class="card project-card">
         <h4 class="card-title">AI-GPU-Benchmark</h4>
-        <p class="card-meta"><span class="card-period">Jul 2026 - Sep 2026</span></p>
-        <p class="card-lead">Measures the effect of GPU cooling changes: runs a fixed LoRA fine-tune while polling NVML every 250 ms, then plots thermal and power curves.</p>
-        <p class="card-desc">I deshrouded my RTX 4070 Ti and fitted custom fans, then had no repeatable way to tell whether it actually ran cooler. This tool puts the card under a fixed AI workload - a 150-step LoRA fine-tune of TinyLlama-1.1B in bfloat16 - while a separate thread polls NVML every 250 ms for temperature, hotspot, VRAM, power draw and clock speed. The PyQt6 window shows live telemetry during the run and plots thermal and power curves when it finishes, so two cooling setups can be compared on identical work.</p>
+        <p class="card-meta"><span class="card-period">Jul 2026 - present</span></p>
+        <p class="card-lead">Benchmarks NVIDIA GPUs on a real LoRA fine-tune: tokens/sec, MFU and energy per training step, a fitted thermal model, a 500 Hz C++ power sampler outside the GIL, and headless runs with Prometheus, Grafana and a SQLite history.</p>
+        <p class="card-desc">I deshrouded my RTX 4070 Ti and fitted custom fans, then had no repeatable way to tell whether it actually ran cooler, so I built one: the card runs a fixed LoRA fine-tune while the tool records what the driver reports. It has since grown into a benchmark for comparing cards and settings, released as 0.1.0. Throughput is measured in tokens per second and as model FLOPs utilisation against a peak worked out from the card's architecture, SM count and clock; energy comes from NVML's counter and is attributed to each training step; and a thermal model fitted to the temperature curve says whether the run reached steady state and when throttling began. Python cannot sample power fast enough to catch transients, so an optional C++17 extension samples it at 500 Hz on its own thread outside the GIL, through a lock-free ring buffer, tested under AddressSanitizer, UndefinedBehaviorSanitizer and ThreadSanitizer. Runs can be repeated with outlier rejection or swept over a grid of settings and ranked by their Pareto front of speed against efficiency, and the tool runs headless in a CUDA container with a Prometheus endpoint, a Grafana dashboard and a SQLite history of every run. Strict mypy, property-based tests and CI on Linux, Windows and macOS all run without a GPU.</p>
         <ul class="chip-row">
           <li class="chip">Python</li>
-          <li class="chip">PyQt6</li>
+          <li class="chip">C++17</li>
           <li class="chip">PyTorch</li>
           <li class="chip">Transformers</li>
           <li class="chip">PEFT</li>
-          <li class="chip">TRL</li>
-          <li class="chip">nvidia-ml-py</li>
-          <li class="chip">pandas</li>
-          <li class="chip">matplotlib</li>
+          <li class="chip">PyQt6</li>
+          <li class="chip">NVML</li>
+          <li class="chip">SQLite</li>
+          <li class="chip">Prometheus</li>
+          <li class="chip">Grafana</li>
+          <li class="chip">Docker</li>
         </ul>
         <p class="card-links"><a class="card-link" href="https://github.com/PeGoPaz/AI-GPU-Benchmark" target="_blank" rel="noopener noreferrer">Repository</a><a class="card-link" href="https://www.linkedin.com/posts/pegopaz_i-recently-deshrouded-my-850-rtx-4070-ti-ugcPost-7486854438087827457-OA0A/" target="_blank" rel="noopener noreferrer">Write-up</a></p>
       </article>
