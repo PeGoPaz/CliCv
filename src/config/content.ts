@@ -202,9 +202,9 @@ export const PROJECTS: Project[] = [
     name: "Pro.me",
     category: "Web Development",
     period: "Aug 2026 - present",
-    description: "A service-booking platform I am building on my own: customers browse providers by category, book appointments and leave reviews, and each role gets its own dashboard. It is still at concept stage and currently generic - the plan is to narrow it to driving instructors. The Express backend uses session auth backed by MongoDB, with Helmet, rate limiting, input sanitisation and bcrypt password hashing.",
-    summary: "Service-booking platform built solo, at concept stage: role-based dashboards and session auth on an Express backend with Helmet, rate limiting and input sanitisation.",
-    stack: ["React 19", "Vite", "Tailwind CSS", "React Router v7", "Node.js", "Express 5", "MongoDB", "Mongoose", "Helmet", "Cloudinary"],
+    description: "A marketplace for finding a driving instructor in Ireland, built on my own. The official RSA register already says who is approved; Pro.me helps learners choose between them. Its reference data - all 26 counties and 62 driving test centres, with Eircodes, coordinates and the licence categories each one tests - is imported from the RSA's own register, and search ranks verified instructors first, then profile completeness and reviews, never self-reported lesson counts. Instructors set up their profile in a step-by-step wizard that saves as it goes, learners shortlist instructors and request lessons, and admins check ADI numbers against the register from a verification queue. Because it hosts public profiles and reviews, it follows the EU Digital Services Act: anyone can report content, and a report cannot be closed without a statement of reasons. The Express 5 backend uses session auth stored in MongoDB, Helmet, bcrypt and a login rate limit that only counts failed attempts, and the whole site runs as a single Render service in Frankfurt so the session cookie stays first-party, which Safari would otherwise block.",
+    summary: "Driving-instructor marketplace for Ireland, built solo: reference data imported from the RSA register, trust-first ranking, an onboarding wizard, an ADI verification queue and DSA notice-and-action reporting, on React 19 and Express 5.",
+    stack: ["React 19", "Vite", "Tailwind CSS", "React Router v7", "Node.js", "Express 5", "MongoDB", "Mongoose", "Helmet", "Render"],
     repo: "https://github.com/PeGoPaz/Pro-me",
   },
   {
