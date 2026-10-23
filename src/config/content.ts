@@ -40,8 +40,8 @@ export interface Project {
   link?: string;
   repo?: string;
   writeup?: string;
-  // One plain sentence: what the project is. Leads the card on the page and is
-  // the CV's one-liner.
+  // One plain sentence: what the project is. Leads the card on the page and in
+  // the terminal, and is the CV's one-liner.
   summary?: string;
 }
 

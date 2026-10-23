@@ -207,9 +207,10 @@
 }
 .project-header { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; }
 .project-name { font-weight: 700; font-size: 14px; }
-.project-period { font-size: 11px; }
-.project-stack { font-size: 11px; margin-left: auto; }
+.project-period { font-size: 11px; margin-left: auto; }
+.project-lead { margin-top: 4px; font-weight: 600; color: var(--c-fg); }
 .project-desc { margin: 4px 0 6px; }
+.project-stack { font-size: 11px; margin-bottom: 6px; }
 .project-links { display: flex; gap: 12px; }
 .link {
   font-size: 12px;
@@ -363,7 +364,7 @@
   .help-grid { grid-template-columns: 1fr; gap: 4px; }
   .help-row > :first-child { color: var(--c-accent); }
   .exp-period { margin-left: 0; width: 100%; }
-  .project-stack { margin-left: 0; width: 100%; }
+  .project-period { margin-left: 0; width: 100%; }
   .availability-row { flex-direction: column; gap: 2px; }
 }
 

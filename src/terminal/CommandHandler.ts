@@ -238,9 +238,12 @@ export class CommandHandler {
         html += `<div class="project-header">`;
         html += `<span class="project-name fg-accent">${escapeHtml(p.name)}</span>`;
         if (p.period) html += `<span class="project-period fg-muted">${escapeHtml(p.period)}</span>`;
-        html += `<span class="project-stack fg-muted">${p.stack.map(escapeHtml).join(" · ")}</span>`;
         html += `</div>`;
+        // The same order as the page's card, with nothing folded away: the
+        // one-liner, the whole description, then the stack on its own line.
+        if (p.summary) html += `<div class="project-lead">${escapeHtml(p.summary)}</div>`;
         html += `<div class="project-desc">${escapeHtml(p.description)}</div>`;
+        html += `<div class="project-stack fg-muted">${p.stack.map(escapeHtml).join(" · ")}</div>`;
         html += `<div class="project-links">`;
         if (p.link) html += `<a href="${escapeAttr(p.link)}" target="_blank" rel="noopener noreferrer" class="link">live</a>`;
         if (p.repo) html += `<a href="${escapeAttr(p.repo)}" target="_blank" rel="noopener noreferrer" class="link">repo</a>`;
