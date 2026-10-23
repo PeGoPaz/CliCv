@@ -177,12 +177,19 @@ function renderProjectCard(p: (typeof PROJECTS)[number]): string {
   if (p.period) {
     lines.push(indent(`<p class="card-meta"><span class="card-period">${escapeHtml(p.period)}</span></p>`, 1));
   }
-  // The one-liner the CV already carries, so five dense cards can be skimmed
-  // before any of them is read in full.
+  // One sentence and the stack are what a skimming reader sees; the full
+  // description folds away behind a native <details>, which needs no script,
+  // works from the keyboard, stays in the HTML for search engines, and opens by
+  // itself when the browser's find-in-page lands inside it.
   if (p.summary) {
     lines.push(indent(`<p class="card-lead">${escapeHtml(p.summary)}</p>`, 1));
+    lines.push(indent(`<details class="card-details">`, 1));
+    lines.push(indent(`<summary>Details</summary>`, 2));
+    lines.push(indent(`<p class="card-desc">${escapeHtml(p.description)}</p>`, 2));
+    lines.push(indent(`</details>`, 1));
+  } else {
+    lines.push(indent(`<p class="card-desc">${escapeHtml(p.description)}</p>`, 1));
   }
-  lines.push(indent(`<p class="card-desc">${escapeHtml(p.description)}</p>`, 1));
   lines.push(indent(chips(p.stack), 1));
   if (links.length) {
     lines.push(indent(`<p class="card-links">${links.join("")}</p>`, 1));
