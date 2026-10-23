@@ -40,7 +40,8 @@ export interface Project {
   link?: string;
   repo?: string;
   writeup?: string;
-  // One line for the CV, where there is no room for the full description
+  // One plain sentence: what the project is. Leads the card on the page and is
+  // the CV's one-liner.
   summary?: string;
 }
 
@@ -185,7 +186,7 @@ export const PROJECTS: Project[] = [
     category: "Infrastructure & Self-Hosting",
     period: "Dec 2025 - Jan 2026",
     description: "Built to cut monthly subscription costs and keep my own data off corporate cloud services. Repurposed hardware runs Proxmox VE hosting containerised services, with a WireGuard mesh for remote access, Pi-hole for DNS filtering, ZFS for storage and Grafana with Uptime Kuma for monitoring. I built it between finishing the Networks and Data Communication module and starting Linux System Administration, and used it to put both subjects into practice.",
-    summary: "Proxmox VE host running containerised self-hosted services behind a WireGuard mesh, with Pi-hole, ZFS and Grafana monitoring.",
+    summary: "A home server cluster that replaced my paid cloud subscriptions.",
     stack: ["Proxmox VE", "Docker", "WireGuard", "Tailscale", "Pi-hole", "Nginx Proxy Manager", "ZFS", "Grafana", "Uptime Kuma"],
   },
   {
@@ -193,7 +194,7 @@ export const PROJECTS: Project[] = [
     category: "Web Development",
     period: "Jun 2026 - present",
     description: "A holiday-rental site for a villa on Lake Como, built for a client who needed running costs as close to zero as possible. That ruled out a database, so availability is pulled from the property's Booking.com iCal feed by a GitHub Actions job every six hours and committed back to the repository as JSON, and the Italian, French and German pages are generated from the English ones by a Python script. It runs on GitHub Pages with a custom domain, a Formspree contact form and a strict Content Security Policy, and it is where I learned GitHub Actions properly.",
-    summary: "Client site for a Lake Como rental, built database-free to keep running costs near zero: availability syncs from Booking.com via GitHub Actions, and the IT/FR/DE pages are generated from the English source.",
+    summary: "Booking site for a Lake Como holiday villa, run at near-zero cost.",
     stack: ["HTML", "CSS", "JavaScript", "Python", "GitHub Actions", "GitHub Pages", "Formspree"],
     link: "https://villacaterina.casa/",
     repo: "https://github.com/villacaterina/VillaCaterina-web",
@@ -203,7 +204,7 @@ export const PROJECTS: Project[] = [
     category: "Web Development",
     period: "Oct 2026 - present",
     description: "Villa Caterina's code turned into a template, so a site for a similar rental can be set up by editing data files instead of HTML. Every page is generated from a property config, a reviews file and one text file per language by a build written against Python's standard library alone, and the build refuses to ship mistakes: overlapping price seasons, a translation missing a key, a review scored above its platform's scale or a link to a script that does not exist all stop it with a message saying which. Reviews are rendered into the HTML at build time rather than injected by JavaScript, so search engines see them. Availability is merged from every platform's iCal feed, and if any feed fails nothing is written, because a calendar missing one platform's bookings would offer those dates again. CI tests, builds and deploys the site, and every six hours rebuilds it with fresh availability without committing anything. Building it also turned up a bug on the live villa site: Chrome rendered the AVIF photos macOS had encoded at odd dimensions as blank images, which I fixed in both.",
-    summary: "Villa Caterina turned into a reusable template: pages generated from config by a standard-library Python build that rejects bad prices, missing translations and broken links; reviews rendered at build time; iCal availability merged across platforms; CI that tests, builds and deploys.",
+    summary: "The villa's site turned into a template for any holiday rental.",
     stack: ["Python", "JavaScript", "HTML", "CSS", "GitHub Actions", "GitHub Pages", "unittest", "node:test"],
     repo: "https://github.com/PeGoPaz/property-template",
   },
@@ -212,7 +213,7 @@ export const PROJECTS: Project[] = [
     category: "Web Development",
     period: "Aug 2026 - present",
     description: "A marketplace for finding a driving instructor in Ireland, built on my own. The official RSA register already says who is approved; Pro.me helps learners choose between them. Its reference data - all 26 counties and 62 driving test centres, with Eircodes, coordinates and the licence categories each one tests - is imported from the RSA's own register, and search ranks verified instructors first, then profile completeness and reviews, never self-reported lesson counts. Instructors set up their profile in a step-by-step wizard that saves as it goes, learners shortlist instructors and request lessons, and admins check ADI numbers against the register from a verification queue. Because it hosts public profiles and reviews, it follows the EU Digital Services Act: anyone can report content, and a report cannot be closed without a statement of reasons. The Express 5 backend uses session auth stored in MongoDB, Helmet, bcrypt and a login rate limit that only counts failed attempts, and the whole site runs as a single Render service in Frankfurt so the session cookie stays first-party, which Safari would otherwise block.",
-    summary: "Driving-instructor marketplace for Ireland, built solo: reference data imported from the RSA register, trust-first ranking, an onboarding wizard, an ADI verification queue and DSA notice-and-action reporting, on React 19 and Express 5.",
+    summary: "A marketplace for finding a driving instructor in Ireland.",
     stack: ["React 19", "Vite", "Tailwind CSS", "React Router v7", "Node.js", "Express 5", "MongoDB", "Mongoose", "Helmet", "Render"],
     repo: "https://github.com/PeGoPaz/Pro-me",
   },
@@ -221,7 +222,7 @@ export const PROJECTS: Project[] = [
     category: "Web Development",
     period: "Feb 2026 - Jul 2026",
     description: "A smartphone catalogue for the Irish market, built with a coursemate: a React 19 and TypeScript front end over a Rails 8 JSON API on PostgreSQL. Filtering runs server-side across around twenty dimensions - brand, screen size, RAM, storage, cameras, refresh rate, release year, 5G, NFC, charging, SIM type and biometrics - and a second endpoint reports how many devices a pending filter set would leave and which brands are still selectable, so the counts update before anything is applied. Filter state is mirrored into the URL, results are paged in chunks of 50, and up to five phones can be put side by side. My work was on the backend: the storage and release-year filters interpolated user input straight into SQL, so I rewrote them onto bound parameters, then added per-endpoint rate limiting, a production-only secure flag on the session cookie, and JSON error handling so an unknown device id returns a 404 rather than a 500.",
-    summary: "Smartphone catalogue built with a coursemate on a Rails 8 API and a React 19 front end, with server-side filtering across around twenty spec dimensions. I worked on the backend and hardened it: parameterised the raw-SQL filters, added rate limiting, and fixed the session cookie and error handling.",
+    summary: "A smartphone catalogue for Ireland with filters across 20 specs.",
     stack: ["React 19", "TypeScript", "TanStack Query", "Zustand", "Tailwind CSS", "Ruby on Rails 8", "PostgreSQL (Neon)", "Vercel", "Render"],
     link: "https://ie-catalog-frontend-jymn.vercel.app/",
   },
@@ -230,7 +231,7 @@ export const PROJECTS: Project[] = [
     category: "AI / Machine Learning",
     period: "Jul 2026 - present",
     description: "I deshrouded my RTX 4070 Ti and fitted custom fans, then had no repeatable way to tell whether it actually ran cooler, so I built one: the card runs a fixed LoRA fine-tune while the tool records what the driver reports. It has since grown into a benchmark for comparing cards and settings, released as 0.1.0. Throughput is measured in tokens per second and as model FLOPs utilisation against a peak worked out from the card's architecture, SM count and clock; energy comes from NVML's counter and is attributed to each training step; and a thermal model fitted to the temperature curve says whether the run reached steady state and when throttling began. Python cannot sample power fast enough to catch transients, so an optional C++17 extension samples it at 500 Hz on its own thread outside the GIL, through a lock-free ring buffer, tested under AddressSanitizer, UndefinedBehaviorSanitizer and ThreadSanitizer. Runs can be repeated with outlier rejection or swept over a grid of settings and ranked by their Pareto front of speed against efficiency, and the tool runs headless in a CUDA container with a Prometheus endpoint, a Grafana dashboard and a SQLite history of every run. Strict mypy, property-based tests and CI on Linux, Windows and macOS all run without a GPU.",
-    summary: "Benchmarks NVIDIA GPUs on a real LoRA fine-tune: tokens/sec, MFU and energy per training step, a fitted thermal model, a 500 Hz C++ power sampler outside the GIL, and headless runs with Prometheus, Grafana and a SQLite history.",
+    summary: "Benchmarks NVIDIA GPUs on a real AI training workload.",
     stack: ["Python", "C++17", "PyTorch", "Transformers", "PEFT", "PyQt6", "NVML", "SQLite", "Prometheus", "Grafana", "Docker"],
     repo: "https://github.com/PeGoPaz/AI-GPU-Benchmark",
     writeup: "https://www.linkedin.com/posts/pegopaz_i-recently-deshrouded-my-850-rtx-4070-ti-ugcPost-7486854438087827457-OA0A/",
