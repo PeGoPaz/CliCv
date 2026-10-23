@@ -381,6 +381,23 @@
         <p class="card-links"><a class="card-link" href="https://villacaterina.casa/" target="_blank" rel="noopener noreferrer">Live site</a><a class="card-link" href="https://github.com/villacaterina/VillaCaterina-web" target="_blank" rel="noopener noreferrer">Repository</a></p>
       </article>
       <article class="card project-card">
+        <h4 class="card-title">Property Template</h4>
+        <p class="card-meta"><span class="card-period">Oct 2026 - present</span></p>
+        <p class="card-lead">Villa Caterina turned into a reusable template: pages generated from config by a standard-library Python build that rejects bad prices, missing translations and broken links; reviews rendered at build time; iCal availability merged across platforms; CI that tests, builds and deploys.</p>
+        <p class="card-desc">Villa Caterina's code turned into a template, so a site for a similar rental can be set up by editing data files instead of HTML. Every page is generated from a property config, a reviews file and one text file per language by a build written against Python's standard library alone, and the build refuses to ship mistakes: overlapping price seasons, a translation missing a key, a review scored above its platform's scale or a link to a script that does not exist all stop it with a message saying which. Reviews are rendered into the HTML at build time rather than injected by JavaScript, so search engines see them. Availability is merged from every platform's iCal feed, and if any feed fails nothing is written, because a calendar missing one platform's bookings would offer those dates again. CI tests, builds and deploys the site, and every six hours rebuilds it with fresh availability without committing anything. Building it also turned up a bug on the live villa site: Chrome rendered the AVIF photos macOS had encoded at odd dimensions as blank images, which I fixed in both.</p>
+        <ul class="chip-row">
+          <li class="chip">Python</li>
+          <li class="chip">JavaScript</li>
+          <li class="chip">HTML</li>
+          <li class="chip">CSS</li>
+          <li class="chip">GitHub Actions</li>
+          <li class="chip">GitHub Pages</li>
+          <li class="chip">unittest</li>
+          <li class="chip">node:test</li>
+        </ul>
+        <p class="card-links"><a class="card-link" href="https://github.com/PeGoPaz/property-template" target="_blank" rel="noopener noreferrer">Repository</a></p>
+      </article>
+      <article class="card project-card">
         <h4 class="card-title">Pro.me</h4>
         <p class="card-meta"><span class="card-period">Aug 2026 - present</span></p>
         <p class="card-lead">Driving-instructor marketplace for Ireland, built solo: reference data imported from the RSA register, trust-first ranking, an onboarding wizard, an ADI verification queue and DSA notice-and-action reporting, on React 19 and Express 5.</p>

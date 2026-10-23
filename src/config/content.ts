@@ -199,6 +199,15 @@ export const PROJECTS: Project[] = [
     repo: "https://github.com/villacaterina/VillaCaterina-web",
   },
   {
+    name: "Property Template",
+    category: "Web Development",
+    period: "Oct 2026 - present",
+    description: "Villa Caterina's code turned into a template, so a site for a similar rental can be set up by editing data files instead of HTML. Every page is generated from a property config, a reviews file and one text file per language by a build written against Python's standard library alone, and the build refuses to ship mistakes: overlapping price seasons, a translation missing a key, a review scored above its platform's scale or a link to a script that does not exist all stop it with a message saying which. Reviews are rendered into the HTML at build time rather than injected by JavaScript, so search engines see them. Availability is merged from every platform's iCal feed, and if any feed fails nothing is written, because a calendar missing one platform's bookings would offer those dates again. CI tests, builds and deploys the site, and every six hours rebuilds it with fresh availability without committing anything. Building it also turned up a bug on the live villa site: Chrome rendered the AVIF photos macOS had encoded at odd dimensions as blank images, which I fixed in both.",
+    summary: "Villa Caterina turned into a reusable template: pages generated from config by a standard-library Python build that rejects bad prices, missing translations and broken links; reviews rendered at build time; iCal availability merged across platforms; CI that tests, builds and deploys.",
+    stack: ["Python", "JavaScript", "HTML", "CSS", "GitHub Actions", "GitHub Pages", "unittest", "node:test"],
+    repo: "https://github.com/PeGoPaz/property-template",
+  },
+  {
     name: "Pro.me",
     category: "Web Development",
     period: "Aug 2026 - present",
