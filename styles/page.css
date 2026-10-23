@@ -355,9 +355,9 @@ html[data-js] .js-only { display: var(--js-display, block); }
 }
 .card-period { margin-left: auto; }
 
-/* The project one-liner. Carries --c-fg while .card-desc below it stays the
-   same colour: the weight and size do the separating, so the pair cannot cost
-   contrast in Solarized, where --c-fg has the least headroom. */
+/* The project one-liner. Carries --c-fg like .card-desc: the weight and size
+   do the separating, so the pair cannot cost contrast in Solarized, where
+   --c-fg has the least headroom. */
 .card-lead {
   margin-top: 8px;
   font-size: 13.5px;
@@ -371,9 +371,27 @@ html[data-js] .js-only { display: var(--js-display, block); }
   color: var(--c-fg);
   line-height: 1.7;
 }
-/* Wider than the usual 8px so the summary reads as a lead and not as the first
-   paragraph of the description running on. */
-.card-lead + .card-desc { margin-top: 14px; }
+
+/* "Details" under a project's one-liner; the description opens beneath it. */
+.card-details { margin-top: 6px; }
+.card-details > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--c-link);
+  cursor: pointer;
+  list-style: none;
+}
+.card-details > summary::-webkit-details-marker { display: none; }
+.card-details > summary::before {
+  content: "▸";
+  transition: transform 150ms ease;
+}
+.card-details[open] > summary::before { transform: rotate(90deg); }
+.card-details > summary:hover,
+.card-details > summary:focus-visible { color: var(--c-accent); }
+.card-details > .card-desc { margin-top: 10px; }
 
 .card-highlights {
   margin: 10px 0 0 18px;

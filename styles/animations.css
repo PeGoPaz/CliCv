@@ -49,6 +49,7 @@
   .ascii-banner, .hero-banner { animation: none; }
   .btn:hover, .btn:focus,
   .project-card:hover { transform: none; }
+  .card-details > summary::before { transition: none; }
   .output-line,
   .output-line.quick-fade,
   .terminal-body .boot { animation: none; }
