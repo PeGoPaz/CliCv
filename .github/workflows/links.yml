@@ -1,0 +1,30 @@
+name: Check links
+
+# A portfolio full of dead project links looks abandoned, and nothing else
+# notices when an external page moves. Weekly, and on demand.
+on:
+  schedule:
+    - cron: '0 7 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lychee:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Check every link on the site and in the README
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # LinkedIn answers 999 to anything that is not a browser.
+          # 404.html links from the site root, which --root-dir stands in for.
+          args: >-
+            --no-progress
+            --root-dir ${{ github.workspace }}
+            --exclude 'linkedin\.com'
+            --accept 200,206,429
+            index.html 404.html README.md
+          fail: true

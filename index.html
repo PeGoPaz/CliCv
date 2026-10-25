@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self';" />
   <meta name="description" content="Vladimir Rainov - final-year BSc (Hons) Computing Science student at Griffith College Dublin, graduating June 2027. Linux, Proxmox, Docker, AWS, CI/CD, Python, Java, SQL and application security. Open to graduate engineering roles in Dublin, Ireland." />
   <meta name="author" content="Vladimir Rainov" />
   <meta name="keywords" content="graduate engineer, Dublin, Ireland, Griffith College, Linux, DevOps, cloud infrastructure, systems administration, application security, cybersecurity, machine learning, Python, Java, SQL, Docker, Kubernetes, AWS, CI/CD, portfolio" />
@@ -138,10 +138,9 @@
   </script>
 <!-- generated:head-end -->
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Fonts: self-hosted, see styles/fonts.css -->
+  <link rel="preload" href="assets/fonts/jetbrains-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles/fonts.css" />
 
   <!-- Styles -->
   <link rel="stylesheet" href="styles/main.css" />
@@ -412,7 +411,7 @@
         <p class="card-lead">A marketplace for finding a driving instructor in Ireland.</p>
         <details class="card-details">
           <summary>Details</summary>
-          <p class="card-desc">I am building it on my own. The official RSA register already says who is approved to teach; Pro.me helps learners choose between them. Its reference data - all 26 counties and 62 driving test centres, with Eircodes, coordinates and the licence categories each one tests - is imported from the RSA's own register, and search ranks verified instructors first, then profile completeness and reviews, never self-reported lesson counts. Instructors set up their profile in a step-by-step wizard that saves as it goes, learners shortlist instructors and request lessons, and admins check ADI numbers against the register from a verification queue. Because it hosts public profiles and reviews, it follows the EU Digital Services Act: anyone can report content, and a report cannot be closed without a statement of reasons. The Express 5 backend uses session auth stored in MongoDB, Helmet, bcrypt and a login rate limit that only counts failed attempts, and the whole site runs as a single Render service in Frankfurt so the session cookie stays first-party, which Safari would otherwise block.</p>
+          <p class="card-desc">I am building it on my own. The official RSA register already says who is approved to teach; Pro.me helps learners choose between them. Its reference data - all 26 counties and 62 driving test centres, with Eircodes, coordinates and the licence categories each one tests - is imported from the RSA's own register, and search ranks verified instructors first, then profile completeness and reviews, never self-reported lesson counts. Instructors set up their profile in a step-by-step wizard that saves as it goes, learners shortlist instructors and request lessons, and admins check ADI numbers against the register from a verification queue. Photos go to Cloudinary: the server checks each file's type from its bytes rather than its name, Cloudinary re-encodes it, which strips the GPS location a phone writes into it, and a gallery's 12-photo limit holds even when two uploads land at once. A learner can only review an instructor after a lesson the instructor confirmed has taken place. Because it hosts public profiles and reviews, it follows the EU Digital Services Act: anyone can report content, a report cannot be closed without a statement of reasons, the author of a hidden review is shown why, and the admin area counts the figures for the yearly transparency report. The Express 5 backend uses session auth stored in MongoDB, Helmet, bcrypt and a login rate limit that only counts failed attempts, and the whole site runs as a single Render service in Frankfurt so the session cookie stays first-party, which Safari would otherwise block.</p>
         </details>
         <ul class="chip-row">
           <li class="chip">React 19</li>
@@ -423,6 +422,7 @@
           <li class="chip">Express 5</li>
           <li class="chip">MongoDB</li>
           <li class="chip">Mongoose</li>
+          <li class="chip">Cloudinary</li>
           <li class="chip">Helmet</li>
           <li class="chip">Render</li>
         </ul>

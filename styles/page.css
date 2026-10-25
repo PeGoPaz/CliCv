@@ -513,3 +513,43 @@ html[data-js] .js-only { display: var(--js-display, block); }
 /* ---------- Terminal view ----------------------------------------------- */
 html[data-view="terminal"] .topbar-nav,
 html[data-view="terminal"] .skip-link { display: none; }
+
+/* ------- Print -------
+   A recruiter printing the page, or saving it as a PDF, gets a plain
+   document: black on white, no top bar, background or buttons, every project
+   unfolded (src/main.ts opens the <details> before printing) and each link's
+   address written out, since nobody can click paper. */
+@media print {
+  :root {
+    --c-bg: #fff;
+    --c-fg: #000;
+    --c-muted: #444;
+    --c-accent: #000;
+    --c-link: #000;
+    --c-border: #bbb;
+  }
+
+  body { font-size: 10.5pt; background: #fff; color: #000; }
+
+  #matrix-bg,
+  .topbar,
+  .skip-link,
+  .hero-actions,
+  .hero-banner,
+  #terminalView { display: none !important; }
+
+  #page-view { display: block !important; }
+
+  .card,
+  .skill-group { break-inside: avoid; }
+
+  .card-details > summary { display: none; }
+
+  a { border-bottom: none; }
+  .card-link[href^="http"]::after,
+  .contact-list a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: var(--c-muted);
+  }
+}

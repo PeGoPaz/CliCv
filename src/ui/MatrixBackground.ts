@@ -7,6 +7,8 @@ export class MatrixBackground {
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
   private columns: number = 0;
+  private width: number = 0;   // CSS pixels; the canvas itself is scaled by the device pixel ratio
+  private height: number = 0;
   private drops: number[] = [];
   private fontSize: number = 14;
   private glyphs: string = "光ЯЮЭ平ЬЫШ星Ч日ХБ月УТС地ДР天НМК世ЛЗ火ОЖЕ界В水П龍Ф";
@@ -26,9 +28,16 @@ export class MatrixBackground {
   }
 
   private resize(): void {
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
-    this.columns = Math.floor(this.canvas.width / this.fontSize);
+    // A canvas the size of the window in CSS pixels is upscaled on high-DPI
+    // screens, which blurs every glyph. Draw at device pixels instead, capped
+    // at 2x since the effect sits behind the text and 3x costs 2.25x the fill.
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
+    this.canvas.width = Math.round(this.width * dpr);
+    this.canvas.height = Math.round(this.height * dpr);
+    this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    this.columns = Math.floor(this.width / this.fontSize);
     this.drops = Array.from({ length: this.columns }, () => Math.random() * -100);
   }
 
@@ -42,7 +51,7 @@ export class MatrixBackground {
 
       // Trail effect - semi-transparent black over previous frame
       this.ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
-      this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+      this.ctx.fillRect(0, 0, this.width, this.height);
 
       this.ctx.font = `${this.fontSize}px "JetBrains Mono", monospace`;
 
@@ -63,7 +72,7 @@ export class MatrixBackground {
         this.ctx.globalAlpha = 1;
 
         // Reset drop when it falls off screen (with some randomness)
-        if (y > this.canvas.height && Math.random() > 0.975) {
+        if (y > this.height && Math.random() > 0.975) {
           this.drops[i] = 0;
         }
         this.drops[i] += 1;

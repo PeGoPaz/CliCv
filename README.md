@@ -40,6 +40,7 @@ Then open http://localhost:3000
 | `npm run build` | Compiles TypeScript to `dist/` |
 | `npm run page` | Regenerates `index.html` from `content.ts` |
 | `npm run check:cv-sync` | Fails if `index.html` is out of date (CI gate) |
+| `npm test` | Tests the page renderer and tab completion, against `dist/` (CI gate) |
 | `npm run cv` | Rebuilds `assets/cv.pdf` |
 | `npm run og` | Rebuilds `assets/og.png` from `assets/og.html` |
 | `npm run serve` | Static server on port 3000 |
@@ -48,7 +49,7 @@ Then open http://localhost:3000
 After editing `src/config/content.ts`:
 
 ```bash
-npm run build && npm run page && npm run check:cv-sync
+npm run build && npm run page && npm run check:cv-sync && npm test
 ```
 
 ## The two views
@@ -63,7 +64,11 @@ and the matrix canvas, which runs in the terminal and, on the page, only above 1
 it is actually visible behind the content column.
 
 Terminal commands: `about`, `education`, `skills`, `experience`, `projects`, `contacts`,
-`links`, `whoami`, `themes`, `theme <name>`, `cv`, `history`, `clear`, `help`.
+`links`, `whoami`, `themes`, `theme <name>`, `cv`, `history`, `clear`, `help`. Tab completes
+them the way a shell does; on an empty line it moves focus on as usual.
+
+Printing the page, or saving it as a PDF, gives a plain black-on-white document with every
+project unfolded and link addresses written out.
 
 ## Constraints worth knowing
 
@@ -74,19 +79,25 @@ Terminal commands: `about`, `education`, `skills`, `experience`, `projects`, `co
   Solarized has almost none to spare.
 - **Deploy** publishes an explicit list, not the repo: see the assemble step in
   `.github/workflows/deploy.yml`. A new file that has to reach the site must be added there.
+  The same step stamps `sitemap.xml` with the date of the deployed commit.
+- **No third-party requests.** The font is served from `assets/fonts/` rather than Google
+  Fonts, which would send every visitor's IP address to Google; the CSP allows nothing else.
+- **`404.html`** is served by GitHub Pages for any missing address, so it links with
+  absolute paths and loads no scripts.
+- **Links** are checked weekly by `.github/workflows/links.yml` (lychee).
 
 ## Tech
 
 - **Frontend:** vanilla TypeScript, HTML5, CSS3
 - **Build:** `tsc` plus two zero-dependency Node scripts
 - **Styling:** CSS custom properties, set on `:root` from `src/config/themes.ts`
-- **Font:** JetBrains Mono
+- **Font:** JetBrains Mono, self-hosted (SIL Open Font License, `assets/fonts/OFL.txt`)
 - **Hosting:** GitHub Pages, deployed from `main` by GitHub Actions
 
 ## Project structure
 
 ```
-├── assets/              # cv.pdf, og.png
+├── assets/              # cv.pdf, og.png, fonts/
 ├── scripts/
 │   ├── build-page.mjs   # writes the generated regions of index.html
 │   ├── check-cv-sync.mjs# fails if those regions are stale
@@ -97,8 +108,10 @@ Terminal commands: `about`, `education`, `skills`, `experience`, `projects`, `co
 │   ├── page/            # render.ts - the static page and the JSON-LD
 │   ├── terminal/        # terminal, command handler, boot sequence
 │   ├── ui/              # AppShell, ThemeManager, matrix background, status bar
-│   └── utils/           # html escaping, command history
-├── styles/              # main, themes, animations, terminal, page, crawler
+│   └── utils/           # html escaping, command history, tab completion
+├── styles/              # fonts, main, themes, animations, terminal, page, crawler, 404
+├── tests/               # node:test, run against the compiled dist/
+├── 404.html             # the not-found page
 └── index.html           # single entry point, partly generated
 ```
 

@@ -36,11 +36,17 @@ jobs:
       - name: Check index.html is in sync with content.ts
         run: npm run check:cv-sync
 
+      - name: Test the page renderer
+        run: npm test
+
       - name: Assemble site
         run: |
           mkdir -p _site
-          cp -r index.html favicon.svg robots.txt sitemap.xml CNAME styles assets dist _site/
+          cp -r index.html 404.html favicon.svg robots.txt sitemap.xml CNAME styles assets dist _site/
           rm -f _site/assets/og.html _site/assets/cv.html
+          # The sitemap's lastmod is the date of the commit being deployed, so
+          # search engines see when the page last changed, not a date typed once.
+          sed -i "s|<lastmod>[^<]*</lastmod>|<lastmod>$(git log -1 --format=%cs)</lastmod>|" _site/sitemap.xml
 
       - name: Setup Pages
         uses: actions/configure-pages@v6

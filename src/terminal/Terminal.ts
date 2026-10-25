@@ -1,5 +1,6 @@
 import { CommandHandler } from "./CommandHandler.js";
 import { History } from "../utils/history.js";
+import { complete } from "../utils/complete.js";
 import { StatusBar } from "../ui/StatusBar.js";
 import { applyTheme, initTheme, onThemeChange, currentTheme } from "../ui/ThemeManager.js";
 
@@ -89,7 +90,9 @@ export class Terminal {
       return;
     }
 
-    if (e.key === "Tab") {
+    // Tab completes only when there is something to complete. On an empty
+    // line it moves focus on as usual, or keyboard users could never leave.
+    if (e.key === "Tab" && !e.shiftKey && this.input.value.trim()) {
       e.preventDefault();
       this.autocomplete();
       return;
@@ -125,10 +128,11 @@ export class Terminal {
   }
 
   private autocomplete(): void {
-    const value = this.input.value.trim().toLowerCase();
-    if (!value) return;
-    const match = CommandHandler.AVAILABLE_COMMANDS.find((c) => c.startsWith(value));
-    if (match) this.input.value = match;
+    const { value, candidates } = complete(this.input.value, CommandHandler.AVAILABLE_COMMANDS);
+    this.input.value = value;
+    if (candidates) {
+      this.writeOutput(`<span class="fg-muted">${candidates.join("  ")}</span>`);
+    }
   }
 
   private writeOutput(html: string, extraClass: string = ""): void {
