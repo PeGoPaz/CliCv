@@ -35,3 +35,6 @@ Thumbs.db
 roadmap.md
 next-session-prompt.md
 assets/cv.html
+
+# Local editor and assistant settings
+.claude/
