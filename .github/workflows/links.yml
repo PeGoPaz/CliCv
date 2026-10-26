@@ -19,13 +19,14 @@ jobs:
       - name: Check every link on the site and in the README
         uses: lycheeverse/lychee-action@v2
         with:
-          # LinkedIn answers 999 to anything that is not a browser, and the
+          # LinkedIn (999) and X (403) refuse anything that is not a browser, and the
           # README's localhost address is the local dev server.
           # 404.html links from the site root, which --root-dir stands in for.
           args: >-
             --no-progress
             --root-dir ${{ github.workspace }}
             --exclude 'linkedin\.com'
+            --exclude '(^|//)(www\.)?(x|twitter)\.com'
             --exclude-loopback
             --accept 200,206,429
             index.html 404.html README.md
