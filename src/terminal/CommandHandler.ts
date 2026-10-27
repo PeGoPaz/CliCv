@@ -266,7 +266,7 @@ export class CommandHandler {
     let html = `<div class="section-title">Links</div>`;
     for (const link of LINKS) {
       html += `<div class="link-row"><span class="fg-accent link-platform">${escapeHtml(link.platform)}</span>`;
-      html += `<a href="${escapeAttr(link.url)}" target="_blank" rel="noopener noreferrer" class="link">${escapeHtml(link.display)}</a></div>`;
+      html += `<a href="${escapeAttr(link.url)}" target="_blank" rel="me noopener noreferrer" class="link">${escapeHtml(link.display)}</a></div>`;
     }
     this.render(html);
   }

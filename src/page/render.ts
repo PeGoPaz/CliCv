@@ -84,8 +84,14 @@ function bullets(items: string[], cls: string): string {
   ].join("\n");
 }
 
-function outLink(url: string, label: string): string {
-  return `<a class="card-link" href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`;
+/**
+ * rel="me" marks a link to one of my own profiles, the standard way of saying
+ * "the person behind this page is the person behind that one". Only LINKS get
+ * it: a project's repository or live site is not a profile.
+ */
+function outLink(url: string, label: string, profile = false): string {
+  const rel = profile ? "me noopener noreferrer" : "noopener noreferrer";
+  return `<a class="card-link" href="${escapeAttr(url)}" target="_blank" rel="${rel}">${escapeHtml(label)}</a>`;
 }
 
 // ------- Sections -------
@@ -97,7 +103,7 @@ function outLink(url: string, label: string): string {
  */
 function renderHeroLinks(): string {
   const sep = `<span class="hero-links-sep" aria-hidden="true">·</span>`;
-  return `<p class="hero-links">${LINKS.map((l) => outLink(l.url, l.display)).join(sep)}</p>`;
+  return `<p class="hero-links">${LINKS.map((l) => outLink(l.url, l.display, true)).join(sep)}</p>`;
 }
 
 function renderHero(): string {
@@ -224,7 +230,7 @@ function renderContact(): string {
     indent(`<li><span class="contact-key">Email</span><a class="card-link" href="mailto:${escapeAttr(CONTACTS.email)}">${escapeHtml(CONTACTS.email)}</a></li>`, 1),
     ...LINKS.map((link) =>
       indent(
-        `<li><span class="contact-key">${escapeHtml(link.platform)}</span>${outLink(link.url, link.display)}</li>`,
+        `<li><span class="contact-key">${escapeHtml(link.platform)}</span>${outLink(link.url, link.display, true)}</li>`,
         1,
       ),
     ),

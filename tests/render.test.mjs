@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
 import { renderHead, renderShell } from "../dist/page/render.js";
-import { PROJECTS } from "../dist/config/content.js";
+import { LINKS, PROJECTS } from "../dist/config/content.js";
 import { escapeAttr, escapeHtml } from "../dist/utils/html.js";
 import { complete } from "../dist/utils/complete.js";
 
@@ -31,7 +31,17 @@ describe("the generated page", () => {
 
   it("opens every external link in a new tab without handing it window.opener", () => {
     for (const a of html.match(/<a [^>]*target="_blank"[^>]*>/g)) {
-      assert.match(a, /rel="noopener noreferrer"/);
+      assert.match(a, /rel="(me )?noopener noreferrer"/);
+    }
+  });
+
+  it("marks my own profiles, and only them, with rel=me", () => {
+    const meLinks = html.match(/<a [^>]*rel="me [^"]*"[^>]*>/g).map((a) => a.match(/href="([^"]+)"/)[1]);
+    assert.deepEqual([...new Set(meLinks)].sort(), LINKS.map((l) => l.url).sort());
+    for (const p of PROJECTS) {
+      for (const url of [p.repo, p.link, p.writeup].filter(Boolean)) {
+        assert.ok(!meLinks.includes(url), `${p.name}: ${url} is a project, not a profile`);
+      }
     }
   });
 
