@@ -45,6 +45,15 @@ describe("the generated page", () => {
     }
   });
 
+  it("folds each screenshot away and defers loading it", () => {
+    const previews = html.match(/<details class="card-details card-preview">[\s\S]*?<\/details>/g) ?? [];
+    assert.equal(previews.length, PROJECTS.filter((p) => p.screenshot).length);
+    for (const preview of previews) {
+      assert.doesNotMatch(preview, /<details[^>]* open/);
+      assert.match(preview, /<img [^>]*width="\d+" height="\d+" loading="lazy"/);
+    }
+  });
+
   it("cannot close the JSON-LD script early", () => {
     const head = renderHead();
     const json = head.slice(head.indexOf(">") + 1, head.lastIndexOf("</script>"));

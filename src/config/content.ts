@@ -43,6 +43,9 @@ export interface Project {
   // One plain sentence: what the project is. Leads the card on the page and in
   // the terminal, and is the CV's one-liner.
   summary?: string;
+  // A screenshot, folded away on the page and left out of the terminal and the
+  // CV. width and height are the file's own, so opening it shifts nothing.
+  screenshot?: { src: string; alt: string; width: number; height: number };
 }
 
 export interface SocialLink {
@@ -207,6 +210,12 @@ export const PROJECTS: Project[] = [
     summary: "The villa's site turned into a template for any holiday rental.",
     stack: ["Python", "JavaScript", "HTML", "CSS", "GitHub Actions", "GitHub Pages", "unittest", "node:test"],
     repo: "https://github.com/PeGoPaz/property-template",
+    screenshot: {
+      src: "assets/projects/property-template.webp",
+      alt: "The template's booking widget: a two-month availability calendar with three nights picked and the total price",
+      width: 720,
+      height: 978,
+    },
   },
   {
     name: "Pro.me",
@@ -216,6 +225,12 @@ export const PROJECTS: Project[] = [
     summary: "A marketplace for finding a driving instructor in Ireland.",
     stack: ["React 19", "Vite", "Tailwind CSS", "React Router v7", "Node.js", "Express 5", "MongoDB", "Mongoose", "Cloudinary", "Helmet", "Render"],
     repo: "https://github.com/PeGoPaz/Pro-me",
+    screenshot: {
+      src: "assets/projects/pro-me.webp",
+      alt: "Pro.me's instructor search: filters on the left, verified instructors first, with ratings, typical reply time, coverage and price",
+      width: 1280,
+      height: 860,
+    },
   },
   {
     name: "Sorted",

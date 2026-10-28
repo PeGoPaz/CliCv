@@ -197,6 +197,15 @@ function renderProjectCard(p: (typeof PROJECTS)[number]): string {
     lines.push(indent(`<p class="card-desc">${escapeHtml(p.description)}</p>`, 1));
   }
   lines.push(indent(chips(p.stack), 1));
+  // Folded like the description. A lazy image inside a closed <details> is not
+  // rendered, so the browser does not fetch it until someone opens it.
+  if (p.screenshot) {
+    const s = p.screenshot;
+    lines.push(indent(`<details class="card-details card-preview">`, 1));
+    lines.push(indent(`<summary>Screenshot</summary>`, 2));
+    lines.push(indent(`<img src="${escapeAttr(s.src)}" alt="${escapeAttr(s.alt)}" width="${s.width}" height="${s.height}" loading="lazy" decoding="async">`, 2));
+    lines.push(indent(`</details>`, 1));
+  }
   if (links.length) {
     lines.push(indent(`<p class="card-links">${links.join("")}</p>`, 1));
   }

@@ -393,6 +393,18 @@ html[data-js] .js-only { display: var(--js-display, block); }
 .card-details > summary:focus-visible { color: var(--c-accent); }
 .card-details > .card-desc { margin-top: 10px; }
 
+.card-preview img {
+  display: block;
+  /* Landscape shots fill the card; tall ones stop at a readable height. */
+  max-width: 100%;
+  max-height: 480px;
+  width: auto;
+  height: auto;
+  margin-top: 10px;
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+}
+
 .card-highlights {
   margin: 10px 0 0 18px;
   list-style: disc;
@@ -544,6 +556,7 @@ html[data-view="terminal"] .skip-link { display: none; }
   .skill-group { break-inside: avoid; }
 
   .card-details > summary { display: none; }
+  .card-preview { display: none; }
 
   a { border-bottom: none; }
   .card-link[href^="http"]::after,
