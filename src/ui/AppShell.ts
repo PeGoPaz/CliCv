@@ -11,6 +11,24 @@ const TERMINAL_HASH = "#terminal";
 const MATRIX_MIN_WIDTH = 1100;
 
 /**
+ * The terminal's stylesheet, fetched the first time it is wanted rather than
+ * on every page load: the page view never uses it, and a stylesheet in <head>
+ * holds up the first paint (Lighthouse measured ~150 ms on mobile).
+ */
+let terminalStyles: Promise<void> | null = null;
+function loadTerminalStyles(): Promise<void> {
+  terminalStyles ??= new Promise((resolve) => {
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "styles/terminal.css";
+    link.onload = () => resolve();
+    link.onerror = () => resolve(); // an unstyled terminal still beats none
+    document.head.appendChild(link);
+  });
+  return terminalStyles;
+}
+
+/**
  * Owns the two views. The page is static HTML already in the document;
  * the terminal is built and booted the first time it is opened.
  */
@@ -37,6 +55,10 @@ export class AppShell {
     onThemeChange((theme) => this.reflectTheme(theme));
 
     this.viewToggle?.addEventListener("click", () => this.toggleView());
+    // Start fetching the terminal's styles as soon as someone heads for the button.
+    for (const event of ["pointerenter", "focus"]) {
+      this.viewToggle?.addEventListener(event, () => void loadTerminalStyles(), { once: true });
+    }
     this.terminalBack?.addEventListener("click", () => this.goToPage());
     window.addEventListener("hashchange", () => this.syncFromHash());
     window.addEventListener("resize", () => this.updateMatrix());
@@ -66,6 +88,17 @@ export class AppShell {
     const previous = this.view;
     this.view = view;
 
+    // Switch only once the terminal's styles are in, so it never flashes unstyled.
+    if (view === "terminal") {
+      void loadTerminalStyles().then(() => {
+        if (this.view === "terminal") this.showView(view, previous);
+      });
+    } else {
+      this.showView(view, previous);
+    }
+  }
+
+  private showView(view: View, previous: View | null): void {
     document.documentElement.dataset.view = view;
     if (this.pageView) this.pageView.hidden = view === "terminal";
     if (this.terminalView) this.terminalView.hidden = view !== "terminal";
