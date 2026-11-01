@@ -10,8 +10,6 @@ export class Terminal {
   private history: History;
   private statusBar: StatusBar;
   private handler: CommandHandler;
-  private currentHistoryIndex: number = -1;
-  private savedInput: string = "";
 
   constructor() {
     const body = document.getElementById("terminalBody");
@@ -67,12 +65,8 @@ export class Terminal {
       e.preventDefault();
       const value = this.input.value;
       this.input.value = "";
-      this.currentHistoryIndex = -1;
-      this.savedInput = "";
-      if (value.trim()) {
-        this.history.push(value.trim());
-        this.statusBar.updateHistory(this.history.all().length);
-      }
+      this.history.push(value.trim());
+      this.statusBar.updateHistory(this.history.all().length);
       this.handler.execute(value);
       this.scrollToBottom();
       return;
@@ -80,13 +74,13 @@ export class Terminal {
 
     if (e.key === "ArrowUp") {
       e.preventDefault();
-      this.navigateHistory(-1);
+      this.input.value = this.history.older(this.input.value);
       return;
     }
 
     if (e.key === "ArrowDown") {
       e.preventDefault();
-      this.navigateHistory(1);
+      this.input.value = this.history.newer(this.input.value);
       return;
     }
 
@@ -105,26 +99,6 @@ export class Terminal {
 
   public showHelp(): void {
     this.handler.showHelp();
-  }
-
-  private navigateHistory(direction: number): void {
-    const entries = this.history.all();
-    if (entries.length === 0) return;
-
-    if (this.currentHistoryIndex === -1) {
-      this.savedInput = this.input.value;
-    }
-
-    let newIndex = this.currentHistoryIndex + direction;
-    if (newIndex < 0) newIndex = 0;
-    if (newIndex >= entries.length) {
-      this.currentHistoryIndex = -1;
-      this.input.value = this.savedInput;
-      return;
-    }
-    this.currentHistoryIndex = newIndex;
-    // Newest command is at end of array
-    this.input.value = entries[entries.length - 1 - newIndex];
   }
 
   private autocomplete(): void {

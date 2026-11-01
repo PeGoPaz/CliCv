@@ -6,6 +6,7 @@ import { renderHead, renderShell } from "../dist/page/render.js";
 import { LINKS, PROJECTS } from "../dist/config/content.js";
 import { escapeAttr, escapeHtml } from "../dist/utils/html.js";
 import { complete } from "../dist/utils/complete.js";
+import { History } from "../dist/utils/history.js";
 
 describe("escaping", () => {
   it("neutralises markup in text and attributes", () => {
@@ -82,5 +83,50 @@ describe("tab completion", () => {
     assert.deepEqual(complete("theme dra", commands), { value: "theme dra" });
     assert.deepEqual(complete("xyz", commands), { value: "xyz" });
     assert.deepEqual(complete("", commands), { value: "" });
+  });
+});
+
+describe("command history", () => {
+  function historyOf(...commands) {
+    const history = new History();
+    for (const c of commands) history.push(c);
+    return history;
+  }
+
+  it("goes back to older commands with Up and stops at the oldest", () => {
+    const history = historyOf("about", "skills", "links");
+    assert.deepEqual([1, 2, 3, 4].map(() => history.older("proj")), ["links", "skills", "about", "about"]);
+  });
+
+  it("comes forward with Down, then back to the line being typed", () => {
+    const history = historyOf("about", "skills", "links");
+    for (let i = 0; i < 3; i++) history.older("proj");
+    assert.deepEqual([1, 2, 3].map(() => history.newer("about")), ["skills", "links", "proj"]);
+    assert.equal(history.newer("proj"), "proj");
+  });
+
+  it("starts again from the newest after a command is run", () => {
+    const history = historyOf("about", "skills");
+    history.older("");
+    history.older("");
+    history.push("about");
+    assert.equal(history.older(""), "about");
+    assert.equal(history.older(""), "skills");
+
+    history.push(""); // Enter on an empty line ends the walk too
+    assert.equal(history.older(""), "about");
+  });
+
+  it("leaves the input alone with nothing to recall", () => {
+    const history = new History();
+    assert.equal(history.older("ab"), "ab");
+    assert.equal(history.newer("ab"), "ab");
+  });
+
+  it("skips blanks and repeats, and keeps the last 100", () => {
+    assert.deepEqual(historyOf("cv", "cv", "", "help", "cv").all(), ["cv", "help", "cv"]);
+    const long = historyOf(...Array.from({ length: 105 }, (_, i) => `theme ${i}`)).all();
+    assert.equal(long.length, 100);
+    assert.equal(long[0], "theme 5");
   });
 });
